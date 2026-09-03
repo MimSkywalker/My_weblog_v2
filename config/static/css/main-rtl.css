@@ -1,0 +1,574 @@
+@font-face {
+  font-family: "Shabnam";
+  src: url('../fonts/shabnam/Shabnam-FD.eot');
+  src: url('../fonts/shabnam/Shabnam-FD.eot') format('../fonts/shabnam/Shabnam-opentype'),
+       url('../fonts/shabnam/Shabnam-FD.woff2') format('woff2'),
+       url('../fonts/shabnam/Shabnam-FD.woff') format('woff'),
+       url('../fonts/shabnam/Shabnam-FD.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+html {
+  direction: rtl;
+}
+body {
+  direction: rtl;
+  font-family: 'Shabnam', sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Shabnam', sans-serif;
+  letter-spacing: initial;
+  line-height: initial;
+}
+/* Hero Card Components */
+.badge-status {
+  letter-spacing: initial;
+  text-transform: initial;
+}
+.hero-title {
+  text-transform: initial;
+  line-height: 1.1;
+}
+
+/* Skills / Stats Component */
+.stat-label {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+
+/* Service Grid Component */
+.expertise-item span {
+  letter-spacing: initial;
+}
+
+/* Aesthetic Patterns */
+.card-number {
+  right: initial;
+  left: 32px;
+  letter-spacing: initial;
+}
+.card-clients p {
+  letter-spacing: initial;
+}
+.value-title {
+  letter-spacing: initial;
+}
+.card-hub h3 {
+  letter-spacing: initial;
+}
+.signature-text {
+  font-family: 'Shabnam', sans-serif;
+  text-align: left;
+  letter-spacing: initial;
+}
+.pillar-item {
+  border-left: none;
+  border-right: 2px solid var(--velixo-primary);
+  padding-left: initial;
+  padding-right: 16px;
+}
+.pillar-item:hover {
+  transform: translateX(-10px);
+  border-radius: 12px 0 0 12px;
+}
+.pillar-title {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+
+/* HUB CARD STYLES */
+.hub-time {
+  letter-spacing: initial;
+  font-family: 'Shabnam', sans-serif;
+}
+.hub-loc {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+.hub-status {
+  text-transform: initial;
+}
+/* Dark Toggle Controls */
+.logo-text {
+  font-family: 'Shabnam', sans-serif;
+  letter-spacing: initial;
+}
+@media (max-width: 767px) {
+  .hero-title {
+    letter-spacing: initial;
+  }
+}
+/* ==========================================================================
+  RESUME COMPONENT STYLES
+========================================================================== */
+.timeline-stack {
+  padding-left: initial;
+  padding-right: 0;
+}
+.timeline-item:hover {
+  transform: translateX(-10px);
+}
+.time-range {
+  letter-spacing: initial;
+}
+.company {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+.timeline-content h4 {
+  letter-spacing: initial;
+}
+
+
+/* Education Item */
+.edu-item {
+  padding-left: initial;
+  padding-right: 20px;
+  border-left: none;
+  border-right: 2px solid var(--velixo-border);
+}
+.edu-item:hover {
+  transform: translateX(-10px);
+  border-radius: 12px 0 0 12px;
+}
+.edu-meta {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+.skill-name {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+/* ==========================================================================
+  WORKS PAGE STYLES
+  ========================================================================== */
+.filter-btn {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+.work-title:hover {
+  transform: translateX(-8px);
+}
+.work-cat {
+  letter-spacing: initial;
+  text-transform: initial;
+}
+.work-title {
+  letter-spacing: initial;
+}
+
+/* ==========================================================================
+  CONTACT PAGE STYLES
+========================================================================== */
+.form-floating-custom label {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+.info-item .label {
+  letter-spacing: initial;
+}
+.hub-title h3 {
+  letter-spacing: initial;
+}
+
+/* --- Featured Cover Card --- */
+.blog-featured:hover .bf-content h2 {
+  transform: translateX(-10px);
+}
+.bf-arrow {
+  right: initial;
+  left: 28px;
+}
+
+/* --- Side Stack Card (horizontal) --- */
+.blog-side-card:hover .bsc-body h5 {
+  transform: translateX(-8px);
+}
+
+/* Category tag overlaid on image */
+.bpc-img .post-tag {
+  left: initial;
+  right: 14px;
+}
+.blog-post-card:hover .bpc-body h5 {
+  transform: translateX(-8px);
+}
+
+/* --- Shared Tag & Meta Tokens --- */
+.post-tag {
+  letter-spacing: initial;
+  text-transform: initial;
+}
+
+/* bf-content tags stay on dark overlay */
+.post-read,
+.post-date {
+  letter-spacing: initial;
+}
+.load-more-btn {
+  letter-spacing: initial;
+  text-transform: initial;
+}
+
+/* --- Contact Reach List --- */
+.contact-channel-item:hover {
+  transform: translateX(-6px);
+}
+.cci-label {
+  letter-spacing: initial;
+  text-transform: initial;
+}
+.ccs-metric {
+  font-family: 'Shabnam', sans-serif;
+  letter-spacing: initial;
+}
+.ccs-title {
+  letter-spacing: initial;
+  text-transform: initial;
+}
+/* --- Form Intro Panel --- */
+.form-intro-panel::before {
+  right: initial;
+  left: -80px;
+}
+.form-intro-panel::after {
+  left: initial;
+  right: -50px;
+}
+.fip-label {
+  letter-spacing: initial;
+  text-transform: initial;
+}
+.fip-signature {
+  letter-spacing: initial;
+}
+
+/* --- Form Controls (vx-field system) --- */
+.vx-field label {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+.vx-input {
+  font-family: 'Shabnam', sans-serif;
+}
+
+/* ==========================================================================
+  DEMO 2: THE BLOCK STUDIO (REFERENCE PARITY)
+========================================================================== */
+.vx-demo-2 .nav-block-vx span {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+
+
+/* ==========================================================================
+   DEMO 2 — SHARED UTILITIES & HOME PAGE STYLES
+========================================================================== */
+
+/* Letter-spacing utility (Bootstrap 5 omits ls-* helpers) */
+.ls-1 {
+  letter-spacing: initial !important;
+}
+.ls-2 {
+  letter-spacing: initial !important;
+}
+.ls-3 {
+  letter-spacing: initial !important;
+}
+/* Home page: master card title */
+.vx-demo-2 .master-title-vx {
+  font-family: 'Shabnam', sans-serif;
+  letter-spacing: initial;
+}
+
+/* ==========================================================================
+  DEMO 2 — RESUME PAGE: UNIQUE COMPONENT STYLES
+========================================================================== */
+.vx-demo-2 .card-profile-banner::after {
+  right: initial;
+  left: -80px;
+}
+
+/* Banner Stat Boxes */
+.vx-demo-2 .banner-stat-num {
+  font-family: 'Shabnam', sans-serif;
+  letter-spacing: initial;
+}
+.vx-demo-2 .banner-stat-label {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+
+/* Numbered Experience Items */
+.vx-demo-2 .vx-exp-item:hover {
+  transform: translateX(-6px);
+}
+.vx-demo-2 .vx-exp-num {
+  font-family: 'Shabnam', sans-serif;
+}
+.vx-demo-2 .vx-exp-period {
+  text-transform: initial;
+}
+.vx-demo-2 .vx-exp-role {
+  letter-spacing: initial;
+}
+.vx-demo-2 .vx-exp-company {
+  text-transform: initial;
+}
+
+/* Circular SVG Skill Rings */
+.vx-demo-2 .vx-ring-pct {
+  font-family: 'Shabnam', sans-serif;
+  letter-spacing: initial;
+}
+.vx-demo-2 .vx-ring-name {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+.vx-demo-2 .vx-section-label {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+/* ==========================================================================
+   DEMO 2 — PROJECTS PAGE: UNIQUE COMPONENT STYLES
+   ========================================================================== */
+
+/* Dark Projects Banner (mirrors profile banner concept) */
+.vx-demo-2 .card-projects-banner::before {
+  left: initial;
+  right: -80px;
+}
+.vx-demo-2 .card-projects-banner::after {
+  right: initial;
+  left: -40px;
+}
+.vx-demo-2 .vx-proj-num {
+  right: initial;
+  left: 28px;
+  font-family: 'Shabnam', sans-serif;
+  letter-spacing: initial;
+}
+.vx-demo-2 .vx-proj-cat {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+.vx-demo-2 .vx-proj-title {
+  letter-spacing: initial;
+}
+/* ==========================================================================
+  DEMO 2 — FEED PAGE: UNIQUE COMPONENT STYLES
+========================================================================== */
+
+/* Deep purple/indigo banner — distinct from resume navy & projects midnight */
+.vx-demo-2 .card-feed-banner::before {
+  right: initial;
+  left: -60px;
+}.vx-demo-2 .card-feed-banner::after {
+  left: initial;
+  right: -40px;
+}
+
+/* Featured article — text LEFT, image RIGHT (inverse of project rows) */
+.vx-demo-2 .vff-title {
+  letter-spacing: initial;
+}
+.vx-demo-2 .vff-arrow {
+  right: initial;
+  left: 28px;
+}
+.vx-demo-2 .vfc-title {
+  letter-spacing: initial;
+}
+/* ==========================================================================
+  15. DEMO 3: CREATIVE PORTFOLIO
+========================================================================== */
+.vx-demo-3 .sidebar-right-vx {
+  border-left: none;
+  border-right: 1px solid var(--velixo-border);
+  right: initial;
+  left: 0;
+}
+.vx-demo-3 .nav-item:hover,
+.vx-demo-3 .nav-item.active {
+  transform: translateX(8px);
+  box-shadow: 10px 0 20px rgba(var(--velixo-primary-rgb), 0.2);
+}
+
+/* Left Section: Fixed Identity (Stable for Modals) */
+.vx-demo-3 .vx-3-identity {
+  left: initial;
+  right: 0;
+}
+.vx-demo-3 .id-avatar {
+  transform: rotate(3deg);
+}
+.vx-demo-3 .id-name {
+  text-transform: initial;
+}
+.vx-demo-3 .id-tag {
+  text-transform: initial;
+}
+
+/* Right Section: Editorial Feed */
+.vx-demo-3 .vx-3-feed {
+  margin-left: initial;
+  margin-right: 40%;
+  padding: 80px 80px 120px 100px; /* Space for sidebar nav */
+}
+.vx-demo-3 .section-label {
+  letter-spacing: initial;
+  text-transform: initial;
+}
+
+/* Mastery Marquee */
+.vx-demo-3 .marquee-item {
+  text-transform: initial;
+  font-family: 'Shabnam', sans-serif;
+}
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+.vx-demo-3 .service-row:hover {
+  padding-left: initial;
+  padding-right: 20px;
+}
+.vx-demo-3 .service-num {
+  font-family: 'Shabnam', sans-serif;
+}
+
+/* Responsive Overrides */
+@media (max-width: 1200px) {
+  .vx-demo-3 .vx-3-feed {
+    padding: 60px 60px 100px 100px;
+  }
+}
+@media (max-width: 1024px) {
+  .vx-demo-3 .vx-3-feed {
+    margin-right: 0; /* Reset margin on mobile */
+    padding: 80px 40px 140px;
+  }
+  .vx-demo-3 .sidebar-right-vx {
+    top: auto;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    border-right: none;
+  }
+  .vx-demo-3 .sidebar-footer {
+    border-left:none;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding-left: initial;
+    padding-right: 15px;
+  }
+  .vx-demo-3 .nav-item:hover, .vx-demo-3 .nav-item.active {
+    transform: translateY(-5px);
+  }
+}
+/* Custom CSS Tooltips for Demo 3 Sidebar */
+.vx-demo-3 .nav-item span {
+  right: initial;
+  left: 80px;
+  transform: translateY(-50%) translateX(-20px);
+}
+
+/* The Right Arrow pointing to the sidebar */
+.vx-demo-3 .nav-item span::after {
+  right: initial;
+  left: -6px;
+  border-left: none;
+  border-right: 6px solid var(--velixo-primary);
+}
+/* ==========================================================================
+   15. DEMO 3: RESUME EDITORIAL EXTENSIONS
+========================================================================== */
+.vx-demo-3 .timeline-editorial {
+  border-left: none;
+  border-right: 1px solid rgba(var(--velixo-primary-rgb), 0.1);
+  padding-left: initial;
+  padding-right: 40px;
+}
+.vx-demo-3 .editorial-item::before {
+  left: initial;
+  right: -44.5px;
+}
+.vx-demo-3 .editorial-date {
+  font-family: 'Shabnam', sans-serif;
+  letter-spacing: initial;
+}
+.vx-demo-3 .editorial-item .company {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+.vx-demo-3 .work-meta-editorial span {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+.vx-demo-3 .editorial-post-title {
+  text-transform: initial;
+  font-family: 'Shabnam', sans-serif;
+  letter-spacing: initial;
+}
+.vx-demo-3 .blog-date-panel .month {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+.vx-demo-3 .blog-read-more {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+.vx-demo-3 .info-block h5 {
+  text-transform: initial;
+  letter-spacing: initial;
+}
+
+/* MY CSS */
+.vx-demo-3 .skills-infrastructure {
+  margin-inline-end: 60px;
+}
+form.contact-form-editorial {
+  padding-inline-end: 60px;
+}
+
+input[type="email"] {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] .animate__fadeInLeft {
+  animation-name: fadeInRight;
+}
+
+[dir="rtl"] .animate__fadeInRight {
+  animation-name: fadeInLeft;
+}
+[dir="rtl"] .animate__slideInLeft {
+  animation-name: slideInRight;
+}
+
+[dir="rtl"] .animate__slideInRight {
+  animation-name: slideInLeft;
+}
+[dir="rtl"] .animate__fadeInLeft {
+  animation-name: fadeInRight;
+}
+
+[dir="rtl"] .animate__fadeInRight {
+  animation-name: fadeInLeft;
+}
+
+@media (max-width: 1024px) {
+  form.contact-form-editorial {
+    padding-inline-end: initial;
+  }
+
+}
+@media (max-width: 576px) {
+  .vx-demo-3 .contact-info-grid {
+    display: block;
+  }
+}
