@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html dir="rtl" lang="fa-IR">
 <head>
@@ -6,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تماس با من - محمد مقدم‌نژاد | معمار نخبه ولیکسو</title>
     <meta name="description" content="Get in touch with Alex Sterling for elite architectural projects and technical consulting.">
-    <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="{% static '/img/favicon.svg' %}" type="image/svg+xml">
 
     <!-- CSS LIBRARIES -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.rtl.min.css">
-    <link rel="stylesheet" href="../assets/css/fontawesome.min.css">
-    <link rel="stylesheet" href="../assets/css/animate.min.css">
-    <link rel="stylesheet" href="../assets/css/google-fonts.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/main-rtl.css" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/google-fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main-rtl.css' %}" />
 </head>
 <body class="contact-page">
 
@@ -243,9 +244,9 @@
     </div>
 
     <!-- JS LIBRARIES -->
-    <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/wow.min.js"></script>
-    <script src="../assets/js/main.js"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

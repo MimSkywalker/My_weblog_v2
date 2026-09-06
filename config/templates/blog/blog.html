@@ -1,21 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html dir="rtl" lang="fa-IR">
+
 <head>
     <meta charset="UTF-8">
-    <script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark-theme');</script>
+    <script>if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark-theme');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>وبلاگ - محمد مقدم‌نژاد | برنامه‌نویس بک‌اند جنگو</title>
-    <meta name="description" content="Technical logs, neural insights, and architectural philosophy from Alex Sterling.">
-    <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
-    
+    <meta name="description"
+        content="Technical logs, neural insights, and architectural philosophy from Alex Sterling.">
+    <link rel="icon" href="{% static 'img/favicon.svg' %}" type="image/svg+xml">
+
     <!-- CSS LIBRARIES -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.rtl.min.css">
-    <link rel="stylesheet" href="../assets/css/fontawesome.min.css">
-    <link rel="stylesheet" href="../assets/css/animate.min.css">
-    <link rel="stylesheet" href="../assets/css/google-fonts.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/main-rtl.css" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/google-fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main-rtl.css' %}" />
 </head>
+
 <body class="blog-page">
 
     <!-- START NAVIGATION DOCK -->
@@ -46,7 +50,7 @@
     <!-- END NAVIGATION DOCK -->
 
     <div class="container bento-container">
-        
+
         <!-- START HEADER -->
         <header class="d-flex justify-content-between align-items-center mb-5 animate__animated animate__fadeInDown">
             <div class="logo-text">ولیکسو.</div>
@@ -92,7 +96,7 @@
                 <div class="col-lg-8">
                     <article class="blog-featured wow animate__fadeInLeft">
                         <div class="bf-img">
-                            <img src="../assets/img/blog-1.jpg" alt="Neural Design Systems">
+                            <img src="img/blog-1.jpg' %}' %}" alt="Neural Design Systems">
                         </div>
                         <div class="bf-gradient"></div>
                         <div class="bf-content">
@@ -100,9 +104,11 @@
                                 <span class="post-tag">مهندسی</span>
                                 <span class="post-read"><i class="fa-regular fa-clock me-1"></i>8 دقیقه مطالعه</span>
                             </div>
-                            <h2><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal1">آینده سیستم‌های طراحی هوشمند</a></h2>
+                            <h2><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal1">آینده سیستم‌های
+                                    طراحی هوشمند</a></h2>
                             <div class="post-author-row d-flex align-items-center gap-2 mt-4">
-                                <img src="../assets/img/avatar-1.jpg" alt="Alex" class="rounded-circle" style="width:28px;height:28px;object-fit:cover;">
+                                <img src="{% static 'img/avatar-1.jpg' %}' %}" alt="Alex" class="rounded-circle"
+                                    style="width:28px;height:28px;object-fit:cover;">
                                 <span>محمد مقدم‌نژاد</span>
                                 <span class="ms-auto">24 مهر، 1404</span>
                             </div>
@@ -115,11 +121,12 @@
                 <div class="col-lg-4 d-flex flex-column gap-4">
                     <article class="blog-side-card wow animate__fadeInRight">
                         <div class="bsc-img">
-                            <img src="../assets/img/blog-2.jpg" alt="Quantum Hooks">
+                            <img src="{% static 'img/blog-2.jpg' %}' %}" alt="Quantum Hooks">
                         </div>
                         <div class="bsc-body">
                             <span class="post-tag tag-hardware">سخت‌افزار</span>
-                            <h5><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal2">هوک‌های کوانتومی رابط کاربری</a></h5>
+                            <h5><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal2">هوک‌های
+                                    کوانتومی رابط کاربری</a></h5>
                             <div class="d-flex align-items-center gap-2 mt-auto pt-3">
                                 <span class="post-read"><i class="fa-regular fa-clock me-1"></i>5 دقیقه</span>
                                 <span class="post-date ms-auto">18 مهر، 1404</span>
@@ -128,11 +135,12 @@
                     </article>
                     <article class="blog-side-card wow animate__fadeInRight" data-wow-delay="0.1s">
                         <div class="bsc-img">
-                            <img src="../assets/img/blog-3.jpg" alt="Visual Logic">
+                            <img src="{% static 'img/blog-3.jpg' %}" alt="Visual Logic">
                         </div>
                         <div class="bsc-body">
                             <span class="post-tag tag-logic">منطق</span>
-                            <h5><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal3">جریان منطقی بصری</a></h5>
+                            <h5><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal3">جریان منطقی
+                                    بصری</a></h5>
                             <div class="d-flex align-items-center gap-2 mt-auto pt-3">
                                 <span class="post-read"><i class="fa-regular fa-clock me-1"></i>4 دقیقه</span>
                                 <span class="post-date ms-auto">15 مهر، 1404</span>
@@ -145,11 +153,12 @@
                 <div class="col-lg-4">
                     <article class="blog-post-card wow animate__fadeInUp">
                         <div class="bpc-img">
-                            <img src="../assets/img/blog-4.jpg" alt="Cyber Resilience">
+                            <img src="{% static 'img/blog-4.jpg' %}" alt="Cyber Resilience">
                             <span class="post-tag tag-security">امنیت</span>
                         </div>
                         <div class="bpc-body">
-                            <h5><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal4">پروتکل‌های تاب‌آوری سایبری</a></h5>
+                            <h5><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal4">پروتکل‌های
+                                    تاب‌آوری سایبری</a></h5>
                             <div class="d-flex align-items-center gap-2 mt-auto pt-3">
                                 <span class="post-read"><i class="fa-regular fa-clock me-1"></i>6 دقیقه</span>
                                 <span class="post-date ms-auto">10 مهر، 1404</span>
@@ -160,11 +169,12 @@
                 <div class="col-lg-4">
                     <article class="blog-post-card wow animate__fadeInUp" data-wow-delay="0.1s">
                         <div class="bpc-img">
-                            <img src="../assets/img/blog-5.jpg" alt="Visual Analytics">
+                            <img src="{% static 'img/blog-5.jpg' %}" alt="Visual Analytics">
                             <span class="post-tag tag-data">داده</span>
                         </div>
                         <div class="bpc-body">
-                            <h5><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal5">قدرت داده‌های بصری</a></h5>
+                            <h5><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal5">قدرت داده‌های
+                                    بصری</a></h5>
                             <div class="d-flex align-items-center gap-2 mt-auto pt-3">
                                 <span class="post-read"><i class="fa-regular fa-clock me-1"></i>7 دقیقه</span>
                                 <span class="post-date ms-auto">05 مهر، 1404</span>
@@ -175,11 +185,12 @@
                 <div class="col-lg-4">
                     <article class="blog-post-card wow animate__fadeInUp" data-wow-delay="0.2s">
                         <div class="bpc-img">
-                            <img src="../assets/img/blog-1-detail.jpg" alt="Design Architecture">
+                            <img src="{% static 'img/blog-1-detail.jpg' %}" alt="Design Architecture">
                             <span class="post-tag tag-systems">سیستم‌ها</span>
                         </div>
                         <div class="bpc-body">
-                            <h5><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal6">معماری طراحی</a></h5>
+                            <h5><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal6">معماری
+                                    طراحی</a></h5>
                             <div class="d-flex align-items-center gap-2 mt-auto pt-3">
                                 <span class="post-read"><i class="fa-regular fa-clock me-1"></i>9 دقیقه</span>
                                 <span class="post-date ms-auto">28 شهریور 1404</span>
@@ -193,17 +204,20 @@
                     <div class="col-lg-8 d-flex">
                         <article class="blog-featured w-100">
                             <div class="bf-img">
-                                <img src="../assets/img/blog-6.jpg" alt="Scalable Grids">
+                                <img src="{% static 'img/blog-6.jpg' %}" alt="Scalable Grids">
                             </div>
                             <div class="bf-gradient"></div>
                             <div class="bf-content">
                                 <div class="d-flex align-items-center gap-3 mb-3">
                                     <span class="post-tag">سیستم‌ها</span>
-                                    <span class="post-read"><i class="fa-regular fa-clock me-1"></i>12 دقیقه مطالعه</span>
+                                    <span class="post-read"><i class="fa-regular fa-clock me-1"></i>12 دقیقه
+                                        مطالعه</span>
                                 </div>
-                                <h2><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal7">ریاضیات شبکه‌های مقیاس‌پذیر</a></h2>
+                                <h2><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal7">ریاضیات
+                                        شبکه‌های مقیاس‌پذیر</a></h2>
                                 <div class="post-author-row d-flex align-items-center gap-2 mt-4">
-                                    <img src="../assets/img/avatar-1.jpg" alt="Alex" class="rounded-circle" style="width:28px;height:28px;object-fit:cover;">
+                                    <img src="{% static 'img/avatar-1.jpg' %}" alt="Alex" class="rounded-circle"
+                                        style="width:28px;height:28px;object-fit:cover;">
                                     <span>محمد مقدم‌نژاد</span>
                                     <span class="ms-auto">12 مهر، 1404</span>
                                 </div>
@@ -215,17 +229,20 @@
                     <div class="col-lg-4 d-flex">
                         <article class="blog-featured w-100">
                             <div class="bf-img">
-                                <img src="../assets/img/blog-7.jpg" alt="Hybrid Cloud">
+                                <img src="{% static 'img/blog-7.jpg' %}" alt="Hybrid Cloud">
                             </div>
                             <div class="bf-gradient"></div>
                             <div class="bf-content">
                                 <div class="d-flex align-items-center gap-3 mb-3">
                                     <span class="post-tag">رایانش ابری</span>
-                                    <span class="post-read"><i class="fa-regular fa-clock me-1"></i>9 دقیقه مطالعه</span>
+                                    <span class="post-read"><i class="fa-regular fa-clock me-1"></i>9 دقیقه
+                                        مطالعه</span>
                                 </div>
-                                <h2><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal8">معماری ابر ترکیبی</a></h2>
+                                <h2><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal8">معماری ابر
+                                        ترکیبی</a></h2>
                                 <div class="post-author-row d-flex align-items-center gap-2 mt-4">
-                                    <img src="../assets/img/avatar-1.jpg" alt="Alex" class="rounded-circle" style="width:28px;height:28px;object-fit:cover;">
+                                    <img src="{% static 'img/avatar-1.jpg' %}" alt="Alex" class="rounded-circle"
+                                        style="width:28px;height:28px;object-fit:cover;">
                                     <span>محمد مقدم‌نژاد</span>
                                     <span class="ms-auto">08 مهر، 1404</span>
                                 </div>
@@ -256,7 +273,7 @@
     </div>
 
     <!-- START BLOG MODALS -->
-    
+
     <!-- Blog Modal 1 -->
     <div class="modal fade velixo-modal" id="blogModal1" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
@@ -270,18 +287,27 @@
                         <span class="small opacity-50 fw-bold">24 مهر، 1404</span>
                     </div>
                     <h2 class="modal-title mb-4">آینده سیستم‌های طراحی هوشمند</h2>
-                    <img src="../assets/img/blog-1.jpg" class="img-fluid rounded-4 mb-5" alt="Neural Design Systems Detail">
+                    <img src="{% static 'img/blog-1.jpg' %}" class="img-fluid rounded-4 mb-5"
+                        alt="Neural Design Systems Detail">
                     <div class="blog-content">
-                        <p>در دنیای پرشتاب رابط‌های دیجیتال، همگرایی اصول زیستی شبکه‌های عصبی و طراحی مبتنی بر رایانه، پارادایم تازه‌ای را شکل داده است؛ مفهومی که آن را  <strong>«معماری طراحی هوشمند» می‌نامیم.</strong>.</p>
-                        <p>برخلاف سیستم‌های طراحی سنتی و ایستا، این سیستم‌ها به‌گونه‌ای ساخته شده‌اند که زنده و پویا باشند؛ به‌طوری‌که در لحظه با رفتار کاربر، میزان بار ذهنی و شرایط محیطی سازگار می‌شوند. چنین رویکردی نیازمند بازنگری کامل در مدیریت منطق اجزا و وضعیت سیستم است.</p>
+                        <p>در دنیای پرشتاب رابط‌های دیجیتال، همگرایی اصول زیستی شبکه‌های عصبی و طراحی مبتنی بر رایانه،
+                            پارادایم تازه‌ای را شکل داده است؛ مفهومی که آن را <strong>«معماری طراحی هوشمند»
+                                می‌نامیم.</strong>.</p>
+                        <p>برخلاف سیستم‌های طراحی سنتی و ایستا، این سیستم‌ها به‌گونه‌ای ساخته شده‌اند که زنده و پویا
+                            باشند؛ به‌طوری‌که در لحظه با رفتار کاربر، میزان بار ذهنی و شرایط محیطی سازگار می‌شوند. چنین
+                            رویکردی نیازمند بازنگری کامل در مدیریت منطق اجزا و وضعیت سیستم است.</p>
                         <blockquote class="my-5 p-4 border-start border-4 border-primary bg-light rounded-2">
-                            «هدف، ساخت ابزارهایی برای کاربران نیست؛ بلکه ایجاد اکوسیستم‌هایی است که همراه با آن‌ها رشد و تکامل پیدا کنند.»
+                            «هدف، ساخت ابزارهایی برای کاربران نیست؛ بلکه ایجاد اکوسیستم‌هایی است که همراه با آن‌ها رشد و
+                            تکامل پیدا کنند.»
                         </blockquote>
                         <h4 class="mt-5 mb-3 text-uppercase">سه ستون اصلی طراحی هوشمند</h4>
                         <ol>
-                            <li class="mb-3"><strong>بهره‌وری شناختی</strong>: کاهش اصطکاک و پیچیدگی در تمام نقاط تعامل</li>
-                            <li class="mb-3"><strong>مقیاس‌پذیری پویا</strong>: منطقی که پیچیدگی را متناسب با سطح مهارت کاربر تنظیم می‌کند</li>
-                            <li><strong>هوش پیش‌بین</strong>: استفاده از یادگیری ماشین برای آماده‌سازی منابع و مسیرها پیش از وقوع تعامل.</li>
+                            <li class="mb-3"><strong>بهره‌وری شناختی</strong>: کاهش اصطکاک و پیچیدگی در تمام نقاط تعامل
+                            </li>
+                            <li class="mb-3"><strong>مقیاس‌پذیری پویا</strong>: منطقی که پیچیدگی را متناسب با سطح مهارت
+                                کاربر تنظیم می‌کند</li>
+                            <li><strong>هوش پیش‌بین</strong>: استفاده از یادگیری ماشین برای آماده‌سازی منابع و مسیرها
+                                پیش از وقوع تعامل.</li>
                         </ol>
                     </div>
                 </div>
@@ -302,12 +328,18 @@
                         <span class="small opacity-50 fw-bold">18 مهر، 1404</span>
                     </div>
                     <h2 class="modal-title mb-4">هوک‌های کوانتومی رابط کاربری در سخت‌افزار</h2>
-                    <img src="../assets/img/blog-2.jpg" class="img-fluid rounded-4 mb-5" alt="Quantum UI Hooks Detail">
+                    <img src="{% static 'img/blog-2.jpg' %}" class="img-fluid rounded-4 mb-5"
+                        alt="Quantum UI Hooks Detail">
                     <div class="blog-content">
-                        <p>یکپارچه‌سازی منطق پیشرفته رابط کاربری با سخت‌افزار سطح پایین، تنها به کدنویسی بهینه محدود نمی‌شود؛ بلکه به درک عمیقی از تأخیر سیگنال‌ها و چرخه‌های بازخورد لمسی نیاز دارد.</p>
-                        <p>جدیدترین دستاورد ما در «هوک‌های کوانتومی» پلی بدون تأخیر میان رابط‌های مبتنی بر React و آرایه‌های حسگر تعبیه‌شده ایجاد می‌کند و سطحی از هماهنگی میان دنیای فیزیکی و دیجیتال را فراهم می‌سازد که پیش‌تر غیرممکن به نظر می‌رسید.</p>
+                        <p>یکپارچه‌سازی منطق پیشرفته رابط کاربری با سخت‌افزار سطح پایین، تنها به کدنویسی بهینه محدود
+                            نمی‌شود؛ بلکه به درک عمیقی از تأخیر سیگنال‌ها و چرخه‌های بازخورد لمسی نیاز دارد.</p>
+                        <p>جدیدترین دستاورد ما در «هوک‌های کوانتومی» پلی بدون تأخیر میان رابط‌های مبتنی بر React و
+                            آرایه‌های حسگر تعبیه‌شده ایجاد می‌کند و سطحی از هماهنگی میان دنیای فیزیکی و دیجیتال را فراهم
+                            می‌سازد که پیش‌تر غیرممکن به نظر می‌رسید.</p>
                         <h4 class="mt-5 mb-3 text-uppercase">هم‌افزایی سخت‌افزار</h4>
-                        <p>با عبور از وقفه‌های سنتی سیستم‌عامل، داده‌های تعامل مستقیماً وارد چرخه رندر می‌شوند. در نتیجه، با حرکت یک اسلایدر فیزیکی، نسخه دیجیتال آن تنها در حدود ۲ میلی‌ثانیه به‌روزرسانی می‌شود.</p>
+                        <p>با عبور از وقفه‌های سنتی سیستم‌عامل، داده‌های تعامل مستقیماً وارد چرخه رندر می‌شوند. در
+                            نتیجه، با حرکت یک اسلایدر فیزیکی، نسخه دیجیتال آن تنها در حدود ۲ میلی‌ثانیه به‌روزرسانی
+                            می‌شود.</p>
                     </div>
                 </div>
             </div>
@@ -327,10 +359,14 @@
                         <span class="small opacity-50 fw-bold">15 مهر، 1404</span>
                     </div>
                     <h2 class="modal-title mb-4">سیستم‌های جریان منطقی بصری</h2>
-                    <img src="../assets/img/blog-3.jpg" class="img-fluid rounded-4 mb-5" alt="Visual Logic Flow Detail">
+                    <img src="{% static 'img/blog-3.jpg' %}" class="img-fluid rounded-4 mb-5"
+                        alt="Visual Logic Flow Detail">
                     <div class="blog-content">
-                        <p>نمایش بصری جریان‌های منطقی پیچیده، مرز جدید تجربه توسعه‌دهندگان است. در Velixo ما معماری مبتنی بر نود طراحی کرده‌ایم که پیچیدگی‌های فنی را به الگوهای بصری قابل درک تبدیل می‌کند.</p>
-                        <p>این رویکرد به معماران سیستم اجازه می‌دهد گلوگاه‌ها را پیش از پیاده‌سازی شناسایی کنند. با نگاه به جریان داده به‌عنوان یک رودخانه بصری، می‌توان سیستم‌ها را با کمک تشخیص الگوهای شهودی بهینه‌سازی کرد.</p>
+                        <p>نمایش بصری جریان‌های منطقی پیچیده، مرز جدید تجربه توسعه‌دهندگان است. در Velixo ما معماری
+                            مبتنی بر نود طراحی کرده‌ایم که پیچیدگی‌های فنی را به الگوهای بصری قابل درک تبدیل می‌کند.</p>
+                        <p>این رویکرد به معماران سیستم اجازه می‌دهد گلوگاه‌ها را پیش از پیاده‌سازی شناسایی کنند. با نگاه
+                            به جریان داده به‌عنوان یک رودخانه بصری، می‌توان سیستم‌ها را با کمک تشخیص الگوهای شهودی
+                            بهینه‌سازی کرد.</p>
                         <blockquote class="my-5 p-4 border-start border-4 border-primary bg-light rounded-2">
                             "معماری، چیزی جز منطقِ قابل مشاهده نیست."
                         </blockquote>
@@ -353,10 +389,15 @@
                         <span class="small opacity-50 fw-bold">10 مهر، 1404</span>
                     </div>
                     <h2 class="modal-title mb-4">پروتکل‌های تاب‌آوری سایبری</h2>
-                    <img src="../assets/img/blog-4.jpg" class="img-fluid rounded-4 mb-5" alt="Cyber Resilience Detail">
+                    <img src="{% static 'img/blog-4.jpg' %}" class="img-fluid rounded-4 mb-5"
+                        alt="Cyber Resilience Detail">
                     <div class="blog-content">
-                        <p>در عصر تهدیدات فزاینده دیجیتال، تاب‌آوری سایبری دیگر یک انتخاب نیست. جدیدترین پروتکل‌های ما بر زیرساخت‌های خودترمیم‌شونده و شناسایی پیشگیرانه تهدیدها با استفاده از تطبیق الگوهای هوشمند تمرکز دارند.</p>
-                        <p>ما راهبردی چندلایه برای دفاع پیاده‌سازی کرده‌ایم که از داده‌های حساس در سطح معماری محافظت می‌کند و تضمین می‌دهد حتی در صورت نفوذ به یک گره، سایر بخش‌های اکوسیستم همچنان امن باقی بمانند.</p>
+                        <p>در عصر تهدیدات فزاینده دیجیتال، تاب‌آوری سایبری دیگر یک انتخاب نیست. جدیدترین پروتکل‌های ما
+                            بر زیرساخت‌های خودترمیم‌شونده و شناسایی پیشگیرانه تهدیدها با استفاده از تطبیق الگوهای هوشمند
+                            تمرکز دارند.</p>
+                        <p>ما راهبردی چندلایه برای دفاع پیاده‌سازی کرده‌ایم که از داده‌های حساس در سطح معماری محافظت
+                            می‌کند و تضمین می‌دهد حتی در صورت نفوذ به یک گره، سایر بخش‌های اکوسیستم همچنان امن باقی
+                            بمانند.</p>
                     </div>
                 </div>
             </div>
@@ -376,10 +417,13 @@
                         <span class="small opacity-50 fw-bold">05 مهر، 1404</span>
                     </div>
                     <h2 class="modal-title mb-4">قدرت داده‌های بصری</h2>
-                    <img src="../assets/img/blog-5.jpg" class="img-fluid rounded-4 mb-5" alt="Visual Data Detail">
+                    <img src="{% static 'img/blog-5.jpg' %}" class="img-fluid rounded-4 mb-5" alt="Visual Data Detail">
                     <div class="blog-content">
-                        <p>بصری‌سازی داده‌ها پلی میان اطلاعات خام و بینش‌های کاربردی است. با بهره‌گیری از تکنیک‌های پیشرفته رندر سه‌بعدی، می‌توان مجموعه‌داده‌های پیچیده را به نماهای بصری قابل درک تبدیل کرد.</p>
-                        <p>این روش به تصمیم‌گیرندگان کمک می‌کند روندها و ناهنجاری‌ها را با وضوحی بی‌سابقه شناسایی کنند و در نتیجه تصمیم‌های راهبردی سریع‌تر و دقیق‌تری بگیرند.</p>
+                        <p>بصری‌سازی داده‌ها پلی میان اطلاعات خام و بینش‌های کاربردی است. با بهره‌گیری از تکنیک‌های
+                            پیشرفته رندر سه‌بعدی، می‌توان مجموعه‌داده‌های پیچیده را به نماهای بصری قابل درک تبدیل کرد.
+                        </p>
+                        <p>این روش به تصمیم‌گیرندگان کمک می‌کند روندها و ناهنجاری‌ها را با وضوحی بی‌سابقه شناسایی کنند و
+                            در نتیجه تصمیم‌های راهبردی سریع‌تر و دقیق‌تری بگیرند.</p>
                     </div>
                 </div>
             </div>
@@ -399,10 +443,13 @@
                         <span class="small opacity-50 fw-bold">28 شهریور، 1404</span>
                     </div>
                     <h2 class="modal-title mb-4">معماری طراحی</h2>
-                    <img src="../assets/img/blog-1-detail.jpg" class="img-fluid rounded-4 mb-5" alt="Architecture Analysis Detail">
+                    <img src="{% static 'img/blog-1-detail.jpg' %}" class="img-fluid rounded-4 mb-5"
+                        alt="Architecture Analysis Detail">
                     <div class="blog-content">
-                        <p>طراحی واقعی تنها به ظاهر محدود نمی‌شود؛ بلکه به نحوه عملکرد آن در لایه‌های ساختاری وابسته است. ما نقطه تلاقی اصول معماری و طراحی محصولات دیجیتال را بررسی می‌کنیم.</p>
-                        <p>با به‌کارگیری مفاهیم مهندسی کلاسیک در نرم‌افزارهای مدرن، می‌توان محصولاتی ساخت که علاوه بر زیبایی، از پایداری و کارایی بسیار بالایی نیز برخوردار باشند.</p>
+                        <p>طراحی واقعی تنها به ظاهر محدود نمی‌شود؛ بلکه به نحوه عملکرد آن در لایه‌های ساختاری وابسته
+                            است. ما نقطه تلاقی اصول معماری و طراحی محصولات دیجیتال را بررسی می‌کنیم.</p>
+                        <p>با به‌کارگیری مفاهیم مهندسی کلاسیک در نرم‌افزارهای مدرن، می‌توان محصولاتی ساخت که علاوه بر
+                            زیبایی، از پایداری و کارایی بسیار بالایی نیز برخوردار باشند.</p>
                     </div>
                 </div>
             </div>
@@ -422,10 +469,13 @@
                         <span class="small opacity-50 fw-bold">12 مهر، 1404</span>
                     </div>
                     <h2 class="modal-title mb-4">ریاضیات شبکه‌های مقیاس‌پذیر</h2>
-                    <img src="../assets/img/blog-6.jpg" class="img-fluid rounded-4 mb-5" alt="Scalable Grids Detail">
+                    <img src="{% static 'img/blog-6.jpg' %}" class="img-fluid rounded-4 mb-5"
+                        alt="Scalable Grids Detail">
                     <div class="blog-content">
-                        <p>مقیاس‌پذیری از یک پایه ریاضی قدرتمند آغاز می‌شود. ما به بررسی عمیق الگوریتم‌های پشت سیستم‌های شبکه‌ای مدرن می‌پردازیم تا چیدمانی یکپارچه در تمامی اندازه‌های صفحه‌نمایش تضمین شود.</p>
-                        <p>درک هندسه زیربنایی به ما امکان می‌دهد رابط‌های کاربری منعطف و متراکم طراحی کنیم که حتی با افزایش پیچیدگی نیز انسجام خود را حفظ کنند.</p>
+                        <p>مقیاس‌پذیری از یک پایه ریاضی قدرتمند آغاز می‌شود. ما به بررسی عمیق الگوریتم‌های پشت سیستم‌های
+                            شبکه‌ای مدرن می‌پردازیم تا چیدمانی یکپارچه در تمامی اندازه‌های صفحه‌نمایش تضمین شود.</p>
+                        <p>درک هندسه زیربنایی به ما امکان می‌دهد رابط‌های کاربری منعطف و متراکم طراحی کنیم که حتی با
+                            افزایش پیچیدگی نیز انسجام خود را حفظ کنند.</p>
                     </div>
                 </div>
             </div>
@@ -445,10 +495,12 @@
                         <span class="small opacity-50 fw-bold">08 مهر، 1404</span>
                     </div>
                     <h2 class="modal-title mb-4">معماری ابر ترکیبی</h2>
-                    <img src="../assets/img/blog-7.jpg" class="img-fluid rounded-4 mb-5" alt="Hybrid Cloud Detail">
+                    <img src="{% static 'img/blog-7.jpg' %}" class="img-fluid rounded-4 mb-5" alt="Hybrid Cloud Detail">
                     <div class="blog-content">
-                        <p>راهکارهای ابر ترکیبی، بهترین ویژگی‌های هر دو دنیا را ارائه می‌دهند؛ امنیت زیرساخت‌های خصوصی در کنار مقیاس‌پذیری سرویس‌های ابری عمومی.</p>
-                        <p>در این مطلب، چالش‌های معماری مربوط به همگام‌سازی داده‌ها میان محیط‌های مختلف و بهترین روش‌های حفظ دسترس‌پذیری بالا در ساختارهای ابر ترکیبی را بررسی می‌کنیم.</p>
+                        <p>راهکارهای ابر ترکیبی، بهترین ویژگی‌های هر دو دنیا را ارائه می‌دهند؛ امنیت زیرساخت‌های خصوصی
+                            در کنار مقیاس‌پذیری سرویس‌های ابری عمومی.</p>
+                        <p>در این مطلب، چالش‌های معماری مربوط به همگام‌سازی داده‌ها میان محیط‌های مختلف و بهترین روش‌های
+                            حفظ دسترس‌پذیری بالا در ساختارهای ابر ترکیبی را بررسی می‌کنیم.</p>
                     </div>
                 </div>
             </div>
@@ -457,9 +509,10 @@
     <!-- END BLOG MODALS -->
 
     <!-- JS LIBRARIES -->
-    <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/wow.min.js"></script>
-    <script src="../assets/js/main.js"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
+
 </html>

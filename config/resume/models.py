@@ -6,6 +6,9 @@ from .utils import user_avatar_path, convert_to_webp
 from .validators import phone_validator
 
 
+
+
+
 class Profile(models.Model):
     first_name = models.CharField(max_length=120)
     last_name = models.CharField(max_length=120)

@@ -1,0 +1,337 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+
+.dashboard {
+    width: min(1200px, 94%);
+    margin: 40px auto;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+
+.dashboard-header h1 {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+
+.dashboard-header p {
+    color: #6b7280;
+}
+
+
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+
+.section-header h2 {
+    font-size: 22px;
+}
+
+
+.section-header p {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+
+.form-group label {
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 11px 13px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+
+    font-size: 15px;
+    font-family: inherit;
+
+    outline: none;
+
+    transition: border-color 0.2s,
+                box-shadow 0.2s;
+}
+
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+textarea {
+    resize: vertical;
+}
+
+
+
+/* =========================
+   ITEM CARD
+========================= */
+
+.item-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+
+    padding: 20px;
+    margin-bottom: 20px;
+
+    background: #fafafa;
+
+    transition: opacity 0.2s, border-color 0.2s;
+}
+
+
+/*
+ * Applied by JS when a row's "Delete" checkbox is ticked.
+ * Without this rule the checkbox toggled a class that had
+ * no visual effect at all.
+ */
+.item-card.deleted {
+    opacity: 0.5;
+    border-color: #dc2626;
+    border-style: dashed;
+    background: #fef2f2;
+}
+
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+.item-header h3 {
+    font-size: 17px;
+}
+
+
+.item-number {
+    color: #6b7280;
+    font-weight: normal;
+}
+
+
+.delete-label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    color: #dc2626;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+.delete-label input {
+    width: auto;
+}
+
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn {
+    border: none;
+    border-radius: 7px;
+
+    padding: 10px 17px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.btn-primary {
+    background: #2563eb;
+    color: white;
+}
+
+
+.btn-primary:hover {
+    background: #1d4ed8;
+}
+
+
+.btn-secondary {
+    background: #e5edff;
+    color: #1d4ed8;
+}
+
+
+.btn-secondary:hover {
+    background: #dbe7ff;
+}
+
+
+.btn-large {
+    padding: 13px 25px;
+    font-size: 15px;
+}
+
+
+.submit-area {
+    display: flex;
+    justify-content: flex-end;
+
+    padding-bottom: 50px;
+}
+
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error {
+    color: #dc2626;
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+
+/* Start/End date-range error injected by JS */
+.date-range-error {
+    display: block;
+}
+
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+
+    .dashboard {
+        width: 94%;
+        margin-top: 20px;
+    }
+
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+
+    .dashboard-header .btn {
+        width: 100%;
+    }
+
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+
+    .section-header .btn {
+        width: 100%;
+    }
+
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .form-group.full {
+        grid-column: auto;
+    }
+
+
+    .item-header {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+}
