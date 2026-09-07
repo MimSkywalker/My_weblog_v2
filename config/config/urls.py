@@ -8,6 +8,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('resume/', include('resume.urls')),
     path('project/', include('project.urls')),
+    path('', include('home.urls')),
+    # path('project/', include('blog.urls')),
+
 
 
 
