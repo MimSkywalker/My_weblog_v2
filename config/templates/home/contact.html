@@ -1,12 +1,14 @@
 {% load static %}
 <!DOCTYPE html>
 <html dir="rtl" lang="fa-IR">
+
 <head>
     <meta charset="UTF-8">
-    <script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark-theme');</script>
+    <script>if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark-theme');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تماس با من - محمد مقدم‌نژاد | معمار نخبه ولیکسو</title>
-    <meta name="description" content="Get in touch with Alex Sterling for elite architectural projects and technical consulting.">
+    <meta name="description"
+        content="Get in touch with Alex Sterling for elite architectural projects and technical consulting.">
     <link rel="icon" href="{% static '/img/favicon.svg' %}" type="image/svg+xml">
 
     <!-- CSS LIBRARIES -->
@@ -17,6 +19,7 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/main-rtl.css' %}" />
 </head>
+
 <body class="contact-page">
 
     <!-- START NAVIGATION DOCK -->
@@ -67,7 +70,8 @@
                 آماده همکاری‌های راهبردی
             </div>
             <h1 class="hero-title">با هم <br><span>آینده را </span><br>بسازیم.</h1>
-            <p class="hero-desc">آماده طراحی و توسعه اکوسیستم‌های دیجیتال پیشرفته هستیم. جزئیات پروژه خود را ارسال کنید و حداکثر ظرف ۲۴ ساعت پاسخ دریافت نمایید.</p>
+            <p class="hero-desc">آماده طراحی و توسعه اکوسیستم‌های دیجیتال پیشرفته هستیم. جزئیات پروژه خود را ارسال کنید
+                و حداکثر ظرف ۲۴ ساعت پاسخ دریافت نمایید.</p>
         </div>
         <!-- END HERO SECTION -->
 
@@ -84,7 +88,7 @@
                     </div>
                     <div>
                         <span class="cci-label">ایمیل</span>
-                        <a href="mailto:example@email.com" class="cci-value">example@email.com</a>
+                        <a href="mailto:{{ profile.email }}" class="cci-value">{{ profile.email }}</a>
                     </div>
                 </div>
                 <div class="contact-channel-item">
@@ -93,7 +97,7 @@
                     </div>
                     <div>
                         <span class="cci-label">شماره تماس</span>
-                        <a href="tel:+989012345678" class="cci-value">09012345678</a>
+                        <a href="tel:+98{{ profile.phone_number }}" class="cci-value">{{ profile.phone_number }}</a>
                     </div>
                 </div>
                 <div class="contact-channel-item">
@@ -102,21 +106,29 @@
                     </div>
                     <div>
                         <span class="cci-label">موقعیت مکانی</span>
-                        <span class="cci-value">ایران فارس، شیراز</span>
+                        <span class="cci-value">ایران، تهران</span>
                     </div>
                 </div>
             </div>
 
             <div class="social-pill mt-auto pt-2">
-                <a href="contact.html#" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="contact.html#" class="social-btn"><i class="fa-brands fa-dribbble"></i></a>
-                <a href="contact.html#" class="social-btn"><i class="fa-brands fa-github"></i></a>
+                <!-- <a href="contact.html#" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a> -->
+                <a href="https://github.com/mimskywalker" class="social-btn"><i class="fa-brands fa-github"></i></a>
+                <!-- <a href="https://www.instagram.com/momone_ir" class="social-btn"><i class="fa-brands fa-instagram"></i></a> -->
+                <a href="https://www.linkedin.com/in/mohammad-moghaddamnezhad-4364b341b" class="social-btn"><i
+                        class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://youtube.com/@momonezh?si=JHYvDYC2p1Hn75wx" class="social-btn"><i
+                        class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.telegram.org/mimskywalker" class="social-btn"><i
+                        class="fa-brands fa-telegram"></i></a>
+
+
             </div>
         </div>
         <!-- END CHANNELS SECTION -->
 
         <!-- START STATS SECTION -->
-        
+
         <!-- Availability Card -->
         <div class="bento-card card-contact-stat wow animate__fadeInUp">
             <span class="card-number">03 / وضعیت</span>
@@ -172,7 +184,8 @@
                     <div class="form-intro-panel">
                         <div class="fip-label">ثبت پروژه</div>
                         <h2 class="fip-title">شروع یک<br> پروژه جدید.</h2>
-                        <p class="fip-desc">جزئیات پروژه خود را ارسال کنید تا تیم ما آن را حداکثر ظرف 24 ساعت بررسی کند. برای شروع هیچ تعهدی لازم نیست.</p>
+                        <p class="fip-desc">جزئیات پروژه خود را ارسال کنید تا تیم ما آن را حداکثر ظرف 24 ساعت بررسی کند.
+                            برای شروع هیچ تعهدی لازم نیست.</p>
                         <div class="fip-checklist mt-auto">
                             <div class="fip-check-item">
                                 <i class="fa-solid fa-circle-check"></i>
@@ -193,36 +206,46 @@
 
                 <!-- Right: Form -->
                 <div class="col-lg-8">
-                    <form id="contact-form" class="velixo-form h-100 d-flex flex-column">
-                        <div class="row g-4 flex-grow-1">
+                    <form id="contact-form" class="velixo-form h-100 d-flex flex-column" method="post"
+                        action="{% url 'home:contact' %}">
+                        {% csrf_token %}
+                        <div class=" row g-4 flex-grow-1">
                             <div class="col-md-6">
                                 <div class="vx-field">
                                     <label for="name">نام و نام خانوادگی</label>
-                                    <input type="text" id="name" class="vx-input" placeholder="محمد مقدم‌نژاد" required>
+                                    <input type="text" id="name" class="vx-input" placeholder="محمدعلی فرهی" required
+                                        name="full_name" value="{{ form.full_name.value|default:'' }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="vx-field">
                                     <label for="email">آدرس ایمیل</label>
-                                    <input type="email" id="email" class="vx-input" placeholder="example@email.com" required>
+                                    <input type="email" id="email" class="vx-input" placeholder="example@email.com"
+                                        required name="email" value="{{ form.email.value|default:'' }}">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="vx-field">
                                     <label for="subject">موضوع پروژه</label>
-                                    <input type="text" id="subject" class="vx-input" placeholder="مثال: طراحی هویت برند و وب‌سایت" required>
+                                    <input type="text" id="subject" class="vx-input"
+                                        placeholder="مثال: طراحی هویت برند و وب‌سایت" required name="subject"
+                                        value="{{ form.subject.value|default:'' }}">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="vx-field">
                                     <label for="message">شرح پروژه</label>
-                                    <textarea id="message" class="vx-input" placeholder="اهداف پروژه، زمان‌بندی و نیازمندی‌های فنی خود را شرح دهید..." required></textarea>
+                                    <textarea id="message" class="vx-input"
+                                        placeholder="اهداف پروژه، زمان‌بندی و نیازمندی‌های فنی خود را شرح دهید..."
+                                        required name="message">{{ form.message.value|default:'' }}</textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mt-4 pt-4" style="border-top: 1px solid var(--velixo-border);">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mt-4 pt-4"
+                            style="border-top: 1px solid var(--velixo-border);">
                             <p class="small opacity-40 fw-bold mb-0">
-                                <i class="fa-solid fa-shield-halved me-2"></i>اطلاعات شما رمزنگاری شده و هرگز با شخص یا سازمان دیگری به اشتراک گذاشته نمی‌شود.
+                                <i class="fa-solid fa-shield-halved me-2"></i>اطلاعات شما رمزنگاری شده و هرگز با شخص یا
+                                سازمان دیگری به اشتراک گذاشته نمی‌شود.
                             </p>
                             <button type="submit" class="btn btn-primary rounded-pill px-5 py-3 fw-bold text-uppercase">
                                 ارسال پیام <i class="fa-solid fa-bolt-lightning ms-2"></i>
@@ -249,4 +272,5 @@
     <script src="{% static 'js/wow.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
 </body>
+
 </html>
