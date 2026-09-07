@@ -2,11 +2,11 @@ from django.shortcuts import render, redirect
 from .models import Profile, Experience, Skill, Education, SocialLink, Expertise
 from django.views import View
 from . import forms
-
+from .mixins import PortfolioDashboardMixin
 from django.views.generic import TemplateView
 
 
-class PortfolioDashboardView(View):
+class PortfolioDashboardView(PortfolioDashboardMixin, View):
     template_name = 'resume/dashboard.html'
 
     def get(self, request, *args, **kwargs):
