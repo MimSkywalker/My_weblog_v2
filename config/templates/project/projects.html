@@ -1,6 +1,7 @@
 {% load static %}
 <!doctype html>
 <html dir="rtl" lang="fa-IR">
+
 <head>
     <meta charset="UTF-8" />
     <script>
@@ -9,17 +10,19 @@
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>پروژه‌ها - محمد مقدم‌نژاد | برنامه‌نویس بک‌اند جنگو</title>
-    <meta name="description" content="Portfolio of high-performance digital ecosystems and architectural masterpieces by Alex Sterling." />
+    <meta name="description"
+        content="Portfolio of high-performance digital ecosystems and architectural masterpieces by Alex Sterling." />
     <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
 
     <!-- CSS LIBRARIES -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.rtl.min.css" />
-    <link rel="stylesheet" href="../assets/css/fontawesome.min.css" />
-    <link rel="stylesheet" href="../assets/css/animate.min.css" />
-    <link rel="stylesheet" href="../assets/css/google-fonts.css" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
-    <link rel="stylesheet" href="../assets/css/main-rtl.css" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/google-fonts.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/main-rtl.css' %}" />
 </head>
+
 <body class="works-page">
 
     <!-- START NAVIGATION DOCK -->
@@ -70,7 +73,8 @@
                 طراحی و توسعه محصولات دیجیتال
             </div>
             <h1 class="hero-title">نمونه‌کارهای <br /><span>حرفه‌ای و</span><br />تخصصی.</h1>
-            <p class="hero-desc">منتخبی از پروژه‌های حرفه‌ای، رابط‌های کاربری پیشرفته و زیرساخت‌های مقیاس‌پذیر که برای کسب‌وکارها و سازمان‌های مختلف توسعه داده شده‌اند.</p>
+            <p class="hero-desc">منتخبی از پروژه‌های حرفه‌ای، رابط‌های کاربری پیشرفته و زیرساخت‌های مقیاس‌پذیر که برای
+                کسب‌وکارها و سازمان‌های مختلف توسعه داده شده‌اند.</p>
         </div>
         <!-- END HERO SECTION -->
 
@@ -95,7 +99,8 @@
             <div class="hub-header d-flex flex-wrap justify-content-between align-items-center mb-5 gap-4">
                 <div class="hub-title">
                     <h3 class="text-uppercase mb-1">مرکز پروژه‌ها</h3>
-                    <p class="small opacity-50 fw-bold mb-0">نمونه‌ای از پروژه‌های حرفه‌ای و سامانه‌های مقیاس‌پذیر را مشاهده کنید</p>
+                    <p class="small opacity-50 fw-bold mb-0">نمونه‌ای از پروژه‌های حرفه‌ای و سامانه‌های مقیاس‌پذیر را
+                        مشاهده کنید</p>
                 </div>
                 <div class="filter-group">
                     <button class="filter-btn active" data-filter="*">همه پروژه‌ها</button>
@@ -112,11 +117,12 @@
                 <div class="isotope-item ui-ux">
                     <div class="card-work-inner wow animate__fadeInUp">
                         <div class="work-img">
-                            <img src="../assets/img/project-1.webp" alt="Neural Dashboard" />
+                            <img src="{% static 'img/project-1.webp' %}" alt="Neural Dashboard" />
                         </div>
                         <div class="work-content">
                             <span class="work-cat text-uppercase">طراحی رابط و تجربه کاربری</span>
-                            <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal" data-bs-target="#projectModal1">داشبورد هوشمند</h4>
+                            <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal"
+                                data-bs-target="#projectModal1">داشبورد هوشمند</h4>
                         </div>
                     </div>
                 </div>
@@ -125,11 +131,12 @@
                 <div class="isotope-item architecture">
                     <div class="card-work-inner wow animate__fadeInUp" data-wow-delay="0.1s">
                         <div class="work-img">
-                            <img src="../assets/img/project-2.webp" alt="Quantum Logic" />
+                            <img src="{% static 'img/project-2.webp' %}" alt="Quantum Logic" />
                         </div>
                         <div class="work-content">
                             <span class="work-cat text-uppercase">معماری نرم‌افزار</span>
-                            <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal" data-bs-target="#projectModal2">منطق کوانتومی</h4>
+                            <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal"
+                                data-bs-target="#projectModal2">منطق کوانتومی</h4>
                         </div>
                     </div>
                 </div>
@@ -138,11 +145,12 @@
                 <div class="isotope-item systems">
                     <div class="card-work-inner wow animate__fadeInUp" data-wow-delay="0.2s">
                         <div class="work-img">
-                            <img src="../assets/img/project-3.webp" alt="Scalable Core" />
+                            <img src="{% static 'img/project-3.webp' %}" alt="Scalable Core" />
                         </div>
                         <div class="work-content">
                             <span class="work-cat text-uppercase">سیستم‌ها</span>
-                            <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal" data-bs-target="#projectModal3">هسته مقیاس‌پذیر</h4>
+                            <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal"
+                                data-bs-target="#projectModal3">هسته مقیاس‌پذیر</h4>
                         </div>
                     </div>
                 </div>
@@ -151,11 +159,12 @@
                 <div class="isotope-item ui-ux">
                     <div class="card-work-inner wow animate__fadeInUp">
                         <div class="work-img">
-                            <img src="../assets/img/project-4.webp" alt="Elite Mobile Hub" />
+                            <img src="{% static 'img/project-4.webp' %}" alt="Elite Mobile Hub" />
                         </div>
                         <div class="work-content">
                             <span class="work-cat text-uppercase">طراحی رابط و تجربه کاربری</span>
-                            <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal" data-bs-target="#projectModal4">مرکز خدمات موبایل</h4>
+                            <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal"
+                                data-bs-target="#projectModal4">مرکز خدمات موبایل</h4>
                         </div>
                     </div>
                 </div>
@@ -164,11 +173,12 @@
                 <div class="isotope-item systems architecture">
                     <div class="card-work-inner wow animate__fadeInUp" data-wow-delay="0.1s">
                         <div class="work-img">
-                            <img src="../assets/img/project-5.webp" alt="Cyber Systems" />
+                            <img src="{% static 'img/project-5.webp' %}" alt="Cyber Systems" />
                         </div>
                         <div class="work-content">
                             <span class="work-cat text-uppercase">سیستم‌ها / معماری</span>
-                            <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal" data-bs-target="#projectModal5">سیستم‌های سایبری</h4>
+                            <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal"
+                                data-bs-target="#projectModal5">سیستم‌های سایبری</h4>
                         </div>
                     </div>
                 </div>
@@ -177,11 +187,12 @@
                 <div class="isotope-item ui-ux">
                     <div class="card-work-inner wow animate__fadeInUp" data-wow-delay="0.2s">
                         <div class="work-img">
-                            <img src="../assets/img/project-6.webp" alt="Visual Analytics" />
+                            <img src="{% static 'img/project-6.webp' %}" alt="Visual Analytics" />
                         </div>
                         <div class="work-content">
                             <span class="work-cat text-uppercase">طراحی رابط و تجربه کاربری</span>
-                            <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal" data-bs-target="#projectModal6">تحلیل بصری داده‌ها</h4>
+                            <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal"
+                                data-bs-target="#projectModal6">تحلیل بصری داده‌ها</h4>
                         </div>
                     </div>
                 </div>
@@ -209,11 +220,14 @@
                 <div class="modal-body p-4 p-md-5">
                     <span class="badge-status mb-3">طراحی رابط و تجربه کاربری</span>
                     <h2 class="modal-title mb-4">معماری داشبورد هوشمند</h2>
-                    <img src="../assets/img/project-1.webp" class="img-fluid rounded-4 mb-4" alt="Neural Dashboard Detail" />
+                    <img src="{% static 'img/project-1.webp' %}" class="img-fluid rounded-4 mb-4"
+                        alt="Neural Dashboard Detail" />
                     <div class="row g-4">
                         <div class="col-md-8">
                             <h4 class="text-uppercase mb-3">شرح پروژه</h4>
-                            <p class="text-muted">سامانه‌ای پیشرفته برای نمایش و تحلیل داده‌ها به‌صورت لحظه‌ای که با تمرکز بر سرعت بالا و تجربه کاربری روان طراحی شده است. ساختار ماژولار این پروژه امکان مدیریت و نمایش حجم زیادی از اطلاعات را فراهم می‌کند.</p>
+                            <p class="text-muted">سامانه‌ای پیشرفته برای نمایش و تحلیل داده‌ها به‌صورت لحظه‌ای که با
+                                تمرکز بر سرعت بالا و تجربه کاربری روان طراحی شده است. ساختار ماژولار این پروژه امکان
+                                مدیریت و نمایش حجم زیادی از اطلاعات را فراهم می‌کند.</p>
                         </div>
                         <div class="col-md-4">
                             <div class="project-info-list">
@@ -226,8 +240,9 @@
                                     <span class="value fw-bold">1404</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های استفاده‌شده</span>
-                                    <span class="value fw-bold">React, Three.js, GSAP</span>
+                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های
+                                        استفاده‌شده</span>
+                                    <span class="value fw-bold">React, Three, GSAP</span>
                                 </div>
                             </div>
                         </div>
@@ -247,11 +262,13 @@
                 <div class="modal-body p-4 p-md-5">
                     <span class="badge-status mb-3">معماری نرم‌افزار</span>
                     <h2 class="modal-title mb-4">سامانه منطق کوانتومی</h2>
-                    <img src="../assets/img/project-2.webp" class="img-fluid rounded-4 mb-4" alt="Quantum Logic Detail" />
+                    <img src="{% static 'img/project-2.webp' %}" class="img-fluid rounded-4 mb-4"
+                        alt="Quantum Logic Detail" />
                     <div class="row g-4">
                         <div class="col-md-8">
                             <h4 class="text-uppercase mb-3">شرح پروژه</h4>
-                            <p class="text-muted">پلتفرمی پیشرفته برای بهینه‌سازی الگوریتمی که با هدف پردازش حجم بالای تراکنش‌ها و انجام محاسبات پیچیده با سرعت بسیار بالا توسعه داده شده است.</p>
+                            <p class="text-muted">پلتفرمی پیشرفته برای بهینه‌سازی الگوریتمی که با هدف پردازش حجم بالای
+                                تراکنش‌ها و انجام محاسبات پیچیده با سرعت بسیار بالا توسعه داده شده است.</p>
                         </div>
                         <div class="col-md-4">
                             <div class="project-info-list">
@@ -264,7 +281,8 @@
                                     <span class="value fw-bold">1403</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های استفاده‌شده</span>
+                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های
+                                        استفاده‌شده</span>
                                     <span class="value fw-bold">C++, Rust, WebAssembly</span>
                                 </div>
                             </div>
@@ -285,11 +303,13 @@
                 <div class="modal-body p-4 p-md-5">
                     <span class="badge-status mb-3">سیستم‌ها</span>
                     <h2 class="modal-title mb-4">زیرساخت هسته مقیاس‌پذیر</h2>
-                    <img src="../assets/img/project-3.webp" class="img-fluid rounded-4 mb-4" alt="Scalable Core Detail" />
+                    <img src="{% static 'img/project-3.webp' %}" class="img-fluid rounded-4 mb-4"
+                        alt="Scalable Core Detail" />
                     <div class="row g-4">
                         <div class="col-md-8">
                             <h4 class="text-uppercase mb-3">شرح پروژه</h4>
-                            <p class="text-muted">زیرساخت ابری توزیع‌شده‌ای که با هدف پایداری بالا طراحی شده و قادر است بار پردازشی را به‌صورت خودکار میان سرورها توزیع کند.</p>
+                            <p class="text-muted">زیرساخت ابری توزیع‌شده‌ای که با هدف پایداری بالا طراحی شده و قادر است
+                                بار پردازشی را به‌صورت خودکار میان سرورها توزیع کند.</p>
                         </div>
                         <div class="col-md-4">
                             <div class="project-info-list">
@@ -302,7 +322,8 @@
                                     <span class="value fw-bold">1404</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های استفاده‌شده</span>
+                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های
+                                        استفاده‌شده</span>
                                     <span class="value fw-bold">Go, Kubernetes, AWS</span>
                                 </div>
                             </div>
@@ -323,11 +344,13 @@
                 <div class="modal-body p-4 p-md-5">
                     <span class="badge-status mb-3">طراحی رابط و تجربه کاربری</span>
                     <h2 class="modal-title mb-4">مرکز خدمات موبایل</h2>
-                    <img src="../assets/img/project-4.webp" class="img-fluid rounded-4 mb-4" alt="Elite Mobile Hub Detail" />
+                    <img src="{% static 'img/project-4.webp' %}" class="img-fluid rounded-4 mb-4"
+                        alt="Elite Mobile Hub Detail" />
                     <div class="row g-4">
                         <div class="col-md-8">
                             <h4 class="text-uppercase mb-3">شرح پروژه</h4>
-                            <p class="text-muted">اپلیکیشنی مدرن برای مدیریت خدمات و فعالیت‌های روزمره که با طراحی مینیمال و تجربه کاربری روان توسعه یافته است.</p>
+                            <p class="text-muted">اپلیکیشنی مدرن برای مدیریت خدمات و فعالیت‌های روزمره که با طراحی
+                                مینیمال و تجربه کاربری روان توسعه یافته است.</p>
                         </div>
                         <div class="col-md-4">
                             <div class="project-info-list">
@@ -340,7 +363,8 @@
                                     <span class="value fw-bold">1405</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های استفاده‌شده</span>
+                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های
+                                        استفاده‌شده</span>
                                     <span class="value fw-bold">SwiftUI, Flutter, Rive</span>
                                 </div>
                             </div>
@@ -361,11 +385,13 @@
                 <div class="modal-body p-4 p-md-5">
                     <span class="badge-status mb-3">سیستم‌ها / معماری</span>
                     <h2 class="modal-title mb-4">پروتکل امنیت سایبری</h2>
-                    <img src="../assets/img/project-5.webp" class="img-fluid rounded-4 mb-4" alt="Cyber Systems Detail" />
+                    <img src="{% static 'img/project-5.webp' %}" class="img-fluid rounded-4 mb-4"
+                        alt="Cyber Systems Detail" />
                     <div class="row g-4">
                         <div class="col-md-8">
                             <h4 class="text-uppercase mb-3">شرح پروژه</h4>
-                            <p class="text-muted">پروژه‌ای در حوزه امنیت سایبری با هدف ارزیابی، تقویت و حفاظت از زیرساخت‌های اطلاعاتی و مراکز داده سازمانی.</p>
+                            <p class="text-muted">پروژه‌ای در حوزه امنیت سایبری با هدف ارزیابی، تقویت و حفاظت از
+                                زیرساخت‌های اطلاعاتی و مراکز داده سازمانی.</p>
                         </div>
                         <div class="col-md-4">
                             <div class="project-info-list">
@@ -378,7 +404,8 @@
                                     <span class="value fw-bold">1405</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های استفاده‌شده</span>
+                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های
+                                        استفاده‌شده</span>
                                     <span class="value fw-bold">Python, C, Kali Linux</span>
                                 </div>
                             </div>
@@ -399,11 +426,13 @@
                 <div class="modal-body p-4 p-md-5">
                     <span class="badge-status mb-3">طراحی رابط و تجربه کاربری</span>
                     <h2 class="modal-title mb-4">موتور تحلیل بصری داده‌ها</h2>
-                    <img src="../assets/img/project-6.webp" class="img-fluid rounded-4 mb-4" alt="Visual Analytics Detail" />
+                    <img src="{% static 'img/project-6.webp' %}" class="img-fluid rounded-4 mb-4"
+                        alt="Visual Analytics Detail" />
                     <div class="row g-4">
                         <div class="col-md-8">
                             <h4 class="text-uppercase mb-3">شرح پروژه</h4>
-                            <p class="text-muted">داشبورد هوش تجاری پیشرفته‌ای که داده‌های خام را به گزارش‌ها و نمودارهای تعاملی تبدیل کرده و تصمیم‌گیری را ساده‌تر می‌کند.</p>
+                            <p class="text-muted">داشبورد هوش تجاری پیشرفته‌ای که داده‌های خام را به گزارش‌ها و
+                                نمودارهای تعاملی تبدیل کرده و تصمیم‌گیری را ساده‌تر می‌کند.</p>
                         </div>
                         <div class="col-md-4">
                             <div class="project-info-list">
@@ -416,8 +445,9 @@
                                     <span class="value fw-bold">1404</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های استفاده‌شده</span>
-                                    <span class="value fw-bold">D3.js, React, Three.js</span>
+                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های
+                                        استفاده‌شده</span>
+                                    <span class="value fw-bold">D3, React, Three</span>
                                 </div>
                             </div>
                         </div>
@@ -430,10 +460,11 @@
     <!-- END PROJECT MODALS -->
 
     <!-- JS LIBRARIES -->
-    <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/isotope.pkgd.min.js"></script>
-    <script src="../assets/js/wow.min.js"></script>
-    <script src="../assets/js/main.js"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
+
 </html>
