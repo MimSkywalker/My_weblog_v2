@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}آینده سیستم‌های طراحی هوشمند | محمّد مقدّم‌نژاد{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/blog-detail.css' %}" />
+{% endblock %}
+
+
+{% block content %}
+
+<!-- START POST HERO -->
+<div class="bd-hero wow animate__fadeInUp">
+    <div class="bd-hero-img">
+        <img src="{% static 'img/blog-1.jpg' %}" alt="آینده سیستم‌های طراحی هوشمند">
+    </div>
+    <div class="bd-hero-gradient"></div>
+
+    <a href="{% url 'blog:blog' %}" class="bd-back-link">
+        <i class="fa-solid fa-arrow-right"></i>
+        بازگشت به وبلاگ
+    </a>
+
+    <span class="card-number bd-hero-number">01 / وبلاگ</span>
+
+    <div class="bd-hero-content">
+        <div class="d-flex align-items-center gap-3 mb-3 bd-hero-meta">
+            <span class="post-tag tag-engineering">مهندسی</span>
+            <span class="post-read"><i class="fa-regular fa-clock me-1"></i>8 دقیقه مطالعه</span>
+            <span class="post-date">24 مهر، 1404</span>
+        </div>
+
+        <h1 class="bd-hero-title">آینده سیستم‌های طراحی هوشمند</h1>
+
+        <div class="post-author-row d-flex align-items-center gap-2 mt-4">
+            <img src="{% static 'img/avatar-1.jpg' %}" alt="محمد مقدم‌نژاد" class="rounded-circle bd-author-avatar">
+            <div>
+                <div class="bd-author-name">محمد مقدم‌نژاد</div>
+                <div class="bd-author-role">معمار سیستم‌های طراحی</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END POST HERO -->
+
+<!-- START ARTICLE + ASIDE -->
+<div class="bd-layout-wrapper col-12 container-fluid px-0">
+    <div class="row g-4">
+
+        <!-- ARTICLE -->
+        <div class="col-lg-8">
+            <div class="bd-article-card wow animate__fadeInLeft">
+                <div class="bd-progress-track">
+                    <div class="bd-progress-fill" id="bdProgressFill"></div>
+                </div>
+
+                <article class="bd-article">
+                    <p>در دنیای پرشتاب رابط‌های دیجیتال، همگرایی اصول زیستی شبکه‌های عصبی و طراحی مبتنی بر رایانه،
+                        پارادایم تازه‌ای را شکل داده است؛ مفهومی که آن را «معماری طراحی هوشمند» می‌نامیم. برخلاف
+                        سیستم‌های طراحی سنتی و ایستا، این سیستم‌ها به‌گونه‌ای ساخته شده‌اند که زنده و پویا باشند؛
+                        به‌طوری‌که در لحظه با رفتار کاربر، میزان بار ذهنی و شرایط محیطی سازگار می‌شوند.</p>
+
+                    <p>چنین رویکردی نیازمند بازنگری کامل در مدیریت منطق اجزا و وضعیت سیستم است. تیم‌هایی که این مسیر
+                        را زودتر آغاز کرده‌اند، معمولاً با یک سؤال ساده شروع می‌کنند: اگر رابط کاربری بتواند مثل یک
+                        همکار باتجربه، پیش از درخواست کاربر نیاز او را حدس بزند، چه چیزی باید تغییر کند؟</p>
+
+                    <h2 id="s1"><span class="bd-h-num">۰۱</span>چرا سیستم‌های طراحی سنتی کافی نیستند؟</h2>
+                    <p>سیستم‌های طراحی کلاسیک بر پایهٔ مجموعه‌ای ثابت از کامپوننت‌ها و قواعد از پیش تعیین‌شده ساخته
+                        می‌شوند. این رویکرد برای محصولاتی با رفتار قابل پیش‌بینی مناسب است، اما به‌محض این‌که پیچیدگی
+                        داده و تنوع کاربران بالا می‌رود، همان قواعد ثابت به مانعی برای مقیاس‌پذیری تبدیل می‌شوند. تیم
+                        طراحی مجبور می‌شود برای هر حالت خاص، یک استثنا اضافه کند؛ روندی که در بلندمدت به فرسایش سیستم
+                        منجر می‌شود.</p>
+
+                    <h2 id="s2"><span class="bd-h-num">۰۲</span>سه ستون اصلی طراحی هوشمند</h2>
+                    <p>پس از بررسی چند پروژهٔ در مقیاس سازمانی، سه محور مشترک در تمام تجربه‌های موفق دیده می‌شود:</p>
+                    <ol>
+                        <li><strong>بهره‌وری شناختی:</strong> کاهش اصطکاک و پیچیدگی در تمام نقاط تعامل، به‌گونه‌ای که
+                            کاربر هرگز مجبور به حدس‌زدن مرحلهٔ بعدی نباشد.</li>
+                        <li><strong>مقیاس‌پذیری پویا:</strong> منطقی که پیچیدگی رابط را متناسب با سطح مهارت و سابقهٔ
+                            کاربر تنظیم می‌کند، نه بر اساس یک الگوی ثابت برای همه.</li>
+                        <li><strong>هوش پیش‌بین:</strong> استفاده از یادگیری ماشین برای آماده‌سازی منابع و مسیرها پیش
+                            از وقوع تعامل، تا تأخیر ادراک‌شده به حداقل برسد.</li>
+                    </ol>
+
+                    <blockquote>هدف، ساخت ابزارهایی برای کاربران نیست؛ بلکه ایجاد اکوسیستم‌هایی است که همراه با
+                        آن‌ها رشد و تکامل پیدا کنند.</blockquote>
+
+                    <h2 id="s3"><span class="bd-h-num">۰۳</span>پیاده‌سازی در مقیاس واقعی</h2>
+                    <p>تجربهٔ ما نشان داده که موفق‌ترین تیم‌ها، این تحول را به‌صورت تدریجی و از دل کامپوننت‌های
+                        پرتکرار آغاز می‌کنند، نه با بازطراحی کامل سیستم. یک لایهٔ داده رفتاری کوچک، در کنار همان
+                        کامپوننت‌های موجود، می‌تواند اولین قدم عملی به‌سوی معماری هوشمند باشد؛ بدون آنکه ریسک عملیاتی
+                        پروژه‌های بزرگ را به همراه داشته باشد.</p>
+
+                    <h2 id="s4"><span class="bd-h-num">۰۴</span>جمع‌بندی</h2>
+                    <p>معماری طراحی هوشمند، پایان مسیر سیستم‌های طراحی سنتی نیست؛ بلکه لایه‌ای تکاملی روی همان بنیاد
+                        است. تیم‌هایی که این تغییر را زودتر و آگاهانه‌تر آغاز کنند، تجربه‌ای می‌سازند که با
+                        کاربرانشان رشد می‌کند، نه تجربه‌ای که هر چند سال یک‌بار باید از نو ساخته شود.</p>
+
+                    <div class="bd-tags-row">
+                        <a href="{% url 'blog:blog' %}">طراحی سیستم</a>
+                        <a href="{% url 'blog:blog' %}">تجربه کاربری</a>
+                        <a href="{% url 'blog:blog' %}">مهندسی محصول</a>
+                        <a href="{% url 'blog:blog' %}">هوش مصنوعی</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- ASIDE -->
+        <div class="col-lg-4">
+            <div class="bd-aside-card wow animate__fadeInRight" data-wow-delay="0.1s">
+                <div class="bd-aside-block">
+                    <h6 class="bd-aside-title">در این مقاله</h6>
+                    <!-- Filled automatically by blog-detail.js from the article's h2 elements -->
+                    <nav class="bd-toc" id="bdToc"></nav>
+                </div>
+
+                <div class="bd-aside-block">
+                    <h6 class="bd-aside-title">اشتراک‌گذاری</h6>
+                    <div class="bd-share-row">
+                        <button class="bd-share-btn" id="bdCopyLinkBtn" type="button" aria-label="کپی لینک">
+                            <i class="fa-solid fa-link"></i>
+                        </button>
+                        <a class="bd-share-btn" href="https://twitter.com/intent/tweet" target="_blank"
+                            rel="noopener" aria-label="اشتراک در ایکس">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+                        <a class="bd-share-btn" href="https://t.me/share/url" target="_blank" rel="noopener"
+                            aria-label="اشتراک در تلگرام">
+                            <i class="fa-brands fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bd-aside-block">
+                    <h6 class="bd-aside-title">نویسنده</h6>
+                    <div class="post-author-row d-flex align-items-center gap-2 mb-3">
+                        <img src="{% static 'img/avatar-1.jpg' %}" alt="محمد مقدم‌نژاد"
+                            class="rounded-circle bd-author-avatar">
+                        <div>
+                            <div class="bd-author-name">محمد مقدم‌نژاد</div>
+                            <div class="bd-author-role">معمار سیستم‌های طراحی</div>
+                        </div>
+                    </div>
+                    <p class="bd-author-bio">بیش از یک دهه تجربه در طراحی و توسعهٔ سامانه‌های پیشرفته برای
+                        کسب‌وکارهای مختلف.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- END ARTICLE + ASIDE -->
+
+<!-- START RELATED POSTS -->
+<div class="bd-related-wrapper col-12 container-fluid px-0">
+    <h4 class="bd-related-title">مطالب مرتبط</h4>
+    <div class="row g-4">
+        <div class="col-lg-4">
+            <article class="blog-post-card wow animate__fadeInUp">
+                <div class="bpc-img">
+                    <img src="{% static 'img/blog-2.jpg' %}" alt="Quantum UI Hooks">
+                    <span class="post-tag tag-hardware">سخت‌افزار</span>
+                </div>
+                <div class="bpc-body">
+                    <h5><a href="{% url 'blog:blog' %}">هوک‌های کوانتومی رابط کاربری</a></h5>
+                    <div class="d-flex align-items-center gap-2 mt-auto pt-3">
+                        <span class="post-read"><i class="fa-regular fa-clock me-1"></i>5 دقیقه</span>
+                        <span class="post-date ms-auto">18 مهر، 1404</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class="col-lg-4">
+            <article class="blog-post-card wow animate__fadeInUp" data-wow-delay="0.1s">
+                <div class="bpc-img">
+                    <img src="{% static 'img/blog-3.jpg' %}" alt="Visual Logic Flow">
+                    <span class="post-tag tag-logic">منطق</span>
+                </div>
+                <div class="bpc-body">
+                    <h5><a href="{% url 'blog:blog' %}">جریان منطقی بصری</a></h5>
+                    <div class="d-flex align-items-center gap-2 mt-auto pt-3">
+                        <span class="post-read"><i class="fa-regular fa-clock me-1"></i>4 دقیقه</span>
+                        <span class="post-date ms-auto">15 مهر، 1404</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class="col-lg-4">
+            <article class="blog-post-card wow animate__fadeInUp" data-wow-delay="0.2s">
+                <div class="bpc-img">
+                    <img src="{% static 'img/blog-4.jpg' %}" alt="Cyber Resilience">
+                    <span class="post-tag tag-security">امنیت</span>
+                </div>
+                <div class="bpc-body">
+                    <h5><a href="{% url 'blog:blog' %}">پروتکل‌های تاب‌آوری سایبری</a></h5>
+                    <div class="d-flex align-items-center gap-2 mt-auto pt-3">
+                        <span class="post-read"><i class="fa-regular fa-clock me-1"></i>6 دقیقه</span>
+                        <span class="post-date ms-auto">10 مهر، 1404</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+<!-- END RELATED POSTS -->
+
+<!-- COPY-LINK TOAST -->
+<div class="bd-toast" id="bdToast">لینک کپی شد</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="{% static 'js/blog-detail.js' %}"></script>
+{% endblock %}

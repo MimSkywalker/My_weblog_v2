@@ -1,26 +1,32 @@
- <!-- START NAVIGATION DOCK -->
-    <div class="nav-container animate__animated animate__fadeInUp">
-        <nav class="nav-dock">
-            <a href="{% url 'home:index' %}" class="dock-item active">
-                <i class="fa-solid fa-house-user"></i>
-                <span>خانه</span>
-            </a>
-            <a href="{% url 'resume:resume' %}" class="dock-item">
-                <i class="fa-solid fa-file-invoice"></i>
-                <span>رزومه</span>
-            </a>
-            <a href="{% url 'project:project' %}" class="dock-item">
-                <i class="fa-solid fa-briefcase"></i>
-                <span>پروژه‌ها</span>
-            </a>
-            <a href="{% url 'blog:blog' %}" class="dock-item">
-                <i class="fa-solid fa-bolt"></i>
-                <span>وبلاگ</span>
-            </a>
-            <a href="{% url 'home:contact' %}" class="dock-item">
-                <i class="fa-solid fa-envelope"></i>
-                <span>تماس با من</span>
-            </a>
-        </nav>
-    </div>
-    <!-- END NAVIGATION DOCK -->
+<!-- START NAVIGATION DOCK -->
+{% load static %}
+<div class="nav-container animate__animated animate__fadeInUp">
+    <nav class="nav-dock">
+        <a href="{% url 'home:index' %}"
+            class="dock-item {% if request.resolver_match.url_name == 'index' %}active{% endif %}">
+            <i class="fa-solid fa-house-user"></i>
+            <span>خانه</span>
+        </a>
+        <a href="{% url 'resume:resume' %}"
+            class="dock-item {% if request.resolver_match.app_name == 'resume' %}active{% endif %}">
+            <i class="fa-solid fa-file-invoice"></i>
+            <span>رزومه</span>
+        </a>
+        <a href="{% url 'project:project' %}"
+            class="dock-item {% if request.resolver_match.app_name == 'project' %}active{% endif %}">
+            <i class="fa-solid fa-briefcase"></i>
+            <span>پروژه‌ها</span>
+        </a>
+        <a href="{% url 'blog:blog' %}"
+            class="dock-item {% if request.resolver_match.app_name == 'blog' %}active{% endif %}">
+            <i class="fa-solid fa-bolt"></i>
+            <span>وبلاگ</span>
+        </a>
+        <a href="{% url 'home:contact' %}"
+            class="dock-item {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
+            <i class="fa-solid fa-envelope"></i>
+            <span>تماس با من</span>
+        </a>
+    </nav>
+</div>
+<!-- END NAVIGATION DOCK -->

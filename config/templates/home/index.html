@@ -1,291 +1,219 @@
+{% extends "base.html" %}
 {% load static %}
-<!doctype html>
-<html dir="rtl" lang="fa-IR">
+{% block title %}خانه | محمّد مقدّم‌نژاد{% endblock %}
 
-<head>
-  <meta charset="UTF-8" />
-  <script>
-    if (localStorage.getItem("theme") === "dark")
-      document.documentElement.classList.add("dark-theme");
-  </script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ولیکسو - قالب نمونه کار خلاقانه (قالب بنتو)</title>
-  <meta name="description" content="Premium portfolio of Alex Sterling, an Elite Design Systems Architect." />
-  <link rel="icon" href="{% static 'img/favicon.svg' %}" type="image/svg+xml" />
 
-  <!-- CSS LIBRARIES -->
-  <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/animate.min.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/google-fonts.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/main.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/main-rtl.css' %}" />
-</head>
 
-<body>
-  <!-- START NAVIGATION DOCK -->
-  <div class="nav-container animate__animated animate__fadeInUp">
-    <nav class="nav-dock">
-      <a href="{% url 'home:index' %}" class="dock-item active">
-        <i class="fa-solid fa-house-user"></i>
-        <span>خانه</span>
-      </a>
-      <a href="{% url 'resume:resume' %}" class="dock-item">
-        <i class="fa-solid fa-file-invoice"></i>
-        <span>رزومه</span>
-      </a>
-      <a href="{% url 'project:project' %}" class="dock-item">
-        <i class="fa-solid fa-briefcase"></i>
-        <span>پروژه‌ها</span>
-      </a>
-      <a href="{% url 'blog:blog' %}" class="dock-item">
-        <i class="fa-solid fa-bolt"></i>
-        <span>وبلاگ</span>
-      </a>
-      <a href="{% url 'home:contact' %}" class="dock-item">
-        <i class="fa-solid fa-envelope"></i>
-        <span>تماس با من</span>
-      </a>
-    </nav>
+
+
+{% block content %}
+<!-- START HERO SECTION -->
+<div class="bento-card card-hero wow animate__fadeInLeft">
+  <span class="card-number">01 / مفهوم</span>
+  <div class="badge-status">
+    <i class="fa-solid fa-circle"></i>
+    آماده همکاری در پروژه‌های شاخص
   </div>
-  <!-- END NAVIGATION DOCK -->
+  <h1 class="hero-title">
+    آینده<br><span>برندها</span><br>را مهندسی می‌کنیم.
+  </h1>
+  <p class="hero-desc">
+    راهکارهای دیجیتال پیشرفته و پربازدهی طراحی می‌کنم که پیچیدگی‌های فنی را با دیدگاه خلاقانه و هنری در هم
+    می‌آمیزند.
+  </p>
+</div>
+<!-- END HERO SECTION -->
 
-  <div class="container bento-container">
-    <!-- START HEADER -->
-    <header class="d-flex justify-content-between align-items-center mb-5 animate__animated animate__fadeInDown">
-      <div class="logo-text">ولیکسو.</div>
-      <div class="controls d-flex gap-3">
-        <div class="control-btn dark-toggle" id="theme-toggle">
-          <i class="fa-solid fa-moon"></i>
-        </div>
-      </div>
-    </header>
-    <!-- END HEADER -->
+<!-- START PROFILE SECTION -->
+<div class="bento-card card-profile wow animate__fadeInRight">
+  <span class="card-number">02 / هویت</span>
+  <div class="avatar-box">
+    <img src="{% static 'img/avatar-1.jpg' %}" alt="Mohammad MoghaddamNezhadz" />
+  </div>
+  <h3 class="mb-1 text-uppercase"> {{ profile.full_name }} </h3>
+  <p class="text-muted small fw-bold text-uppercase">
+    {{ profile.bio }}
+  </p>
 
-    <!-- START HERO SECTION -->
-    <div class="bento-card card-hero wow animate__fadeInLeft">
-      <span class="card-number">01 / مفهوم</span>
-      <div class="badge-status">
-        <i class="fa-solid fa-circle"></i>
-        آماده همکاری در پروژه‌های شاخص
-      </div>
-      <h1 class="hero-title">
-        آینده<br><span>برندها</span><br>را مهندسی می‌کنیم.
-      </h1>
-      <p class="hero-desc">
-        راهکارهای دیجیتال پیشرفته و پربازدهی طراحی می‌کنم که پیچیدگی‌های فنی را با دیدگاه خلاقانه و هنری در هم
-        می‌آمیزند.
+  <div class="social-pill">
+
+    <!-- <a href="contact.html#" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a> -->
+    <a href="https://github.com/mimskywalker" class="social-btn"><i class="fa-brands fa-github"></i></a>
+    <!-- <a href="https://www.instagram.com/momone_ir" class="social-btn"><i class="fa-brands fa-instagram"></i></a> -->
+    <a href="https://www.linkedin.com/in/mohammad-moghaddamnezhad-4364b341b" class="social-btn"><i
+        class="fa-brands fa-linkedin-in"></i></a>
+    <a href="https://youtube.com/@momonezh?si=JHYvDYC2p1Hn75wx" class="social-btn"><i
+        class="fa-brands fa-youtube"></i></a>
+    <a href="https://www.telegram.org/mimskywalker" class="social-btn"><i class="fa-brands fa-telegram"></i></a>
+  </div>
+</div>
+<!-- END PROFILE SECTION -->
+
+<!-- START ABOUT SECTION -->
+<div class="bento-card card-about wow animate__fadeInUp">
+  <span class="card-number">03 / منطق</span>
+  <h2 class="text-uppercase">فلسفه<br />برتر.</h2>
+  <p class="text-muted small mb-4">
+    پیوندی میان مهندسی پیشرفته و زیبایی‌شناسی ممتاز برای رهبران صنایع جهانی
+  </p>
+
+  <div class="pillar-grid">
+    <div class="pillar-item">
+      <div class="pillar-title">سیستم‌های مقیاس‌پذیر</div>
+      <p class="pill-text">
+        معماری‌های ماژولار، طراحی‌شده برای رشد در مقیاس گسترده
       </p>
     </div>
-    <!-- END HERO SECTION -->
-
-    <!-- START PROFILE SECTION -->
-    <div class="bento-card card-profile wow animate__fadeInRight">
-      <span class="card-number">02 / هویت</span>
-      <div class="avatar-box">
-        <img src="{% static 'img/avatar-1.jpg' %}" alt="Alex Sterling" />
-      </div>
-      <h3 class="mb-1 text-uppercase"> {{ profile.full_name }} </h3>
-      <p class="text-muted small fw-bold text-uppercase">
-        {{ profile.bio }}
+    <div class="pillar-item">
+      <div class="pillar-title">منطق بصری</div>
+      <p class="pill-text">
+        جایی که دقت عملکرد با روح هنر پیوند می‌خورد
       </p>
-
-      <div class="social-pill">
-
-        <!-- <a href="contact.html#" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a> -->
-        <a href="https://github.com/mimskywalker" class="social-btn"><i class="fa-brands fa-github"></i></a>
-        <!-- <a href="https://www.instagram.com/momone_ir" class="social-btn"><i class="fa-brands fa-instagram"></i></a> -->
-        <a href="https://www.linkedin.com/in/mohammad-moghaddamnezhad-4364b341b" class="social-btn"><i
-            class="fa-brands fa-linkedin-in"></i></a>
-        <a href="https://youtube.com/@momonezh?si=JHYvDYC2p1Hn75wx" class="social-btn"><i
-            class="fa-brands fa-youtube"></i></a>
-        <a href="https://www.telegram.org/mimskywalker" class="social-btn"><i class="fa-brands fa-telegram"></i></a>
-      </div>
     </div>
-    <!-- END PROFILE SECTION -->
-
-    <!-- START ABOUT SECTION -->
-    <div class="bento-card card-about wow animate__fadeInUp">
-      <span class="card-number">03 / منطق</span>
-      <h2 class="text-uppercase">فلسفه<br />برتر.</h2>
-      <p class="text-muted small mb-4">
-        پیوندی میان مهندسی پیشرفته و زیبایی‌شناسی ممتاز برای رهبران صنایع جهانی
+    <div class="pillar-item">
+      <div class="pillar-title">رشد سریع</div>
+      <p class="pill-text">از ایده تا استقرار سازمانی، تنها در چند هفته</p>
+    </div>
+    <div class="pillar-item">
+      <div class="pillar-title">هوش مصنوعی در اولویت</div>
+      <p class="pill-text">
+        آماده‌سازی اکوسیستم‌ها برای آینده با بهره‌گیری از منطق هوشمند
       </p>
-
-      <div class="pillar-grid">
-        <div class="pillar-item">
-          <div class="pillar-title">سیستم‌های مقیاس‌پذیر</div>
-          <p class="pill-text">
-            معماری‌های ماژولار، طراحی‌شده برای رشد در مقیاس گسترده
-          </p>
-        </div>
-        <div class="pillar-item">
-          <div class="pillar-title">منطق بصری</div>
-          <p class="pill-text">
-            جایی که دقت عملکرد با روح هنر پیوند می‌خورد
-          </p>
-        </div>
-        <div class="pillar-item">
-          <div class="pillar-title">رشد سریع</div>
-          <p class="pill-text">از ایده تا استقرار سازمانی، تنها در چند هفته</p>
-        </div>
-        <div class="pillar-item">
-          <div class="pillar-title">هوش مصنوعی در اولویت</div>
-          <p class="pill-text">
-            آماده‌سازی اکوسیستم‌ها برای آینده با بهره‌گیری از منطق هوشمند
-          </p>
-        </div>
-      </div>
     </div>
-    <!-- END ABOUT SECTION -->
+  </div>
+</div>
+<!-- END ABOUT SECTION -->
 
-    <!-- START STATS SECTION -->
-    <div class="bento-card card-skills wow animate__zoomIn" data-wow-delay="0.1s">
-      <span class="card-number">04 / آمار</span>
-      <div class="stat-item">
-        <span class="stat-num">{{ profile.years_of_experience }}+</span>
-        <span class="stat-label d-block">سال‌های تجربه</span>
+<!-- START STATS SECTION -->
+<div class="bento-card card-skills wow animate__zoomIn" data-wow-delay="0.1s">
+  <span class="card-number">04 / آمار</span>
+  <div class="stat-item">
+    <span class="stat-num">{{ profile.years_of_experience }}+</span>
+    <span class="stat-label d-block">سال‌های تجربه</span>
+  </div>
+</div>
+<div class="bento-card card-skills wow animate__zoomIn" data-wow-delay="0.2s">
+  <span class="card-number">05 / آمار</span>
+  <div class="stat-item">
+    <span class="stat-num">{{ profile.projects_count }}+</span>
+    <span class="stat-label d-block">تعداد پروژه‌ها</span>
+  </div>
+</div>
+<!-- END STATS SECTION -->
+
+<!-- START RESUME SECTION -->
+<div class="bento-card card-resume wow animate__fadeInUp">
+  <span class="card-number">06 / مسیر رشد</span>
+  <h3 class="text-uppercase mb-2">رزومه</h3>
+  <p class="small mb-4">
+    مهارت‌های فنی و مسیر رشد حرفه‌ای من را کشف کنید
+  </p>
+  <div class="mt-auto">
+    <a href="{% url 'resume:resume' %}" class="btn btn-light rounded-pill px-4 py-2 fw-bold text-uppercase">
+      مشاهده رزومه <i class="fa-solid fa-arrow-left-long ms-2"></i>
+    </a>
+  </div>
+</div>
+<!-- END RESUME SECTION -->
+
+<!-- START MISSION SECTION -->
+<div class="bento-card card-hub wow animate__fadeInUp">
+  <span class="card-number">دیدگاه</span>
+
+  <div class="mission-header mb-4">
+    <h3 class="text-uppercase">ماموریت برتر</h3>
+    <p class="small opacity-50 fw-bold">
+      تعریف آینده‌ی معماری دیجیتال
+    </p>
+  </div>
+
+  <div class="value-stack w-100">
+    <div class="value-item d-flex align-items-start gap-3 mb-4">
+      <div class="value-icon">
+        <i class="fa-solid fa-chess-knight"></i>
       </div>
-    </div>
-    <div class="bento-card card-skills wow animate__zoomIn" data-wow-delay="0.2s">
-      <span class="card-number">05 / آمار</span>
-      <div class="stat-item">
-        <span class="stat-num">{{ profile.projects_count }}+</span>
-        <span class="stat-label d-block">تعداد پروژه‌ها</span>
-      </div>
-    </div>
-    <!-- END STATS SECTION -->
-
-    <!-- START RESUME SECTION -->
-    <div class="bento-card card-resume wow animate__fadeInUp">
-      <span class="card-number">06 / مسیر رشد</span>
-      <h3 class="text-uppercase mb-2">رزومه</h3>
-      <p class="small mb-4">
-        مهارت‌های فنی و مسیر رشد حرفه‌ای من را کشف کنید
-      </p>
-      <div class="mt-auto">
-        <a href="{% url 'resume:resume' %}" class="btn btn-light rounded-pill px-4 py-2 fw-bold text-uppercase">
-          مشاهده رزومه <i class="fa-solid fa-arrow-left-long ms-2"></i>
-        </a>
-      </div>
-    </div>
-    <!-- END RESUME SECTION -->
-
-    <!-- START MISSION SECTION -->
-    <div class="bento-card card-hub wow animate__fadeInUp">
-      <span class="card-number">دیدگاه</span>
-
-      <div class="mission-header mb-4">
-        <h3 class="text-uppercase">ماموریت برتر</h3>
-        <p class="small opacity-50 fw-bold">
-          تعریف آینده‌ی معماری دیجیتال
+      <div>
+        <div class="value-title">عمق استراتژیک</div>
+        <p class="small opacity-60 mb-0">
+          هر پیکسل بر پایه‌ی منطق دقیق معماری طراحی شده است.
         </p>
       </div>
+    </div>
 
-      <div class="value-stack w-100">
-        <div class="value-item d-flex align-items-start gap-3 mb-4">
-          <div class="value-icon">
-            <i class="fa-solid fa-chess-knight"></i>
-          </div>
-          <div>
-            <div class="value-title">عمق استراتژیک</div>
-            <p class="small opacity-60 mb-0">
-              هر پیکسل بر پایه‌ی منطق دقیق معماری طراحی شده است.
-            </p>
-          </div>
-        </div>
-
-        <div class="value-item d-flex align-items-start gap-3 mb-4">
-          <div class="value-icon"><i class="fa-solid fa-vial"></i></div>
-          <div>
-            <div class="value-title">کیفیت رادیکال</div>
-            <p class="small opacity-60 mb-0">
-              بدون هیچ‌گونه مصالحه در عملکرد و دقت بصری.
-            </p>
-          </div>
-        </div>
-
-        <div class="value-item d-flex align-items-start gap-3">
-          <div class="value-icon"><i class="fa-solid fa-infinity"></i></div>
-          <div>
-            <div class="value-title">آینده مقیاس‌پذیر</div>
-            <p class="small opacity-60 mb-0">
-              سیستم‌هایی طراحی‌شده برای رشد هم‌زمان با توسعه برند شما.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="hub-footer mt-auto w-100">
-        <div class="signature-text">ولیکسو - 1405</div>
+    <div class="value-item d-flex align-items-start gap-3 mb-4">
+      <div class="value-icon"><i class="fa-solid fa-vial"></i></div>
+      <div>
+        <div class="value-title">کیفیت رادیکال</div>
+        <p class="small opacity-60 mb-0">
+          بدون هیچ‌گونه مصالحه در عملکرد و دقت بصری.
+        </p>
       </div>
     </div>
-    <!-- END MISSION SECTION -->
 
-    <!-- START SERVICES SECTION -->
-    <div class="bento-card card-services wow animate__fadeInUp">
-      <span class="card-number">08 / تسلط</span>
-      <h3 class="text-uppercase mb-4">تسلط اصلی</h3>
-      <div class="expertise-list">
-        <div class="expertise-item">
-          <i class="fa-solid fa-gem"></i>
-          <span class="fw-bold text-uppercase">معماری سیستم‌ها</span>
-        </div>
-        <div class="expertise-item">
-          <i class="fa-solid fa-shield-halved"></i>
-          <span class="fw-bold text-uppercase">مهندسی امن</span>
-        </div>
-        <div class="expertise-item">
-          <i class="fa-solid fa-chart-pie"></i>
-          <span class="fw-bold text-uppercase">رشد استراتژیک</span>
-        </div>
-        <div class="expertise-item">
-          <i class="fa-solid fa-brain"></i>
-          <span class="fw-bold text-uppercase">طراحی عصبی مبتنی بر هوش مصنوعی</span>
-        </div>
+    <div class="value-item d-flex align-items-start gap-3">
+      <div class="value-icon"><i class="fa-solid fa-infinity"></i></div>
+      <div>
+        <div class="value-title">آینده مقیاس‌پذیر</div>
+        <p class="small opacity-60 mb-0">
+          سیستم‌هایی طراحی‌شده برای رشد هم‌زمان با توسعه برند شما.
+        </p>
       </div>
     </div>
-    <!-- END SERVICES SECTION -->
-
-    <!-- START CLIENTS SECTION -->
-    <div class="bento-card card-clients wow animate__fadeInUp">
-      <span class="card-number">09 / شبکه</span>
-      <p class="small text-uppercase fw-black opacity-30 mb-5">
-        شرکای استراتژیک جهانی </p>
-      <div class="client-grid">
-        <div class="client-item">
-          <img src="{% static 'img/logo-ipsum-1.png' %}" class="client-logo" alt="Partner 1" />
-        </div>
-        <div class="client-item">
-          <img src="{% static 'img/logo-ipsum-2.png' %}" class="client-logo" alt="Partner 2" />
-        </div>
-        <div class="client-item">
-          <img src="{% static 'img/logo-ipsum-3.png' %}" class="client-logo" alt="Partner 3" />
-        </div>
-        <div class="client-item">
-          <img src="{% static 'img/logo-ipsum-4.png' %}" class="client-logo" alt="Partner 4" />
-        </div>
-        <div class="client-item">
-          <img src="{% static 'img/logo-ipsum-5.png' %}" class="client-logo" alt="Partner 5" />
-        </div>
-      </div>
-    </div>
-    <!-- END CLIENTS SECTION -->
-
-    <!-- START FOOTER -->
-    <footer class="card-footer">
-      <p class="small opacity-50 fw-bold">
-        © 1405 تمامی حقوق برای Geniulize محفوظ است.
-      </p>
-    </footer>
-    <!-- END FOOTER -->
   </div>
 
-  <!-- JS LIBRARIES -->
-  <script src="{% static 'js/jquery.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'js/wow.min.js' %}"></script>
-  <script src="{% static 'js/main.js' %}"></script>
-</body>
+  <div class="hub-footer mt-auto w-100">
+    <div class="signature-text">ولیکسو - 1405</div>
+  </div>
+</div>
+<!-- END MISSION SECTION -->
 
-</html>
+<!-- START SERVICES SECTION -->
+<div class="bento-card card-services wow animate__fadeInUp">
+  <span class="card-number">08 / تسلط</span>
+  <h3 class="text-uppercase mb-4">تسلط اصلی</h3>
+  <div class="expertise-list">
+    <div class="expertise-item">
+      <i class="fa-solid fa-gem"></i>
+      <span class="fw-bold text-uppercase">معماری سیستم‌ها</span>
+    </div>
+    <div class="expertise-item">
+      <i class="fa-solid fa-shield-halved"></i>
+      <span class="fw-bold text-uppercase">مهندسی امن</span>
+    </div>
+    <div class="expertise-item">
+      <i class="fa-solid fa-chart-pie"></i>
+      <span class="fw-bold text-uppercase">رشد استراتژیک</span>
+    </div>
+    <div class="expertise-item">
+      <i class="fa-solid fa-brain"></i>
+      <span class="fw-bold text-uppercase">طراحی عصبی مبتنی بر هوش مصنوعی</span>
+    </div>
+  </div>
+</div>
+<!-- END SERVICES SECTION -->
+
+<!-- START CLIENTS SECTION -->
+<div class="bento-card card-clients wow animate__fadeInUp">
+  <span class="card-number">09 / شبکه</span>
+  <p class="small text-uppercase fw-black opacity-30 mb-5">
+    شرکای استراتژیک جهانی </p>
+  <div class="client-grid">
+    <div class="client-item">
+      <img src="{% static 'img/logo-ipsum-1.png' %}" class="client-logo" alt="Partner 1" />
+    </div>
+    <div class="client-item">
+      <img src="{% static 'img/logo-ipsum-2.png' %}" class="client-logo" alt="Partner 2" />
+    </div>
+    <div class="client-item">
+      <img src="{% static 'img/logo-ipsum-3.png' %}" class="client-logo" alt="Partner 3" />
+    </div>
+    <div class="client-item">
+      <img src="{% static 'img/logo-ipsum-4.png' %}" class="client-logo" alt="Partner 4" />
+    </div>
+    <div class="client-item">
+      <img src="{% static 'img/logo-ipsum-5.png' %}" class="client-logo" alt="Partner 5" />
+    </div>
+  </div>
+</div>
+<!-- END CLIENTS SECTION -->
+{% endblock %}

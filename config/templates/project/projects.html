@@ -1,249 +1,190 @@
+{% extends "base.html" %}
 {% load static %}
-<!doctype html>
-<html dir="rtl" lang="fa-IR">
+{% block title %}خانه | محمّد مقدّم‌نژاد{% endblock %}
 
-<head>
-    <meta charset="UTF-8" />
-    <script>
-        if (localStorage.getItem("theme") === "dark")
-            document.documentElement.classList.add("dark-theme");
-    </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>پروژه‌ها - محمد مقدم‌نژاد | برنامه‌نویس بک‌اند جنگو</title>
-    <meta name="description"
-        content="Portfolio of high-performance digital ecosystems and architectural masterpieces by Alex Sterling." />
-    <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
 
-    <!-- CSS LIBRARIES -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/google-fonts.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/main-rtl.css' %}" />
-</head>
 
-<body class="works-page">
 
-    <!-- START NAVIGATION DOCK -->
-    <div class="nav-container animate__animated animate__fadeInUp">
-        <nav class="nav-dock">
-            <a href="index.html" class="dock-item">
-                <i class="fa-solid fa-house-user"></i>
-                <span>خانه</span>
-            </a>
-            <a href="resume.html" class="dock-item">
-                <i class="fa-solid fa-file-invoice"></i>
-                <span>رزومه</span>
-            </a>
-            <a href="works.html" class="dock-item active">
-                <i class="fa-solid fa-briefcase"></i>
-                <span>پروژه‌ها</span>
-            </a>
-            <a href="blog.html" class="dock-item">
-                <i class="fa-solid fa-bolt"></i>
-                <span>وبلاگ</span>
-            </a>
-            <a href="contact.html" class="dock-item">
-                <i class="fa-solid fa-envelope"></i>
-                <span>تماس با من</span>
-            </a>
-        </nav>
+
+{% block content %}
+<!-- START HERO SECTION -->
+<div class="bento-card card-hero wow animate__fadeInLeft">
+    <span class="card-number">01 / نمونه‌کارها</span>
+    <div class="badge-status">
+        <i class="fa-solid fa-circle"></i>
+        طراحی و توسعه محصولات دیجیتال
     </div>
-    <!-- END NAVIGATION DOCK -->
+    <h1 class="hero-title">نمونه‌کارهای <br /><span>حرفه‌ای و</span><br />تخصصی.</h1>
+    <p class="hero-desc">منتخبی از پروژه‌های حرفه‌ای، رابط‌های کاربری پیشرفته و زیرساخت‌های مقیاس‌پذیر که برای
+        کسب‌وکارها و سازمان‌های مختلف توسعه داده شده‌اند.</p>
+</div>
+<!-- END HERO SECTION -->
 
-    <div class="container bento-container">
+<!-- START STATS SECTION -->
+<div class="bento-card card-stats wow animate__fadeInRight">
+    <span class="card-number">02 / دستاوردها</span>
+    <div class="stat-item mb-4">
+        <div class="stat-num">120+</div>
+        <div class="stat-label">پروژه انجام شده</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-num">99%</div>
+        <div class="stat-label">پایداری زیرساخت</div>
+    </div>
+</div>
+<!-- END STATS SECTION -->
 
-        <!-- START HEADER -->
-        <header class="d-flex justify-content-between align-items-center mb-5 animate__animated animate__fadeInDown">
-            <div class="logo-text">ولیکسو.</div>
-            <div class="controls d-flex gap-3">
-                <div class="control-btn dark-toggle" id="theme-toggle">
-                    <i class="fa-solid fa-moon"></i>
-                </div>
-            </div>
-        </header>
-        <!-- END HEADER -->
+<!-- START PROJECTS HUB -->
+<div class="bento-card card-projects-hub col-12 wow animate__fadeInUp">
+    <span class="card-number">03 / پروژه‌ها</span>
 
-        <!-- START HERO SECTION -->
-        <div class="bento-card card-hero wow animate__fadeInLeft">
-            <span class="card-number">01 / نمونه‌کارها</span>
-            <div class="badge-status">
-                <i class="fa-solid fa-circle"></i>
-                طراحی و توسعه محصولات دیجیتال
-            </div>
-            <h1 class="hero-title">نمونه‌کارهای <br /><span>حرفه‌ای و</span><br />تخصصی.</h1>
-            <p class="hero-desc">منتخبی از پروژه‌های حرفه‌ای، رابط‌های کاربری پیشرفته و زیرساخت‌های مقیاس‌پذیر که برای
-                کسب‌وکارها و سازمان‌های مختلف توسعه داده شده‌اند.</p>
+    <div class="hub-header d-flex flex-wrap justify-content-between align-items-center mb-5 gap-4">
+        <div class="hub-title">
+            <h3 class="text-uppercase mb-1">مرکز پروژه‌ها</h3>
+            <p class="small opacity-50 fw-bold mb-0">نمونه‌ای از پروژه‌های حرفه‌ای و سامانه‌های مقیاس‌پذیر را
+                مشاهده کنید</p>
         </div>
-        <!-- END HERO SECTION -->
-
-        <!-- START STATS SECTION -->
-        <div class="bento-card card-stats wow animate__fadeInRight">
-            <span class="card-number">02 / دستاوردها</span>
-            <div class="stat-item mb-4">
-                <div class="stat-num">120+</div>
-                <div class="stat-label">پروژه انجام شده</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-num">99%</div>
-                <div class="stat-label">پایداری زیرساخت</div>
-            </div>
+        <div class="filter-group">
+            <button class="filter-btn active" data-filter="*">همه پروژه‌ها</button>
+            <button class="filter-btn" data-filter=".ui-ux">طراحی رابط و تجربه کاربری</button>
+            <button class="filter-btn" data-filter=".architecture">معماری نرم‌افزار</button>
+            <button class="filter-btn" data-filter=".systems">سیستم‌ها</button>
         </div>
-        <!-- END STATS SECTION -->
-
-        <!-- START PROJECTS HUB -->
-        <div class="bento-card card-projects-hub col-12 wow animate__fadeInUp">
-            <span class="card-number">03 / پروژه‌ها</span>
-
-            <div class="hub-header d-flex flex-wrap justify-content-between align-items-center mb-5 gap-4">
-                <div class="hub-title">
-                    <h3 class="text-uppercase mb-1">مرکز پروژه‌ها</h3>
-                    <p class="small opacity-50 fw-bold mb-0">نمونه‌ای از پروژه‌های حرفه‌ای و سامانه‌های مقیاس‌پذیر را
-                        مشاهده کنید</p>
-                </div>
-                <div class="filter-group">
-                    <button class="filter-btn active" data-filter="*">همه پروژه‌ها</button>
-                    <button class="filter-btn" data-filter=".ui-ux">طراحی رابط و تجربه کاربری</button>
-                    <button class="filter-btn" data-filter=".architecture">معماری نرم‌افزار</button>
-                    <button class="filter-btn" data-filter=".systems">سیستم‌ها</button>
-                </div>
-            </div>
-
-            <div class="isotope-grid">
-                <div class="grid-sizer"></div>
-
-                <!-- Project 1 -->
-                <div class="isotope-item ui-ux">
-                    <div class="card-work-inner wow animate__fadeInUp">
-                        <div class="work-img">
-                            <img src="{% static 'img/project-1.webp' %}" alt="Neural Dashboard" />
-                        </div>
-                        <div class="work-content">
-                            <span class="work-cat text-uppercase">طراحی رابط و تجربه کاربری</span>
-                            <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal"
-                                data-bs-target="#projectModal1">داشبورد هوشمند</h4>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="isotope-item architecture">
-                    <div class="card-work-inner wow animate__fadeInUp" data-wow-delay="0.1s">
-                        <div class="work-img">
-                            <img src="{% static 'img/project-2.webp' %}" alt="Quantum Logic" />
-                        </div>
-                        <div class="work-content">
-                            <span class="work-cat text-uppercase">معماری نرم‌افزار</span>
-                            <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal"
-                                data-bs-target="#projectModal2">منطق کوانتومی</h4>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="isotope-item systems">
-                    <div class="card-work-inner wow animate__fadeInUp" data-wow-delay="0.2s">
-                        <div class="work-img">
-                            <img src="{% static 'img/project-3.webp' %}" alt="Scalable Core" />
-                        </div>
-                        <div class="work-content">
-                            <span class="work-cat text-uppercase">سیستم‌ها</span>
-                            <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal"
-                                data-bs-target="#projectModal3">هسته مقیاس‌پذیر</h4>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="isotope-item ui-ux">
-                    <div class="card-work-inner wow animate__fadeInUp">
-                        <div class="work-img">
-                            <img src="{% static 'img/project-4.webp' %}" alt="Elite Mobile Hub" />
-                        </div>
-                        <div class="work-content">
-                            <span class="work-cat text-uppercase">طراحی رابط و تجربه کاربری</span>
-                            <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal"
-                                data-bs-target="#projectModal4">مرکز خدمات موبایل</h4>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="isotope-item systems architecture">
-                    <div class="card-work-inner wow animate__fadeInUp" data-wow-delay="0.1s">
-                        <div class="work-img">
-                            <img src="{% static 'img/project-5.webp' %}" alt="Cyber Systems" />
-                        </div>
-                        <div class="work-content">
-                            <span class="work-cat text-uppercase">سیستم‌ها / معماری</span>
-                            <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal"
-                                data-bs-target="#projectModal5">سیستم‌های سایبری</h4>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="isotope-item ui-ux">
-                    <div class="card-work-inner wow animate__fadeInUp" data-wow-delay="0.2s">
-                        <div class="work-img">
-                            <img src="{% static 'img/project-6.webp' %}" alt="Visual Analytics" />
-                        </div>
-                        <div class="work-content">
-                            <span class="work-cat text-uppercase">طراحی رابط و تجربه کاربری</span>
-                            <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal"
-                                data-bs-target="#projectModal6">تحلیل بصری داده‌ها</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- END PROJECTS HUB -->
-
-        <!-- START FOOTER -->
-        <footer class="card-footer col-12">
-            <p class="small opacity-50 fw-bold">© 1405 تمامی حقوق برای Geniulize محفوظ است.</p>
-        </footer>
-        <!-- END FOOTER -->
-
     </div>
 
-    <!-- START PROJECT MODALS -->
+    <div class="isotope-grid">
+        <div class="grid-sizer"></div>
 
-    <!-- Project Modal 1 -->
-    <div class="modal fade velixo-modal" id="projectModal1" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <!-- Project 1 -->
+        <div class="isotope-item ui-ux">
+            <div class="card-work-inner wow animate__fadeInUp">
+                <div class="work-img">
+                    <img src="{% static 'img/project-1.webp' %}" alt="Neural Dashboard" />
                 </div>
-                <div class="modal-body p-4 p-md-5">
-                    <span class="badge-status mb-3">طراحی رابط و تجربه کاربری</span>
-                    <h2 class="modal-title mb-4">معماری داشبورد هوشمند</h2>
-                    <img src="{% static 'img/project-1.webp' %}" class="img-fluid rounded-4 mb-4"
-                        alt="Neural Dashboard Detail" />
-                    <div class="row g-4">
-                        <div class="col-md-8">
-                            <h4 class="text-uppercase mb-3">شرح پروژه</h4>
-                            <p class="text-muted">سامانه‌ای پیشرفته برای نمایش و تحلیل داده‌ها به‌صورت لحظه‌ای که با
-                                تمرکز بر سرعت بالا و تجربه کاربری روان طراحی شده است. ساختار ماژولار این پروژه امکان
-                                مدیریت و نمایش حجم زیادی از اطلاعات را فراهم می‌کند.</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="project-info-list">
-                                <div class="info-item mb-3">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">کارفرما</span>
-                                    <span class="value fw-bold">آزمایشگاه هوش مصنوعی کوانتوم</span>
-                                </div>
-                                <div class="info-item mb-3">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">سال اجرا</span>
-                                    <span class="value fw-bold">1404</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های
-                                        استفاده‌شده</span>
-                                    <span class="value fw-bold">React, Three, GSAP</span>
-                                </div>
+                <div class="work-content">
+                    <span class="work-cat text-uppercase">طراحی رابط و تجربه کاربری</span>
+                    <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal"
+                        data-bs-target="#projectModal1">داشبورد هوشمند</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="isotope-item architecture">
+            <div class="card-work-inner wow animate__fadeInUp" data-wow-delay="0.1s">
+                <div class="work-img">
+                    <img src="{% static 'img/project-2.webp' %}" alt="Quantum Logic" />
+                </div>
+                <div class="work-content">
+                    <span class="work-cat text-uppercase">معماری نرم‌افزار</span>
+                    <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal"
+                        data-bs-target="#projectModal2">منطق کوانتومی</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="isotope-item systems">
+            <div class="card-work-inner wow animate__fadeInUp" data-wow-delay="0.2s">
+                <div class="work-img">
+                    <img src="{% static 'img/project-3.webp' %}" alt="Scalable Core" />
+                </div>
+                <div class="work-content">
+                    <span class="work-cat text-uppercase">سیستم‌ها</span>
+                    <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal"
+                        data-bs-target="#projectModal3">هسته مقیاس‌پذیر</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="isotope-item ui-ux">
+            <div class="card-work-inner wow animate__fadeInUp">
+                <div class="work-img">
+                    <img src="{% static 'img/project-4.webp' %}" alt="Elite Mobile Hub" />
+                </div>
+                <div class="work-content">
+                    <span class="work-cat text-uppercase">طراحی رابط و تجربه کاربری</span>
+                    <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal"
+                        data-bs-target="#projectModal4">مرکز خدمات موبایل</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="isotope-item systems architecture">
+            <div class="card-work-inner wow animate__fadeInUp" data-wow-delay="0.1s">
+                <div class="work-img">
+                    <img src="{% static 'img/project-5.webp' %}" alt="Cyber Systems" />
+                </div>
+                <div class="work-content">
+                    <span class="work-cat text-uppercase">سیستم‌ها / معماری</span>
+                    <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal"
+                        data-bs-target="#projectModal5">سیستم‌های سایبری</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="isotope-item ui-ux">
+            <div class="card-work-inner wow animate__fadeInUp" data-wow-delay="0.2s">
+                <div class="work-img">
+                    <img src="{% static 'img/project-6.webp' %}" alt="Visual Analytics" />
+                </div>
+                <div class="work-content">
+                    <span class="work-cat text-uppercase">طراحی رابط و تجربه کاربری</span>
+                    <h4 class="work-title text-uppercase" role="button" data-bs-toggle="modal"
+                        data-bs-target="#projectModal6">تحلیل بصری داده‌ها</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END PROJECTS HUB -->
+
+<!-- START FOOTER -->
+<footer class="card-footer col-12">
+    <p class="small opacity-50 fw-bold">© 1405 تمامی حقوق برای Geniulize محفوظ است.</p>
+</footer>
+<!-- END FOOTER -->
+
+</div>
+
+<!-- START PROJECT MODALS -->
+
+<!-- Project Modal 1 -->
+<div class="modal fade velixo-modal" id="projectModal1" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4 p-md-5">
+                <span class="badge-status mb-3">طراحی رابط و تجربه کاربری</span>
+                <h2 class="modal-title mb-4">معماری داشبورد هوشمند</h2>
+                <img src="{% static 'img/project-1.webp' %}" class="img-fluid rounded-4 mb-4"
+                    alt="Neural Dashboard Detail" />
+                <div class="row g-4">
+                    <div class="col-md-8">
+                        <h4 class="text-uppercase mb-3">شرح پروژه</h4>
+                        <p class="text-muted">سامانه‌ای پیشرفته برای نمایش و تحلیل داده‌ها به‌صورت لحظه‌ای که با
+                            تمرکز بر سرعت بالا و تجربه کاربری روان طراحی شده است. ساختار ماژولار این پروژه امکان
+                            مدیریت و نمایش حجم زیادی از اطلاعات را فراهم می‌کند.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="project-info-list">
+                            <div class="info-item mb-3">
+                                <span class="label d-block small opacity-50 text-uppercase fw-bold">کارفرما</span>
+                                <span class="value fw-bold">آزمایشگاه هوش مصنوعی کوانتوم</span>
+                            </div>
+                            <div class="info-item mb-3">
+                                <span class="label d-block small opacity-50 text-uppercase fw-bold">سال اجرا</span>
+                                <span class="value fw-bold">1404</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های
+                                    استفاده‌شده</span>
+                                <span class="value fw-bold">React, Three, GSAP</span>
                             </div>
                         </div>
                     </div>
@@ -251,40 +192,40 @@
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Project Modal 2 -->
-    <div class="modal fade velixo-modal" id="projectModal2" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4 p-md-5">
-                    <span class="badge-status mb-3">معماری نرم‌افزار</span>
-                    <h2 class="modal-title mb-4">سامانه منطق کوانتومی</h2>
-                    <img src="{% static 'img/project-2.webp' %}" class="img-fluid rounded-4 mb-4"
-                        alt="Quantum Logic Detail" />
-                    <div class="row g-4">
-                        <div class="col-md-8">
-                            <h4 class="text-uppercase mb-3">شرح پروژه</h4>
-                            <p class="text-muted">پلتفرمی پیشرفته برای بهینه‌سازی الگوریتمی که با هدف پردازش حجم بالای
-                                تراکنش‌ها و انجام محاسبات پیچیده با سرعت بسیار بالا توسعه داده شده است.</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="project-info-list">
-                                <div class="info-item mb-3">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">کارفرما</span>
-                                    <span class="value fw-bold">شرکت سرمایه‌گذاری جهانی</span>
-                                </div>
-                                <div class="info-item mb-3">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">سال اجرا</span>
-                                    <span class="value fw-bold">1403</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های
-                                        استفاده‌شده</span>
-                                    <span class="value fw-bold">C++, Rust, WebAssembly</span>
-                                </div>
+<!-- Project Modal 2 -->
+<div class="modal fade velixo-modal" id="projectModal2" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4 p-md-5">
+                <span class="badge-status mb-3">معماری نرم‌افزار</span>
+                <h2 class="modal-title mb-4">سامانه منطق کوانتومی</h2>
+                <img src="{% static 'img/project-2.webp' %}" class="img-fluid rounded-4 mb-4"
+                    alt="Quantum Logic Detail" />
+                <div class="row g-4">
+                    <div class="col-md-8">
+                        <h4 class="text-uppercase mb-3">شرح پروژه</h4>
+                        <p class="text-muted">پلتفرمی پیشرفته برای بهینه‌سازی الگوریتمی که با هدف پردازش حجم بالای
+                            تراکنش‌ها و انجام محاسبات پیچیده با سرعت بسیار بالا توسعه داده شده است.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="project-info-list">
+                            <div class="info-item mb-3">
+                                <span class="label d-block small opacity-50 text-uppercase fw-bold">کارفرما</span>
+                                <span class="value fw-bold">شرکت سرمایه‌گذاری جهانی</span>
+                            </div>
+                            <div class="info-item mb-3">
+                                <span class="label d-block small opacity-50 text-uppercase fw-bold">سال اجرا</span>
+                                <span class="value fw-bold">1403</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های
+                                    استفاده‌شده</span>
+                                <span class="value fw-bold">C++, Rust, WebAssembly</span>
                             </div>
                         </div>
                     </div>
@@ -292,40 +233,40 @@
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Project Modal 3 -->
-    <div class="modal fade velixo-modal" id="projectModal3" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4 p-md-5">
-                    <span class="badge-status mb-3">سیستم‌ها</span>
-                    <h2 class="modal-title mb-4">زیرساخت هسته مقیاس‌پذیر</h2>
-                    <img src="{% static 'img/project-3.webp' %}" class="img-fluid rounded-4 mb-4"
-                        alt="Scalable Core Detail" />
-                    <div class="row g-4">
-                        <div class="col-md-8">
-                            <h4 class="text-uppercase mb-3">شرح پروژه</h4>
-                            <p class="text-muted">زیرساخت ابری توزیع‌شده‌ای که با هدف پایداری بالا طراحی شده و قادر است
-                                بار پردازشی را به‌صورت خودکار میان سرورها توزیع کند.</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="project-info-list">
-                                <div class="info-item mb-3">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">کارفرما</span>
-                                    <span class="value fw-bold">شبکه‌های نکسوس</span>
-                                </div>
-                                <div class="info-item mb-3">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">سال اجرا</span>
-                                    <span class="value fw-bold">1404</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های
-                                        استفاده‌شده</span>
-                                    <span class="value fw-bold">Go, Kubernetes, AWS</span>
-                                </div>
+<!-- Project Modal 3 -->
+<div class="modal fade velixo-modal" id="projectModal3" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4 p-md-5">
+                <span class="badge-status mb-3">سیستم‌ها</span>
+                <h2 class="modal-title mb-4">زیرساخت هسته مقیاس‌پذیر</h2>
+                <img src="{% static 'img/project-3.webp' %}" class="img-fluid rounded-4 mb-4"
+                    alt="Scalable Core Detail" />
+                <div class="row g-4">
+                    <div class="col-md-8">
+                        <h4 class="text-uppercase mb-3">شرح پروژه</h4>
+                        <p class="text-muted">زیرساخت ابری توزیع‌شده‌ای که با هدف پایداری بالا طراحی شده و قادر است
+                            بار پردازشی را به‌صورت خودکار میان سرورها توزیع کند.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="project-info-list">
+                            <div class="info-item mb-3">
+                                <span class="label d-block small opacity-50 text-uppercase fw-bold">کارفرما</span>
+                                <span class="value fw-bold">شبکه‌های نکسوس</span>
+                            </div>
+                            <div class="info-item mb-3">
+                                <span class="label d-block small opacity-50 text-uppercase fw-bold">سال اجرا</span>
+                                <span class="value fw-bold">1404</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های
+                                    استفاده‌شده</span>
+                                <span class="value fw-bold">Go, Kubernetes, AWS</span>
                             </div>
                         </div>
                     </div>
@@ -333,40 +274,40 @@
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Project Modal 4 -->
-    <div class="modal fade velixo-modal" id="projectModal4" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4 p-md-5">
-                    <span class="badge-status mb-3">طراحی رابط و تجربه کاربری</span>
-                    <h2 class="modal-title mb-4">مرکز خدمات موبایل</h2>
-                    <img src="{% static 'img/project-4.webp' %}" class="img-fluid rounded-4 mb-4"
-                        alt="Elite Mobile Hub Detail" />
-                    <div class="row g-4">
-                        <div class="col-md-8">
-                            <h4 class="text-uppercase mb-3">شرح پروژه</h4>
-                            <p class="text-muted">اپلیکیشنی مدرن برای مدیریت خدمات و فعالیت‌های روزمره که با طراحی
-                                مینیمال و تجربه کاربری روان توسعه یافته است.</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="project-info-list">
-                                <div class="info-item mb-3">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">کارفرما</span>
-                                    <span class="value fw-bold">شرکت گوگل</span>
-                                </div>
-                                <div class="info-item mb-3">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">سال اجرا</span>
-                                    <span class="value fw-bold">1405</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های
-                                        استفاده‌شده</span>
-                                    <span class="value fw-bold">SwiftUI, Flutter, Rive</span>
-                                </div>
+<!-- Project Modal 4 -->
+<div class="modal fade velixo-modal" id="projectModal4" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4 p-md-5">
+                <span class="badge-status mb-3">طراحی رابط و تجربه کاربری</span>
+                <h2 class="modal-title mb-4">مرکز خدمات موبایل</h2>
+                <img src="{% static 'img/project-4.webp' %}" class="img-fluid rounded-4 mb-4"
+                    alt="Elite Mobile Hub Detail" />
+                <div class="row g-4">
+                    <div class="col-md-8">
+                        <h4 class="text-uppercase mb-3">شرح پروژه</h4>
+                        <p class="text-muted">اپلیکیشنی مدرن برای مدیریت خدمات و فعالیت‌های روزمره که با طراحی
+                            مینیمال و تجربه کاربری روان توسعه یافته است.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="project-info-list">
+                            <div class="info-item mb-3">
+                                <span class="label d-block small opacity-50 text-uppercase fw-bold">کارفرما</span>
+                                <span class="value fw-bold">شرکت گوگل</span>
+                            </div>
+                            <div class="info-item mb-3">
+                                <span class="label d-block small opacity-50 text-uppercase fw-bold">سال اجرا</span>
+                                <span class="value fw-bold">1405</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های
+                                    استفاده‌شده</span>
+                                <span class="value fw-bold">SwiftUI, Flutter, Rive</span>
                             </div>
                         </div>
                     </div>
@@ -374,40 +315,40 @@
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Project Modal 5 -->
-    <div class="modal fade velixo-modal" id="projectModal5" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4 p-md-5">
-                    <span class="badge-status mb-3">سیستم‌ها / معماری</span>
-                    <h2 class="modal-title mb-4">پروتکل امنیت سایبری</h2>
-                    <img src="{% static 'img/project-5.webp' %}" class="img-fluid rounded-4 mb-4"
-                        alt="Cyber Systems Detail" />
-                    <div class="row g-4">
-                        <div class="col-md-8">
-                            <h4 class="text-uppercase mb-3">شرح پروژه</h4>
-                            <p class="text-muted">پروژه‌ای در حوزه امنیت سایبری با هدف ارزیابی، تقویت و حفاظت از
-                                زیرساخت‌های اطلاعاتی و مراکز داده سازمانی.</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="project-info-list">
-                                <div class="info-item mb-3">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">کارفرما</span>
-                                    <span class="value fw-bold">مرکز دفاع سایبری</span>
-                                </div>
-                                <div class="info-item mb-3">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">سال اجرا</span>
-                                    <span class="value fw-bold">1405</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های
-                                        استفاده‌شده</span>
-                                    <span class="value fw-bold">Python, C, Kali Linux</span>
-                                </div>
+<!-- Project Modal 5 -->
+<div class="modal fade velixo-modal" id="projectModal5" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4 p-md-5">
+                <span class="badge-status mb-3">سیستم‌ها / معماری</span>
+                <h2 class="modal-title mb-4">پروتکل امنیت سایبری</h2>
+                <img src="{% static 'img/project-5.webp' %}" class="img-fluid rounded-4 mb-4"
+                    alt="Cyber Systems Detail" />
+                <div class="row g-4">
+                    <div class="col-md-8">
+                        <h4 class="text-uppercase mb-3">شرح پروژه</h4>
+                        <p class="text-muted">پروژه‌ای در حوزه امنیت سایبری با هدف ارزیابی، تقویت و حفاظت از
+                            زیرساخت‌های اطلاعاتی و مراکز داده سازمانی.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="project-info-list">
+                            <div class="info-item mb-3">
+                                <span class="label d-block small opacity-50 text-uppercase fw-bold">کارفرما</span>
+                                <span class="value fw-bold">مرکز دفاع سایبری</span>
+                            </div>
+                            <div class="info-item mb-3">
+                                <span class="label d-block small opacity-50 text-uppercase fw-bold">سال اجرا</span>
+                                <span class="value fw-bold">1405</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های
+                                    استفاده‌شده</span>
+                                <span class="value fw-bold">Python, C, Kali Linux</span>
                             </div>
                         </div>
                     </div>
@@ -415,40 +356,40 @@
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Project Modal 6 -->
-    <div class="modal fade velixo-modal" id="projectModal6" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4 p-md-5">
-                    <span class="badge-status mb-3">طراحی رابط و تجربه کاربری</span>
-                    <h2 class="modal-title mb-4">موتور تحلیل بصری داده‌ها</h2>
-                    <img src="{% static 'img/project-6.webp' %}" class="img-fluid rounded-4 mb-4"
-                        alt="Visual Analytics Detail" />
-                    <div class="row g-4">
-                        <div class="col-md-8">
-                            <h4 class="text-uppercase mb-3">شرح پروژه</h4>
-                            <p class="text-muted">داشبورد هوش تجاری پیشرفته‌ای که داده‌های خام را به گزارش‌ها و
-                                نمودارهای تعاملی تبدیل کرده و تصمیم‌گیری را ساده‌تر می‌کند.</p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="project-info-list">
-                                <div class="info-item mb-3">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">کارفرما</span>
-                                    <span class="value fw-bold">شرکت اینسایت</span>
-                                </div>
-                                <div class="info-item mb-3">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">سال اجرا</span>
-                                    <span class="value fw-bold">1404</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های
-                                        استفاده‌شده</span>
-                                    <span class="value fw-bold">D3, React, Three</span>
-                                </div>
+<!-- Project Modal 6 -->
+<div class="modal fade velixo-modal" id="projectModal6" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4 p-md-5">
+                <span class="badge-status mb-3">طراحی رابط و تجربه کاربری</span>
+                <h2 class="modal-title mb-4">موتور تحلیل بصری داده‌ها</h2>
+                <img src="{% static 'img/project-6.webp' %}" class="img-fluid rounded-4 mb-4"
+                    alt="Visual Analytics Detail" />
+                <div class="row g-4">
+                    <div class="col-md-8">
+                        <h4 class="text-uppercase mb-3">شرح پروژه</h4>
+                        <p class="text-muted">داشبورد هوش تجاری پیشرفته‌ای که داده‌های خام را به گزارش‌ها و
+                            نمودارهای تعاملی تبدیل کرده و تصمیم‌گیری را ساده‌تر می‌کند.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="project-info-list">
+                            <div class="info-item mb-3">
+                                <span class="label d-block small opacity-50 text-uppercase fw-bold">کارفرما</span>
+                                <span class="value fw-bold">شرکت اینسایت</span>
+                            </div>
+                            <div class="info-item mb-3">
+                                <span class="label d-block small opacity-50 text-uppercase fw-bold">سال اجرا</span>
+                                <span class="value fw-bold">1404</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label d-block small opacity-50 text-uppercase fw-bold">تکنولوژی‌های
+                                    استفاده‌شده</span>
+                                <span class="value fw-bold">D3, React, Three</span>
                             </div>
                         </div>
                     </div>
@@ -456,15 +397,13 @@
             </div>
         </div>
     </div>
+</div>
 
-    <!-- END PROJECT MODALS -->
+<!-- END PROJECT MODALS -->
 
-    <!-- JS LIBRARIES -->
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
-    <script src="{% static 'js/wow.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-</body>
+{% block extra_js %}
+<script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+{% endblock %}
+{% endblock %}
 
 </html>
