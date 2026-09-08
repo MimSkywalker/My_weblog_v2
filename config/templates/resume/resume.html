@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static %}{% load jalali %}
 {% block title %}رزومه | محمّد مقدّم‌نژاد{% endblock %}
 
 
@@ -12,13 +12,13 @@
   <span class="card-number">01 / تخصص</span>
   <div class="badge-status">
     <i class="fa-solid fa-circle"></i>
-    معمار سیستم‌های طراحی
+    مهندسی نرم‌افزار
   </div>
   <h1 class="hero-title">
-    مسیر <br /><span>حرفه‌ای</span><br />و تخصصی.
+    منطق <br /><span>ساختار</span><br />و توسعه.
   </h1>
   <p class="hero-desc">
-    بیش از یک دهه تجربه در طراحی و توسعه سامانه‌های پیشرفته برای کسب‌وکارها و سازمان‌های مختلف
+    تمرکز بر طراحی و توسعۀ سیستم‌های Backend، از معماری و پایگاه داده تا پیاده‌سازی و استقرار.
   </p>
 </div>
 <!-- END HERO SECTION -->
@@ -27,14 +27,15 @@
 <div class="bento-card card-profile wow animate__fadeInRight">
   <span class="card-number">02 / دستاوردها</span>
   <div class="stat-item mt-4">
-    <span class="stat-num">12+</span>
+    <span class="stat-num">{{ profile.years_of_experience }}+</span>
     <span class="stat-label d-block">سال تجربه</span>
   </div>
   <p class="text-muted small fw-bold text-uppercase mt-4">
     پیوند خلاقیت و فناوری
   </p>
   <div class="mt-auto w-100">
-    <a href="resume.html#" class="btn btn-light rounded-pill w-100 py-3 fw-bold text-uppercase">
+    <a href="{{ profile.resume_file.url }}" class="btn btn-light rounded-pill w-100 py-3 fw-bold text-uppercase"
+      target="_blank">
       دانلود رزومه <i class="fa-solid fa-file-arrow-down ms-2"></i>
     </a>
   </div>
@@ -44,49 +45,31 @@
 <!-- START EXPERIENCE SECTION -->
 <div class="bento-card card-experience wow animate__fadeInUp">
   <span class="card-number">03 / سوابق کاری</span>
-  <h2 class="text-uppercase mb-4">تجربه برتر</h2>
+  <h2 class="text-uppercase mb-4">مسیر حرفه‌ای</h2>
 
   <div class="timeline-stack">
-    <div class="timeline-item">
-      <div class="timeline-meta">
-        <span class="time-range">1400 — اکنون</span>
-        <span class="company">آزمایشگاه طراحی پیشرفته</span>
-      </div>
-      <div class="timeline-content">
-        <h4 class="role">معمار ارشد سیستم‌های طراحی</h4>
-        <p class="small text-muted">
-          رهبری و توسعه اکوسیستم‌های طراحی چندسکویی برای شرکت‌های بزرگ حوزه هوش مصنوعی با تمرکز بر مقیاس‌پذیری و
-          بهینه‌سازی اجزای سیستم.
-        </p>
-      </div>
-    </div>
 
+    {% for experience in experiences %}
     <div class="timeline-item">
       <div class="timeline-meta">
-        <span class="time-range">1397 — 1400</span>
-        <span class="company">شرکت کوانتوم لاجیک</span>
-      </div>
-      <div class="timeline-content">
-        <h4 class="role">مهندس ارشد رابط کاربری</h4>
-        <p class="small text-muted">
-          طراحی داشبوردهای پیشرفته برای سامانه‌های لجستیکی بین‌المللی که باعث بهبود تجربه کاربری و کاهش 40 درصدی
-          پیچیدگی تعاملات شد.
-        </p>
-      </div>
-    </div>
 
-    <div class="timeline-item">
-      <div class="timeline-meta">
-        <span class="time-range">1394 — 1397</span>
-        <span class="company">آژانس خلاقیت آئورا</span>
+        {% if not experience.end_date %}
+        <span class="time-range">{{ experience.start_date|jalali_year }} — اکنون</span>
+        {% else %}
+        <span class="time-range">{{ experience.start_date|jalali_year }} — {{ experience.end_date|jalali_year }}</span>
+        {% endif %}
+
+        <span class="company">{{ experience.organization }}</span>
       </div>
       <div class="timeline-content">
-        <h4 class="role">تکنولوژیست خلاق</h4>
+        <h4 class="role">{{ experience.title }}</h4>
         <p class="small text-muted">
-          طراحی تجربه‌های تعاملی برند و سیستم‌های پویانمایی تحت وب برای برندهای لوکس و شرکت‌های فناوری نوآور.
+          {{ experience.description }}
         </p>
       </div>
     </div>
+    {% endfor %}
+
   </div>
 </div>
 <!-- END EXPERIENCE SECTION -->
@@ -96,14 +79,11 @@
   <span class="card-number">04 / فناوری‌ها</span>
   <h3 class="text-uppercase mb-4">مهارت‌های فنی</h3>
   <div class="tech-grid">
-    <div class="tech-tag">React / Next.js</div>
-    <div class="tech-tag">TypeScript</div>
-    <div class="tech-tag">Node.js</div>
-    <div class="tech-tag">SCSS / CSS5</div>
-    <div class="tech-tag">GSAP / Framer</div>
-    <div class="tech-tag">Three.js</div>
-    <div class="tech-tag">Figma Pro</div>
-    <div class="tech-tag">مهندسی هوش مصنوعی</div>
+
+    {% for skill in skills %}
+    <div class="tech-tag">{{ skill.name }}</div>
+    {% endfor %}
+
   </div>
 </div>
 <!-- END TECH STACK SECTION -->
@@ -112,20 +92,19 @@
 <div class="bento-card card-edu wow animate__fadeInUp" data-wow-delay="0.2s">
   <span class="card-number">05 / تحصیلات</span>
   <h3 class="text-uppercase mb-4">سوابق تحصیلی.</h3>
-  <div class="edu-item mb-4">
-    <div class="edu-meta">دانشگاه استنفورد</div>
-    <h5 class="edu-title">دکتری معماری دیجیتال</h5>
+
+
+  {% for education in educations %}
+  <div class="edu-item {% if not forloop.last %}mb-4{% endif %}">
+    <div class="edu-meta">{{ education.institution }}</div>
+    <h5 class="edu-title">{{ education.get_degree_display }} {{ education.field_of_study }}</h5>
     <p class="small text-muted">
-      پایان‌نامه: مقیاس‌پذیری انسان‌محور در رابط‌های عصبی (1394)
+      {{ education.description }}
     </p>
   </div>
-  <div class="edu-item">
-    <div class="edu-meta">آزمایشگاه رابط‌های تعاملی MIT</div>
-    <h5 class="edu-title">کارشناسی ارشد سیستم‌های منطق بصری</h5>
-    <p class="small text-muted">
-      طراحی تعاملی و مهندسی نرم‌افزار (1391)
-    </p>
-  </div>
+  {% endfor %}
+
+
 </div>
 <!-- END EDUCATION SECTION -->
 
@@ -135,45 +114,22 @@
   <h3 class="text-uppercase mb-5">مهارت‌های تخصصی</h3>
 
   <div class="skill-meter-grid">
-    <div class="skill-meter-item">
-      <div class="d-flex justify-content-between mb-2">
-        <span class="skill-name">معماری سیستم‌های طراحی</span>
-        <span class="skill-percent">98%</span>
-      </div>
-      <div class="skill-track">
-        <div class="skill-fill" style="width: 98%"></div>
-      </div>
-    </div>
+
+    {% for expert in expertise %}
+
 
     <div class="skill-meter-item">
       <div class="d-flex justify-content-between mb-2">
-        <span class="skill-name">مهندسی رابط کاربری</span>
-        <span class="skill-percent">95%</span>
+        <span class="skill-name">{{ expert.title }}</span>
+        <span class="skill-percent">{{ expert.score }}%</span>
       </div>
       <div class="skill-track">
-        <div class="skill-fill" style="width: 95%"></div>
+        <div class="skill-fill" style="width: {{ expert.score }}%"></div>
       </div>
     </div>
+    {% endfor %}
 
-    <div class="skill-meter-item">
-      <div class="d-flex justify-content-between mb-2">
-        <span class="skill-name">طراحی منطق بصری و برندینگ</span>
-        <span class="skill-percent">92%</span>
-      </div>
-      <div class="skill-track">
-        <div class="skill-fill" style="width: 92%"></div>
-      </div>
-    </div>
 
-    <div class="skill-meter-item">
-      <div class="d-flex justify-content-between mb-2">
-        <span class="skill-name">موشن دیزاین تعاملی</span>
-        <span class="skill-percent">88%</span>
-      </div>
-      <div class="skill-track">
-        <div class="skill-fill" style="width: 88%"></div>
-      </div>
-    </div>
   </div>
 </div>
 <!-- END SKILLS SECTION -->

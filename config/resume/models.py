@@ -89,9 +89,9 @@ class Expertise(models.Model):
 
 class Education(models.Model):
     class Degree(models.TextChoices):
-        BACHELOR = 'b', "Bachelor's Degree"
-        MASTER = 'm', "Master's Degree"
-        PHD = 'p', "Doctoral Degree"
+        BACHELOR = 'b', "کارشناسی"
+        MASTER = 'm', "دکتری"
+        PHD = 'p', "کارشناسی ارشد"
 
     institution = models.CharField(max_length=255)
     field_of_study = models.CharField(max_length=255)

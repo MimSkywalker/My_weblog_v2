@@ -80,9 +80,10 @@ class ResumeView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['profile'] = Profile.objects.first()
 
-        context['experiences'] = Experience.objects.all()
+        context['experiences'] = Experience.objects.all().order_by('end_date')
         context['skills'] = Skill.objects.all()
-        context['educations'] = Education.objects.all()
+        context['educations'] = Education.objects.all().order_by(
+            'field_of_study', 'degree')
         context['expertise'] = Expertise.objects.all()
 
         return context
