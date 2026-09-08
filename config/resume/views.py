@@ -1,5 +1,7 @@
+
+
 from django.shortcuts import render, redirect
-from .models import Profile, Experience, Skill, Education, SocialLink, Expertise
+from .models import Profile, Experience, Skill, Education, Expertise
 from django.views import View
 from . import forms
 from .mixins import PortfolioDashboardMixin
@@ -70,17 +72,17 @@ class PortfolioDashboardView(PortfolioDashboardMixin, View):
         return render(request, self.template_name, context)
 
 
-class test(TemplateView):
+class ResumeView(TemplateView):
     template_name = 'resume/resume.html'
 
+    def get_context_data(self, **kwargs):
 
-class test1(TemplateView):
-    template_name = 'home/index.html'
+        context = super().get_context_data(**kwargs)
+        context['profile'] = Profile.objects.first()
 
+        context['experiences'] = Experience.objects.all()
+        context['skills'] = Skill.objects.all()
+        context['educations'] = Education.objects.all()
+        context['expertise'] = Expertise.objects.all()
 
-class test2(TemplateView):
-    template_name = 'home/contact.html'
-
-
-class test3(TemplateView):
-    template_name = 'blog/blog.html'
+        return context
