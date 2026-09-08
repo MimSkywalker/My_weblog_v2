@@ -5,9 +5,6 @@ from .utils import user_avatar_path, convert_to_webp
 from .validators import phone_validator
 
 
-
-
-
 class Profile(models.Model):
     first_name = models.CharField(max_length=120)
     last_name = models.CharField(max_length=120)
@@ -52,6 +49,7 @@ class Experience(models.Model):
     end_date = models.DateField(null=True, blank=True)
     title = models.CharField(max_length=255)
     description = models.TextField()
+    organization = models.CharField(blank=True, max_length=256)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
