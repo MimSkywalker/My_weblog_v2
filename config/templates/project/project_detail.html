@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+{% load static %}
+{% load jalali %}
+{% block title %}{{ project.title }} | محمّد مقدّم‌نژاد{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/project-detail.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================
+     PROJECT HERO
+     ============================================================ -->
+<div class="bento-card pd-hero wow animate__fadeInUp">
+    <span class="card-number">جزئیات پروژه</span>
+
+    <div class="pd-hero-top">
+        <a href="{% url 'project:project' %}" class="filter-btn pd-back-btn">
+            <i class="fa-solid fa-arrow-right"></i>
+            بازگشت به نمونه‌کارها
+        </a>
+
+        {% if project.categories.all %}
+        <div class="pd-chip-row">
+            {% for cat in project.categories.all %}
+            <span class="pd-chip">{{ cat.title }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="pd-chip-row">
+            <span class="pd-chip">پروژه</span>
+        </div>
+        {% endif %}
+    </div>
+
+    <h1 class="pd-title">{{ project.title }}</h1>
+
+    <!--
+        منطق نمایش تصویر:
+        - اگر project.gallery (ProjectImage با related_name="gallery") موجود و بیش از
+          یک تصویر داشته باشه → گالری اسلایدری سفارشی (JS خودمون).
+        - اگر فقط project.image موجود باشه → یک تصویر ساده.
+        - در غیر این صورت → پلیس‌هولدر.
+        دسترسی به project.gallery.all وقتی مدل هنوز وجود نداره بی‌خطره؛ جنگو
+        VariableDoesNotExist رو silently به مقدار خالی resolve می‌کنه.
+    -->
+    {% with gallery=project.gallery.all %}
+    <div class="pd-media">
+        {% if gallery|length > 1 %}
+        <div class="pd-gallery" id="pdGallery" data-pd-gallery>
+            <div class="pd-gallery-viewport">
+                {% for img in gallery %}
+                <figure class="pd-gallery-slide {% if forloop.first %}is-active{% endif %}" data-pd-slide
+                    data-index="{{ forloop.counter0 }}">
+                    <img src="{{ img.image.url }}" alt="{{ project.title }} - تصویر {{ forloop.counter }}"
+                        loading="lazy" />
+                </figure>
+                {% endfor %}
+            </div>
+
+            <button type="button" class="pd-gallery-arrow pd-gallery-prev" data-pd-prev aria-label="تصویر قبلی">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <button type="button" class="pd-gallery-arrow pd-gallery-next" data-pd-next aria-label="تصویر بعدی">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <div class="pd-gallery-counter">
+                <span data-pd-current>1</span> / <span>{{ gallery|length }}</span>
+            </div>
+        </div>
+
+        <div class="pd-thumbs" data-pd-thumbs>
+            {% for img in gallery %}
+            <button type="button" class="pd-thumb {% if forloop.first %}is-active{% endif %}" data-pd-thumb
+                data-index="{{ forloop.counter0 }}" aria-label="نمایش تصویر {{ forloop.counter }}">
+                <img src="{{ img.image.url }}" alt="بندانگشتی {{ forloop.counter }}" loading="lazy" />
+            </button>
+            {% endfor %}
+        </div>
+
+        {% elif project.image %}
+        <div class="pd-media-single">
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" loading="lazy" />
+        </div>
+
+        {% else %}
+        <div class="pd-media-empty">
+            <i class="fa-solid fa-image"></i>
+        </div>
+        {% endif %}
+    </div>
+    {% endwith %}
+</div>
+<!-- END PROJECT HERO -->
+
+<!-- ============================================================
+     PROJECT DESCRIPTION
+     ============================================================ -->
+<div class="bento-card pd-desc wow animate__fadeInUp" data-wow-delay="0.1s">
+    <span class="card-number">شرح پروژه</span>
+    <div class="pd-prose">
+        {{ project.description|linebreaks }}
+    </div>
+</div>
+<!-- END PROJECT DESCRIPTION -->
+
+<!-- ============================================================
+     PROJECT INFO SIDEBAR
+     ============================================================ -->
+<div class="bento-card pd-info wow animate__fadeInUp" data-wow-delay="0.2s">
+    <span class="card-number">مشخصات</span>
+
+    <div class="pd-info-list">
+        <div class="pd-info-row">
+            <span class="pd-info-icon"><i class="fa-solid fa-briefcase"></i></span>
+            <span class="pd-info-text">
+                <span class="pd-info-label">کارفرما</span>
+                <span class="pd-info-value">{{ project.employer|default:"—" }}</span>
+            </span>
+        </div>
+
+        <div class="pd-info-row">
+            <span class="pd-info-icon"><i class="fa-solid fa-calendar-days"></i></span>
+            <span class="pd-info-text">
+                <span class="pd-info-label">تاریخ اجرا</span>
+                <span class="pd-info-value">{{ project.date_of_implementation|jalali_year }}</span>
+            </span>
+        </div>
+    </div>
+
+    {% if project.technologies.all %}
+    <div class="pd-tech-block">
+        <span class="pd-info-label pd-tech-label">تکنولوژی‌های استفاده‌شده</span>
+        <div class="pd-chip-row">
+            {% for tech in project.technologies.all %}
+            <span class="pd-chip pd-chip--tech">{{ tech.title }}</span>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <button type="button" class="pd-share-btn" data-pd-share>
+        <i class="fa-solid fa-share-nodes"></i>
+        اشتراک‌گذاری این پروژه
+    </button>
+</div>
+<!-- END PROJECT INFO -->
+
+<!-- ============================================================
+     RELATED PROJECTS
+     ============================================================ -->
+{% if related_projects %}
+<div class="bento-card pd-related wow animate__fadeInUp" data-wow-delay="0.3s">
+    <span class="card-number">پروژه‌های مرتبط</span>
+
+    <div class="pd-related-grid">
+        {% for related in related_projects %}
+        <a href="{% url 'project:project_detail' related.slug %}" class="pd-related-card">
+            <div class="pd-related-img">
+                {% if related.image %}
+                <img src="{{ related.image.url }}" alt="{{ related.title }}" loading="lazy" />
+                {% else %}
+                <div class="pd-related-img-empty"><i class="fa-solid fa-image"></i></div>
+                {% endif %}
+            </div>
+            <div class="pd-related-body">
+                {% if related.categories.all %}
+                <span class="pd-related-cat">
+                    {{ related.categories.all|join:" / " }}
+                </span>
+                {% endif %}
+                <h4 class="pd-related-title">{{ related.title }}</h4>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+<!-- END RELATED PROJECTS -->
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/project-detail.js' %}" defer></script>
+{% endblock %}
