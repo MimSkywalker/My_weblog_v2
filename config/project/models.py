@@ -5,6 +5,7 @@ from .utils import convert_to_webp, project_image_path
 
 class Project(models.Model):
     title = models.CharField(max_length=256, unique=True)
+    slug = models.SlugField(max_length=280, unique=True, blank=True)
     image = models.ImageField(
         upload_to=project_image_path, blank=True, null=True)
     description = models.TextField()
@@ -42,11 +43,18 @@ class Project(models.Model):
 
 class Technology(models.Model):
     title = models.CharField(max_length=256, unique=True)
+    slug = models.SlugField(max_length=280, unique=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+
+        return super().save(*args, **kwargs)
 
 
 class Category(models.Model):
