@@ -84,6 +84,6 @@ class ResumeView(TemplateView):
         context['skills'] = Skill.objects.all()
         context['educations'] = Education.objects.all().order_by(
             'field_of_study', 'degree')
-        context['expertise'] = Expertise.objects.all()
+        context['expertise'] = Expertise.objects.all().order_by('-score')
 
         return context
