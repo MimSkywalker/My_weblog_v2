@@ -4,11 +4,11 @@ from .models import Post, Category, Tag, Comment
 
 @admin.register(Post)
 class PostAdmoin(admin.ModelAdmin):
-    list_display = ['title', 'slug', 'status', 'published_at', "is_featured"]
+    list_display = ['title', 'slug', 'status', 'published_at', "is_featured",]
     readonly_fields = ['updated_at', 'created_at']
     date_hierarchy = 'created_at'
     save_on_top = True
-    list_display = ("is_featured",'status',)
+    # list_display = ()
 
 
 @admin.register(Category)
