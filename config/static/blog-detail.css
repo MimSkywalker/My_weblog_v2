@@ -147,13 +147,11 @@
   max-width: 900px;
 }
 
-/* پایه: آواتار داخل کارت‌های روشن/تیرهٔ معمولی (مثل باکس «نویسنده» در
-   ستون کناری) — رنگ‌ها وابسته به متغیرهای تم هستند. */
 .bd-author-avatar {
   width: 40px;
   height: 40px;
   object-fit: cover;
-  border: 2px solid var(--velixo-border);
+  border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .bd-author-avatar-fallback {
@@ -163,34 +161,10 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--velixo-bg);
-  color: var(--velixo-text-muted);
-  font-size: 15px;
-  flex-shrink: 0;
-}
-
-/* داخل کارت‌های روشن/تیره (مثل بخش «نویسنده» در سایدبار)، .post-author-row
-   از main.css به‌طور پیش‌فرض رنگ متن را سفید ثابت می‌کند (چون آن کلاس فقط
-   برای روی عکس تیرهٔ کارت‌های بلاگ طراحی شده)؛ اینجا override می‌شود تا
-   در تم روشن هم خوانا بماند. */
-.bd-aside-card .post-author-row,
-.bd-aside-card .post-author-row .bd-author-role {
-  color: var(--velixo-text-muted);
-}
-
-.bd-aside-card .post-author-row .bd-author-name {
-  color: var(--velixo-text);
-}
-
-/* داخل هیرو، پس‌زمینه همیشه تیره است (عکس + گرادیان)، صرف‌نظر از تم؛
-   بنابراین اینجا متن/آواتار همیشه سفید می‌ماند. */
-.bd-hero-content .bd-author-avatar {
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.bd-hero-content .bd-author-avatar-fallback {
   background: rgba(255, 255, 255, 0.12);
   color: #fff;
+  font-size: 15px;
+  flex-shrink: 0;
 }
 
 .bd-hero-content .bd-author-name {

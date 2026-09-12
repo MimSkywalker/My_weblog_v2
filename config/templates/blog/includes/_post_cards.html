@@ -1,0 +1,35 @@
+{% for post in posts %}
+<div class="col-lg-4 col-md-6">
+    <article class="blog-post-card wow animate__fadeInUp">
+        <div class="bpc-img">
+            {% if post.feature_image %}
+            <img src="{{ post.feature_image.url }}" alt="{{ post.title }}">
+            {% endif %}
+            {% with post.categories.first as first_category %}
+            {% if first_category %}
+            <span class="post-tag tag-engineering">{{ first_category.title }}</span>
+            {% endif %}
+            {% endwith %}
+        </div>
+        <div class="bpc-body">
+            <h5><a href="{% url 'blog:blog-detail' post.slug %}">{{ post.title }}</a></h5>
+            <div class="d-flex align-items-center gap-2 mt-auto pt-3">
+                <span class="post-read">
+                    <i class="fa-regular fa-clock me-1"></i>{{ post.reading_time }} دقیقه
+                </span>
+                {% if post.published_at %}
+                <span class="post-date ms-auto">{{ post.published_at|date:"d F Y" }}</span>
+                {% endif %}
+            </div>
+        </div>
+    </article>
+</div>
+{% empty %}
+<div class="col-12">
+    <div class="bl-empty-state">
+        <i class="fa-regular fa-folder-open"></i>
+        <p>پستی با این مشخصات پیدا نشد.</p>
+        <span>عبارت جست‌وجو یا فیلترها را تغییر بده و دوباره امتحان کن.</span>
+    </div>
+</div>
+{% endfor %}

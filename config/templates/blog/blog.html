@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}خانه | محمّد مقدّم‌نژاد{% endblock %}
+{% block title %}وبلاگ | محمّد مقدّم‌نژاد{% endblock %}
 
-
-
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/blog.css' %}" />
+{% endblock %}
 
 
 {% block content %}
@@ -24,185 +25,154 @@
 <div class="bento-card card-feed-stats wow animate__fadeInRight">
     <span class="card-number">02 / هسته</span>
     <div class="stat-item mb-4">
-        <div class="stat-num">240</div>
-        <div class="stat-label">گزارش‌های هوشمند</div>
+        <div class="stat-num">{{ total_posts_count }}</div>
+        <div class="stat-label">گزارش‌های منتشرشده</div>
     </div>
     <div class="stat-item">
-        <div class="stat-num">50k+</div>
-        <div class="stat-label">بازدیدهای سیستم</div>
+        <div class="stat-num">{{ total_categories_count }}</div>
+        <div class="stat-label">دسته‌بندی فعال</div>
     </div>
 </div>
 <!-- END STATS SECTION -->
 
-<!-- START FEED GRID -->
+<!-- ============================================================
+     START SEARCH + FILTER TOOLBAR
+     ============================================================ -->
 <div class="blog-grid-wrapper col-12 container-fluid px-0">
-    <div class="row g-4" id="blog-feed">
+    <div class="bento-card bl-toolbar-card wow animate__fadeInUp">
+        <div class="bl-search-wrap">
+            <i class="fa-solid fa-magnifying-glass bl-search-icon"></i>
+            <input type="text" id="blogSearchInput" class="vx-input bl-search-input"
+                placeholder="جست‌وجو در عنوان و متن مطالب..." value="{{ search_query }}">
+        </div>
 
-        <!-- FEATURED COVER CARD -->
-        <div class="col-lg-8">
+        {% if categories %}
+        <div class="bl-filter-group">
+            <span class="bl-filter-label">دسته‌بندی</span>
+            <div class="bl-filter-row">
+                <button type="button" class="bl-filter-pill{% if not current_category %} active{% endif %}"
+                    data-filter-type="category" data-value="">
+                    همه
+                </button>
+                {% for category in categories %}
+                <button type="button" class="bl-filter-pill{% if current_category == category.slug %} active{% endif %}"
+                    data-filter-type="category" data-value="{{ category.slug }}">
+                    {{ category.title }}
+                </button>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if tags %}
+        <div class="bl-filter-group">
+            <span class="bl-filter-label">برچسب‌ها</span>
+            <div class="bl-filter-row">
+                <button type="button" class="bl-filter-pill bl-filter-pill--tag{% if not current_tag %} active{% endif %}"
+                    data-filter-type="tag" data-value="">
+                    همه
+                </button>
+                {% for tag in tags %}
+                <button type="button" class="bl-filter-pill bl-filter-pill--tag{% if current_tag == tag.slug %} active{% endif %}"
+                    data-filter-type="tag" data-value="{{ tag.slug }}">
+                    #{{ tag.title }}
+                </button>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<!-- END SEARCH + FILTER TOOLBAR -->
+
+<!-- ============================================================
+     START FEATURED SECTION 
+     ============================================================ -->
+{% with featured_count=featured_posts|length %}
+<div class="blog-grid-wrapper col-12 container-fluid px-0{% if is_filtered or featured_count == 0 %} d-none{% endif %}"
+    id="blogFeaturedSection">
+    <div class="row g-4">
+        {% for post in featured_posts %}
+        {% if forloop.first %}
+        <div class="col-lg-{% if featured_count == 1 %}12{% else %}8{% endif %}">
             <article class="blog-featured wow animate__fadeInLeft">
                 <div class="bf-img">
-                    <img src="{% static 'img/blog-1.jpg' %}" alt="Neural Design Systems">
+                    {% if post.feature_image %}
+                    <img src="{{ post.feature_image.url }}" alt="{{ post.title }}">
+                    {% endif %}
                 </div>
                 <div class="bf-gradient"></div>
                 <div class="bf-content">
                     <div class="d-flex align-items-center gap-3 mb-3">
-                        <span class="post-tag">مهندسی</span>
-                        <span class="post-read"><i class="fa-regular fa-clock me-1"></i>8 دقیقه مطالعه</span>
+                        {% with post.categories.first as first_category %}
+                        {% if first_category %}
+                        <span class="post-tag">{{ first_category.title }}</span>
+                        {% endif %}
+                        {% endwith %}
+                        <span class="post-read"><i class="fa-regular fa-clock me-1"></i>{{ post.reading_time }} دقیقه مطالعه</span>
                     </div>
-                    <h2><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal1">آینده سیستم‌های
-                            طراحی هوشمند</a></h2>
+                    <h2><a href="{% url 'blog:blog-detail' post.slug %}">{{ post.title }}</a></h2>
                     <div class="post-author-row d-flex align-items-center gap-2 mt-4">
-                        <img src="{% static 'img/avatar-1.jpg' %}" alt="Alex" class="rounded-circle"
-                            style="width:28px;height:28px;object-fit:cover;">
-                        <span>محمد مقدم‌نژاد</span>
-                        <span class="ms-auto">24 مهر، 1404</span>
+                        <span>{{ post.user.get_full_name|default:post.user.username }}</span>
+                        {% if post.published_at %}
+                        <span class="ms-auto">{{ post.published_at|date:"d F Y" }}</span>
+                        {% endif %}
                     </div>
                 </div>
-                <div class="bf-arrow"><i class="fa-solid fa-arrow-up-right"></i></div>
+                <a href="{% url 'blog:blog-detail' post.slug %}" class="bf-arrow">
+                    <i class="fa-solid fa-arrow-up-right"></i>
+                </a>
             </article>
         </div>
 
-        <!-- SIDE STACK -->
+        {% if featured_count > 1 %}
         <div class="col-lg-4 d-flex flex-column gap-4">
+        {% endif %}
+
+        {% else %}
             <article class="blog-side-card wow animate__fadeInRight">
                 <div class="bsc-img">
-                    <img src="{% static 'img/blog-2.jpg' %}" alt="Quantum Hooks">
+                    {% if post.feature_image %}
+                    <img src="{{ post.feature_image.url }}" alt="{{ post.title }}">
+                    {% endif %}
                 </div>
                 <div class="bsc-body">
-                    <span class="post-tag tag-hardware">سخت‌افزار</span>
-                    <h5><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal2">هوک‌های
-                            کوانتومی رابط کاربری</a></h5>
+                    {% with post.categories.first as first_category %}
+                    {% if first_category %}
+                    <span class="post-tag tag-hardware">{{ first_category.title }}</span>
+                    {% endif %}
+                    {% endwith %}
+                    <h5><a href="{% url 'blog:blog-detail' post.slug %}">{{ post.title }}</a></h5>
                     <div class="d-flex align-items-center gap-2 mt-auto pt-3">
-                        <span class="post-read"><i class="fa-regular fa-clock me-1"></i>5 دقیقه</span>
-                        <span class="post-date ms-auto">18 مهر، 1404</span>
+                        <span class="post-read"><i class="fa-regular fa-clock me-1"></i>{{ post.reading_time }} دقیقه</span>
+                        {% if post.published_at %}
+                        <span class="post-date ms-auto">{{ post.published_at|date:"d F Y" }}</span>
+                        {% endif %}
                     </div>
                 </div>
             </article>
-            <article class="blog-side-card wow animate__fadeInRight" data-wow-delay="0.1s">
-                <div class="bsc-img">
-                    <img src="{% static 'img/blog-3.jpg' %}" alt="Visual Logic">
-                </div>
-                <div class="bsc-body">
-                    <span class="post-tag tag-logic">منطق</span>
-                    <h5><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal3">جریان منطقی
-                            بصری</a></h5>
-                    <div class="d-flex align-items-center gap-2 mt-auto pt-3">
-                        <span class="post-read"><i class="fa-regular fa-clock me-1"></i>4 دقیقه</span>
-                        <span class="post-date ms-auto">15 مهر، 1404</span>
-                    </div>
-                </div>
-            </article>
-        </div>
 
-        <!-- ROW 2 -->
-        <div class="col-lg-4">
-            <article class="blog-post-card wow animate__fadeInUp">
-                <div class="bpc-img">
-                    <img src="{% static 'img/blog-4.jpg' %}" alt="Cyber Resilience">
-                    <span class="post-tag tag-security">امنیت</span>
-                </div>
-                <div class="bpc-body">
-                    <h5><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal4">پروتکل‌های
-                            تاب‌آوری سایبری</a></h5>
-                    <div class="d-flex align-items-center gap-2 mt-auto pt-3">
-                        <span class="post-read"><i class="fa-regular fa-clock me-1"></i>6 دقیقه</span>
-                        <span class="post-date ms-auto">10 مهر، 1404</span>
-                    </div>
-                </div>
-            </article>
-        </div>
-        <div class="col-lg-4">
-            <article class="blog-post-card wow animate__fadeInUp" data-wow-delay="0.1s">
-                <div class="bpc-img">
-                    <img src="{% static 'img/blog-5.jpg' %}" alt="Visual Analytics">
-                    <span class="post-tag tag-data">داده</span>
-                </div>
-                <div class="bpc-body">
-                    <h5><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal5">قدرت داده‌های
-                            بصری</a></h5>
-                    <div class="d-flex align-items-center gap-2 mt-auto pt-3">
-                        <span class="post-read"><i class="fa-regular fa-clock me-1"></i>7 دقیقه</span>
-                        <span class="post-date ms-auto">05 مهر، 1404</span>
-                    </div>
-                </div>
-            </article>
-        </div>
-        <div class="col-lg-4">
-            <article class="blog-post-card wow animate__fadeInUp" data-wow-delay="0.2s">
-                <div class="bpc-img">
-                    <img src="{% static 'img/blog-1-detail.jpg' %}" alt="Design Architecture">
-                    <span class="post-tag tag-systems">سیستم‌ها</span>
-                </div>
-                <div class="bpc-body">
-                    <h5><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal6">معماری
-                            طراحی</a></h5>
-                    <div class="d-flex align-items-center gap-2 mt-auto pt-3">
-                        <span class="post-read"><i class="fa-regular fa-clock me-1"></i>9 دقیقه</span>
-                        <span class="post-date ms-auto">28 شهریور 1404</span>
-                    </div>
-                </div>
-            </article>
-        </div>
+            {% if forloop.last %}</div>{% endif %}
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endwith %}
+<!-- END FEATURED SECTION -->
 
-        <!-- HIDDEN POOL -->
-        <div class="blog-load-more-pool d-none">
-            <div class="col-lg-8 d-flex">
-                <article class="blog-featured w-100">
-                    <div class="bf-img">
-                        <img src="{% static 'img/blog-6.jpg' %}" alt="Scalable Grids">
-                    </div>
-                    <div class="bf-gradient"></div>
-                    <div class="bf-content">
-                        <div class="d-flex align-items-center gap-3 mb-3">
-                            <span class="post-tag">سیستم‌ها</span>
-                            <span class="post-read"><i class="fa-regular fa-clock me-1"></i>12 دقیقه
-                                مطالعه</span>
-                        </div>
-                        <h2><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal7">ریاضیات
-                                شبکه‌های مقیاس‌پذیر</a></h2>
-                        <div class="post-author-row d-flex align-items-center gap-2 mt-4">
-                            <img src="{% static 'img/avatar-1.jpg' %}" alt="Alex" class="rounded-circle"
-                                style="width:28px;height:28px;object-fit:cover;">
-                            <span>محمد مقدم‌نژاد</span>
-                            <span class="ms-auto">12 مهر، 1404</span>
-                        </div>
-                    </div>
-                    <div class="bf-arrow"><i class="fa-solid fa-arrow-up-right"></i></div>
-                </article>
-            </div>
-
-            <div class="col-lg-4 d-flex">
-                <article class="blog-featured w-100">
-                    <div class="bf-img">
-                        <img src="{% static 'img/blog-7.jpg' %}" alt="Hybrid Cloud">
-                    </div>
-                    <div class="bf-gradient"></div>
-                    <div class="bf-content">
-                        <div class="d-flex align-items-center gap-3 mb-3">
-                            <span class="post-tag">رایانش ابری</span>
-                            <span class="post-read"><i class="fa-regular fa-clock me-1"></i>9 دقیقه
-                                مطالعه</span>
-                        </div>
-                        <h2><a href="blog.html#" data-bs-toggle="modal" data-bs-target="#blogModal8">معماری ابر
-                                ترکیبی</a></h2>
-                        <div class="post-author-row d-flex align-items-center gap-2 mt-4">
-                            <img src="{% static 'img/avatar-1.jpg' %}" alt="Alex" class="rounded-circle"
-                                style="width:28px;height:28px;object-fit:cover;">
-                            <span>محمد مقدم‌نژاد</span>
-                            <span class="ms-auto">08 مهر، 1404</span>
-                        </div>
-                    </div>
-                    <div class="bf-arrow"><i class="fa-solid fa-arrow-up-right"></i></div>
-                </article>
-            </div>
-        </div>
-
+<!-- ============================================================
+     START MAIN FEED GRID 
+     ============================================================ -->
+<div class="blog-grid-wrapper col-12 container-fluid px-0">
+    <div class="row g-4" id="blog-feed" data-endpoint="{% url 'blog:blog' %}">
+        {% include "blog/includes/_post_cards.html" with posts=page_obj %}
     </div>
 
     <!-- LOAD MORE TRIGGER -->
-    <div class="blog-protocol-container wow animate__fadeInUp">
-        <button class="load-more-btn" id="load-more-trigger">
+    <div class="blog-protocol-container wow animate__fadeInUp"
+        {% if not page_obj.has_next %}style="display:none;"{% endif %}>
+        <button class="load-more-btn" id="load-more-trigger"
+            data-next-page="{{ page_obj.number|add:1 }}">
             <i class="fa-solid fa-plus-circle spinner-icon"></i>
             <span>نمایش مقالات بیشتر</span>
         </button>
@@ -210,239 +180,9 @@
 </div>
 <!-- END FEED GRID -->
 
-</div>
+{% endblock %}
 
-<!-- START BLOG MODALS -->
 
-<!-- Blog Modal 1 -->
-<div class="modal fade velixo-modal" id="blogModal1" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header border-0 pb-0">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-4 p-md-5 pt-0">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <span class="badge-status m-0">مهندسی</span>
-                    <span class="small opacity-50 fw-bold">24 مهر، 1404</span>
-                </div>
-                <h2 class="modal-title mb-4">آینده سیستم‌های طراحی هوشمند</h2>
-                <img src="{% static 'img/blog-1.jpg' %}" class="img-fluid rounded-4 mb-5"
-                    alt="Neural Design Systems Detail">
-                <div class="blog-content">
-                    <p>در دنیای پرشتاب رابط‌های دیجیتال، همگرایی اصول زیستی شبکه‌های عصبی و طراحی مبتنی بر رایانه،
-                        پارادایم تازه‌ای را شکل داده است؛ مفهومی که آن را <strong>«معماری طراحی هوشمند»
-                            می‌نامیم.</strong>.</p>
-                    <p>برخلاف سیستم‌های طراحی سنتی و ایستا، این سیستم‌ها به‌گونه‌ای ساخته شده‌اند که زنده و پویا
-                        باشند؛ به‌طوری‌که در لحظه با رفتار کاربر، میزان بار ذهنی و شرایط محیطی سازگار می‌شوند. چنین
-                        رویکردی نیازمند بازنگری کامل در مدیریت منطق اجزا و وضعیت سیستم است.</p>
-                    <blockquote class="my-5 p-4 border-start border-4 border-primary bg-light rounded-2">
-                        «هدف، ساخت ابزارهایی برای کاربران نیست؛ بلکه ایجاد اکوسیستم‌هایی است که همراه با آن‌ها رشد و
-                        تکامل پیدا کنند.»
-                    </blockquote>
-                    <h4 class="mt-5 mb-3 text-uppercase">سه ستون اصلی طراحی هوشمند</h4>
-                    <ol>
-                        <li class="mb-3"><strong>بهره‌وری شناختی</strong>: کاهش اصطکاک و پیچیدگی در تمام نقاط تعامل
-                        </li>
-                        <li class="mb-3"><strong>مقیاس‌پذیری پویا</strong>: منطقی که پیچیدگی را متناسب با سطح مهارت
-                            کاربر تنظیم می‌کند</li>
-                        <li><strong>هوش پیش‌بین</strong>: استفاده از یادگیری ماشین برای آماده‌سازی منابع و مسیرها
-                            پیش از وقوع تعامل.</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Blog Modal 2 -->
-<div class="modal fade velixo-modal" id="blogModal2" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header border-0 pb-0">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-4 p-md-5 pt-0">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <span class="badge-status m-0">سخت‌افزار</span>
-                    <span class="small opacity-50 fw-bold">18 مهر، 1404</span>
-                </div>
-                <h2 class="modal-title mb-4">هوک‌های کوانتومی رابط کاربری در سخت‌افزار</h2>
-                <img src="{% static 'img/blog-2.jpg' %}" class="img-fluid rounded-4 mb-5" alt="Quantum UI Hooks Detail">
-                <div class="blog-content">
-                    <p>یکپارچه‌سازی منطق پیشرفته رابط کاربری با سخت‌افزار سطح پایین، تنها به کدنویسی بهینه محدود
-                        نمی‌شود؛ بلکه به درک عمیقی از تأخیر سیگنال‌ها و چرخه‌های بازخورد لمسی نیاز دارد.</p>
-                    <p>جدیدترین دستاورد ما در «هوک‌های کوانتومی» پلی بدون تأخیر میان رابط‌های مبتنی بر React و
-                        آرایه‌های حسگر تعبیه‌شده ایجاد می‌کند و سطحی از هماهنگی میان دنیای فیزیکی و دیجیتال را فراهم
-                        می‌سازد که پیش‌تر غیرممکن به نظر می‌رسید.</p>
-                    <h4 class="mt-5 mb-3 text-uppercase">هم‌افزایی سخت‌افزار</h4>
-                    <p>با عبور از وقفه‌های سنتی سیستم‌عامل، داده‌های تعامل مستقیماً وارد چرخه رندر می‌شوند. در
-                        نتیجه، با حرکت یک اسلایدر فیزیکی، نسخه دیجیتال آن تنها در حدود ۲ میلی‌ثانیه به‌روزرسانی
-                        می‌شود.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Blog Modal 3 -->
-<div class="modal fade velixo-modal" id="blogModal3" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header border-0 pb-0">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-4 p-md-5 pt-0">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <span class="badge-status m-0">منطق</span>
-                    <span class="small opacity-50 fw-bold">15 مهر، 1404</span>
-                </div>
-                <h2 class="modal-title mb-4">سیستم‌های جریان منطقی بصری</h2>
-                <img src="{% static 'img/blog-3.jpg' %}" class="img-fluid rounded-4 mb-5"
-                    alt="Visual Logic Flow Detail">
-                <div class="blog-content">
-                    <p>نمایش بصری جریان‌های منطقی پیچیده، مرز جدید تجربه توسعه‌دهندگان است. در Velixo ما معماری
-                        مبتنی بر نود طراحی کرده‌ایم که پیچیدگی‌های فنی را به الگوهای بصری قابل درک تبدیل می‌کند.</p>
-                    <p>این رویکرد به معماران سیستم اجازه می‌دهد گلوگاه‌ها را پیش از پیاده‌سازی شناسایی کنند. با نگاه
-                        به جریان داده به‌عنوان یک رودخانه بصری، می‌توان سیستم‌ها را با کمک تشخیص الگوهای شهودی
-                        بهینه‌سازی کرد.</p>
-                    <blockquote class="my-5 p-4 border-start border-4 border-primary bg-light rounded-2">
-                        "معماری، چیزی جز منطقِ قابل مشاهده نیست."
-                    </blockquote>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Blog Modal 4 -->
-<div class="modal fade velixo-modal" id="blogModal4" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header border-0 pb-0">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-4 p-md-5 pt-0">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <span class="badge-status m-0">امنیت</span>
-                    <span class="small opacity-50 fw-bold">10 مهر، 1404</span>
-                </div>
-                <h2 class="modal-title mb-4">پروتکل‌های تاب‌آوری سایبری</h2>
-                <img src="{% static 'img/blog-4.jpg' %}" class="img-fluid rounded-4 mb-5" alt="Cyber Resilience Detail">
-                <div class="blog-content">
-                    <p>در عصر تهدیدات فزاینده دیجیتال، تاب‌آوری سایبری دیگر یک انتخاب نیست. جدیدترین پروتکل‌های ما
-                        بر زیرساخت‌های خودترمیم‌شونده و شناسایی پیشگیرانه تهدیدها با استفاده از تطبیق الگوهای هوشمند
-                        تمرکز دارند.</p>
-                    <p>ما راهبردی چندلایه برای دفاع پیاده‌سازی کرده‌ایم که از داده‌های حساس در سطح معماری محافظت
-                        می‌کند و تضمین می‌دهد حتی در صورت نفوذ به یک گره، سایر بخش‌های اکوسیستم همچنان امن باقی
-                        بمانند.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Blog Modal 5 -->
-<div class="modal fade velixo-modal" id="blogModal5" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header border-0 pb-0">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-4 p-md-5 pt-0">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <span class="badge-status m-0">داده</span>
-                    <span class="small opacity-50 fw-bold">05 مهر، 1404</span>
-                </div>
-                <h2 class="modal-title mb-4">قدرت داده‌های بصری</h2>
-                <img src="{% static 'img/blog-5.jpg' %}" class="img-fluid rounded-4 mb-5" alt="Visual Data Detail">
-                <div class="blog-content">
-                    <p>بصری‌سازی داده‌ها پلی میان اطلاعات خام و بینش‌های کاربردی است. با بهره‌گیری از تکنیک‌های
-                        پیشرفته رندر سه‌بعدی، می‌توان مجموعه‌داده‌های پیچیده را به نماهای بصری قابل درک تبدیل کرد.
-                    </p>
-                    <p>این روش به تصمیم‌گیرندگان کمک می‌کند روندها و ناهنجاری‌ها را با وضوحی بی‌سابقه شناسایی کنند و
-                        در نتیجه تصمیم‌های راهبردی سریع‌تر و دقیق‌تری بگیرند.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Blog Modal 6 -->
-<div class="modal fade velixo-modal" id="blogModal6" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header border-0 pb-0">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-4 p-md-5 pt-0">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <span class="badge-status m-0">سیستم‌ها</span>
-                    <span class="small opacity-50 fw-bold">28 شهریور، 1404</span>
-                </div>
-                <h2 class="modal-title mb-4">معماری طراحی</h2>
-                <img src="{% static 'img/blog-1-detail.jpg' %}" class="img-fluid rounded-4 mb-5"
-                    alt="Architecture Analysis Detail">
-                <div class="blog-content">
-                    <p>طراحی واقعی تنها به ظاهر محدود نمی‌شود؛ بلکه به نحوه عملکرد آن در لایه‌های ساختاری وابسته
-                        است. ما نقطه تلاقی اصول معماری و طراحی محصولات دیجیتال را بررسی می‌کنیم.</p>
-                    <p>با به‌کارگیری مفاهیم مهندسی کلاسیک در نرم‌افزارهای مدرن، می‌توان محصولاتی ساخت که علاوه بر
-                        زیبایی، از پایداری و کارایی بسیار بالایی نیز برخوردار باشند.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Blog Modal 7 -->
-<div class="modal fade velixo-modal" id="blogModal7" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header border-0 pb-0">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-4 p-md-5 pt-0">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <span class="badge-status m-0">سیستم‌ها</span>
-                    <span class="small opacity-50 fw-bold">12 مهر، 1404</span>
-                </div>
-                <h2 class="modal-title mb-4">ریاضیات شبکه‌های مقیاس‌پذیر</h2>
-                <img src="{% static 'img/blog-6.jpg' %}" class="img-fluid rounded-4 mb-5" alt="Scalable Grids Detail">
-                <div class="blog-content">
-                    <p>مقیاس‌پذیری از یک پایه ریاضی قدرتمند آغاز می‌شود. ما به بررسی عمیق الگوریتم‌های پشت سیستم‌های
-                        شبکه‌ای مدرن می‌پردازیم تا چیدمانی یکپارچه در تمامی اندازه‌های صفحه‌نمایش تضمین شود.</p>
-                    <p>درک هندسه زیربنایی به ما امکان می‌دهد رابط‌های کاربری منعطف و متراکم طراحی کنیم که حتی با
-                        افزایش پیچیدگی نیز انسجام خود را حفظ کنند.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Blog Modal 8 -->
-<div class="modal fade velixo-modal" id="blogModal8" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header border-0 pb-0">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-4 p-md-5 pt-0">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <span class="badge-status m-0">رایانش ابری</span>
-                    <span class="small opacity-50 fw-bold">08 مهر، 1404</span>
-                </div>
-                <h2 class="modal-title mb-4">معماری ابر ترکیبی</h2>
-                <img src="{% static 'img/blog-7.jpg' %}" class="img-fluid rounded-4 mb-5" alt="Hybrid Cloud Detail">
-                <div class="blog-content">
-                    <p>راهکارهای ابر ترکیبی، بهترین ویژگی‌های هر دو دنیا را ارائه می‌دهند؛ امنیت زیرساخت‌های خصوصی
-                        در کنار مقیاس‌پذیری سرویس‌های ابری عمومی.</p>
-                    <p>در این مطلب، چالش‌های معماری مربوط به همگام‌سازی داده‌ها میان محیط‌های مختلف و بهترین روش‌های
-                        حفظ دسترس‌پذیری بالا در ساختارهای ابر ترکیبی را بررسی می‌کنیم.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END BLOG MODALS -->
-
+{% block extra_js %}
+<script src="{% static 'js/blog.js' %}"></script>
 {% endblock %}

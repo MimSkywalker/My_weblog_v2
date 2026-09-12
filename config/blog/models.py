@@ -62,6 +62,11 @@ class Post(models.Model):
     excerpt = models.TextField(blank=True)
     content = models.TextField()
     categories = models.ManyToManyField(Category, related_name='posts')
+    is_featured = models.BooleanField(
+        default=False,
+        verbose_name="پست ویژه (نمایش بزرگ)",
+        help_text="اگر فعال باشد، این پست در بخش «ویژه» بالای صفحهٔ بلاگ به‌صورت بزرگ نمایش داده می‌شود."
+    )
     tags = models.ManyToManyField('Tag', related_name='posts')
     meta_description = models.CharField(max_length=161)
     published_at = models.DateTimeField(blank=True, null=True)

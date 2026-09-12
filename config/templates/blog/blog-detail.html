@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}آینده سیستم‌های طراحی هوشمند | محمّد مقدّم‌نژاد{% endblock %}
+{% block title %}{{ post.title }} | محمّد مقدّم‌نژاد{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/blog-detail.css' %}" />
@@ -9,10 +9,14 @@
 
 {% block content %}
 
-<!-- START POST HERO -->
+<!-- ============================================================
+     START POST HERO
+     ============================================================ -->
 <div class="bd-hero wow animate__fadeInUp">
     <div class="bd-hero-img">
-        <img src="{% static 'img/blog-1.jpg' %}" alt="آینده سیستم‌های طراحی هوشمند">
+        {% if post.feature_image %}
+        <img src="{{ post.feature_image.url }}" alt="{{ post.title }}">
+        {% endif %}
     </div>
     <div class="bd-hero-gradient"></div>
 
@@ -21,29 +25,42 @@
         بازگشت به وبلاگ
     </a>
 
-    <span class="card-number bd-hero-number">01 / وبلاگ</span>
+    <span class="card-number bd-hero-number">۰۱ / وبلاگ</span>
 
     <div class="bd-hero-content">
         <div class="d-flex align-items-center gap-3 mb-3 bd-hero-meta">
-            <span class="post-tag tag-engineering">مهندسی</span>
-            <span class="post-read"><i class="fa-regular fa-clock me-1"></i>8 دقیقه مطالعه</span>
-            <span class="post-date">24 مهر، 1404</span>
+            {% for category in post.categories.all %}
+            <span class="post-tag tag-engineering">{{ category.title }}</span>
+            {% endfor %}
+            <span class="post-read"><i class="fa-regular fa-clock me-1"></i>{{ post.reading_time }} دقیقه مطالعه</span>
+            {% if post.published_at %}
+            <span class="post-date">{{ post.published_at|date:"d F Y" }}</span>
+            {% endif %}
         </div>
 
-        <h1 class="bd-hero-title">آینده سیستم‌های طراحی هوشمند</h1>
+        <h1 class="bd-hero-title">{{ post.title }}</h1>
 
         <div class="post-author-row d-flex align-items-center gap-2 mt-4">
-            <img src="{% static 'img/avatar-1.jpg' %}" alt="محمد مقدم‌نژاد" class="rounded-circle bd-author-avatar">
+            {% if profile.avatar %}
+            <img src="{{ profile.avatar.url }}" alt="{{ profile.full_name|default:post.user.username }}"
+                class="rounded-circle bd-author-avatar">
+            {% else %}
+            <span class="bd-author-avatar bd-author-avatar-fallback">
+                <i class="fa-solid fa-user"></i>
+            </span>
+            {% endif %}
             <div>
-                <div class="bd-author-name">محمد مقدم‌نژاد</div>
-                <div class="bd-author-role">معمار سیستم‌های طراحی</div>
+                <div class="bd-author-name">{{ profile.full_name }}</div>
+                <div class="bd-author-role">نویسنده</div>
             </div>
         </div>
     </div>
 </div>
 <!-- END POST HERO -->
 
-<!-- START ARTICLE + ASIDE -->
+<!-- ============================================================
+     START ARTICLE + ASIDE
+     ============================================================ -->
 <div class="bd-layout-wrapper col-12 container-fluid px-0">
     <div class="row g-4">
 
@@ -54,54 +71,16 @@
                     <div class="bd-progress-fill" id="bdProgressFill"></div>
                 </div>
 
-                <article class="bd-article">
-                    <p>در دنیای پرشتاب رابط‌های دیجیتال، همگرایی اصول زیستی شبکه‌های عصبی و طراحی مبتنی بر رایانه،
-                        پارادایم تازه‌ای را شکل داده است؛ مفهومی که آن را «معماری طراحی هوشمند» می‌نامیم. برخلاف
-                        سیستم‌های طراحی سنتی و ایستا، این سیستم‌ها به‌گونه‌ای ساخته شده‌اند که زنده و پویا باشند؛
-                        به‌طوری‌که در لحظه با رفتار کاربر، میزان بار ذهنی و شرایط محیطی سازگار می‌شوند.</p>
+                <article class="bd-article" id="bdArticleBody">
+                    {{ post.content|safe }}
 
-                    <p>چنین رویکردی نیازمند بازنگری کامل در مدیریت منطق اجزا و وضعیت سیستم است. تیم‌هایی که این مسیر
-                        را زودتر آغاز کرده‌اند، معمولاً با یک سؤال ساده شروع می‌کنند: اگر رابط کاربری بتواند مثل یک
-                        همکار باتجربه، پیش از درخواست کاربر نیاز او را حدس بزند، چه چیزی باید تغییر کند؟</p>
-
-                    <h2 id="s1"><span class="bd-h-num">۰۱</span>چرا سیستم‌های طراحی سنتی کافی نیستند؟</h2>
-                    <p>سیستم‌های طراحی کلاسیک بر پایهٔ مجموعه‌ای ثابت از کامپوننت‌ها و قواعد از پیش تعیین‌شده ساخته
-                        می‌شوند. این رویکرد برای محصولاتی با رفتار قابل پیش‌بینی مناسب است، اما به‌محض این‌که پیچیدگی
-                        داده و تنوع کاربران بالا می‌رود، همان قواعد ثابت به مانعی برای مقیاس‌پذیری تبدیل می‌شوند. تیم
-                        طراحی مجبور می‌شود برای هر حالت خاص، یک استثنا اضافه کند؛ روندی که در بلندمدت به فرسایش سیستم
-                        منجر می‌شود.</p>
-
-                    <h2 id="s2"><span class="bd-h-num">۰۲</span>سه ستون اصلی طراحی هوشمند</h2>
-                    <p>پس از بررسی چند پروژهٔ در مقیاس سازمانی، سه محور مشترک در تمام تجربه‌های موفق دیده می‌شود:</p>
-                    <ol>
-                        <li><strong>بهره‌وری شناختی:</strong> کاهش اصطکاک و پیچیدگی در تمام نقاط تعامل، به‌گونه‌ای که
-                            کاربر هرگز مجبور به حدس‌زدن مرحلهٔ بعدی نباشد.</li>
-                        <li><strong>مقیاس‌پذیری پویا:</strong> منطقی که پیچیدگی رابط را متناسب با سطح مهارت و سابقهٔ
-                            کاربر تنظیم می‌کند، نه بر اساس یک الگوی ثابت برای همه.</li>
-                        <li><strong>هوش پیش‌بین:</strong> استفاده از یادگیری ماشین برای آماده‌سازی منابع و مسیرها پیش
-                            از وقوع تعامل، تا تأخیر ادراک‌شده به حداقل برسد.</li>
-                    </ol>
-
-                    <blockquote>هدف، ساخت ابزارهایی برای کاربران نیست؛ بلکه ایجاد اکوسیستم‌هایی است که همراه با
-                        آن‌ها رشد و تکامل پیدا کنند.</blockquote>
-
-                    <h2 id="s3"><span class="bd-h-num">۰۳</span>پیاده‌سازی در مقیاس واقعی</h2>
-                    <p>تجربهٔ ما نشان داده که موفق‌ترین تیم‌ها، این تحول را به‌صورت تدریجی و از دل کامپوننت‌های
-                        پرتکرار آغاز می‌کنند، نه با بازطراحی کامل سیستم. یک لایهٔ داده رفتاری کوچک، در کنار همان
-                        کامپوننت‌های موجود، می‌تواند اولین قدم عملی به‌سوی معماری هوشمند باشد؛ بدون آنکه ریسک عملیاتی
-                        پروژه‌های بزرگ را به همراه داشته باشد.</p>
-
-                    <h2 id="s4"><span class="bd-h-num">۰۴</span>جمع‌بندی</h2>
-                    <p>معماری طراحی هوشمند، پایان مسیر سیستم‌های طراحی سنتی نیست؛ بلکه لایه‌ای تکاملی روی همان بنیاد
-                        است. تیم‌هایی که این تغییر را زودتر و آگاهانه‌تر آغاز کنند، تجربه‌ای می‌سازند که با
-                        کاربرانشان رشد می‌کند، نه تجربه‌ای که هر چند سال یک‌بار باید از نو ساخته شود.</p>
-
+                    {% if post.tags.all %}
                     <div class="bd-tags-row">
-                        <a href="{% url 'blog:blog' %}">طراحی سیستم</a>
-                        <a href="{% url 'blog:blog' %}">تجربه کاربری</a>
-                        <a href="{% url 'blog:blog' %}">مهندسی محصول</a>
-                        <a href="{% url 'blog:blog' %}">هوش مصنوعی</a>
+                        {% for tag in post.tags.all %}
+                        <a href="{% url 'blog:blog' %}">{{ tag.title }}</a>
+                        {% endfor %}
                     </div>
+                    {% endif %}
                 </article>
             </div>
         </div>
@@ -111,7 +90,7 @@
             <div class="bd-aside-card wow animate__fadeInRight" data-wow-delay="0.1s">
                 <div class="bd-aside-block">
                     <h6 class="bd-aside-title">در این مقاله</h6>
-                    <!-- Filled automatically by blog-detail.js from the article's h2 elements -->
+                    <!-- به‌صورت خودکار از h2های article توسط blog-detail.js پر می‌شود -->
                     <nav class="bd-toc" id="bdToc"></nav>
                 </div>
 
@@ -121,8 +100,8 @@
                         <button class="bd-share-btn" id="bdCopyLinkBtn" type="button" aria-label="کپی لینک">
                             <i class="fa-solid fa-link"></i>
                         </button>
-                        <a class="bd-share-btn" href="https://twitter.com/intent/tweet" target="_blank"
-                            rel="noopener" aria-label="اشتراک در ایکس">
+                        <a class="bd-share-btn" href="https://twitter.com/intent/tweet" target="_blank" rel="noopener"
+                            aria-label="اشتراک در ایکس">
                             <i class="fa-brands fa-x-twitter"></i>
                         </a>
                         <a class="bd-share-btn" href="https://t.me/share/url" target="_blank" rel="noopener"
@@ -135,15 +114,35 @@
                 <div class="bd-aside-block">
                     <h6 class="bd-aside-title">نویسنده</h6>
                     <div class="post-author-row d-flex align-items-center gap-2 mb-3">
-                        <img src="{% static 'img/avatar-1.jpg' %}" alt="محمد مقدم‌نژاد"
+                        {% if profile.avatar %}
+                        <img src="{{ profile.avatar.url }}" alt="{{ profile.full_name|default:post.user.username }}"
                             class="rounded-circle bd-author-avatar">
+                        {% else %}
+                        <span class="bd-author-avatar bd-author-avatar-fallback">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                        {% endif %}
                         <div>
-                            <div class="bd-author-name">محمد مقدم‌نژاد</div>
-                            <div class="bd-author-role">معمار سیستم‌های طراحی</div>
+                            <div class="bd-author-name">{{ profile.full_name }}</div>
+                            <div class="bd-author-role">نویسنده</div>
                         </div>
                     </div>
-                    <p class="bd-author-bio">بیش از یک دهه تجربه در طراحی و توسعهٔ سامانه‌های پیشرفته برای
-                        کسب‌وکارهای مختلف.</p>
+                    {% if profile.bio %}
+                    <p class="bd-author-bio">{{ profile.bio }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="bd-aside-block">
+                    <div class="bd-aside-stat-row">
+                        <div class="bd-aside-stat">
+                            <span class="bd-aside-stat-num">{{ post.word_count }}</span>
+                            <span class="bd-aside-stat-label">کلمه</span>
+                        </div>
+                        <div class="bd-aside-stat">
+                            <span class="bd-aside-stat-num">{{ post.comments.count }}</span>
+                            <span class="bd-aside-stat-label">دیدگاه</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -152,57 +151,181 @@
 </div>
 <!-- END ARTICLE + ASIDE -->
 
-<!-- START RELATED POSTS -->
+<!-- ============================================================
+     START COMMENTS
+     ============================================================ -->
+<div class="bd-comments-wrapper col-12 container-fluid px-0" id="bdComments">
+    <div class="bd-comments-card wow animate__fadeInUp">
+
+        <h4 class="bd-comments-title">
+            دیدگاه‌ها
+            <span class="bd-comments-count">({{ post.comments.count }})</span>
+        </h4>
+
+        {% if messages %}
+        <div class="bd-alert-stack">
+            {% for message in messages %}
+            <div class="bd-alert bd-alert-{{ message.tags|default:'success' }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- COMMENT LIST -->
+        <div class="bd-comment-list">
+            {% for comment in comments %}
+            <div class="bd-comment" id="comment-{{ comment.pk }}">
+                <div class="bd-comment-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="bd-comment-body">
+                    <div class="bd-comment-head">
+                        <span class="bd-comment-name">{{ comment.full_name }}</span>
+                        <span class="bd-comment-date">{{ comment.created_at|date:"d F Y - H:i" }}</span>
+                    </div>
+                    <h6 class="bd-comment-subject">{{ comment.subject }}</h6>
+                    <p class="bd-comment-text">{{ comment.content }}</p>
+
+                    <button class="bd-reply-btn" type="button" data-bd-reply-toggle data-comment-id="{{ comment.pk }}"
+                        data-comment-name="{{ comment.full_name }}">
+                        <i class="fa-solid fa-reply"></i>
+                        پاسخ
+                    </button>
+
+                    <!-- REPLY FORM (hidden by default; toggled by blog-detail.js) -->
+                    <div class="bd-reply-form-wrapper d-none" id="reply-form-{{ comment.pk }}">
+                        <form method="post" action="{% url 'blog:blog-detail' post.slug %}#comment-{{ comment.pk }}"
+                            class="bd-comment-form bd-reply-form">
+                            {% csrf_token %}
+                            <input type="hidden" name="parent_id" value="{{ comment.pk }}">
+                            <div class="bd-form-row">
+                                <input type="text" name="full_name" class="vx-input" placeholder="نام" required>
+                                <input type="email" name="email" class="vx-input" placeholder="ایمیل" required>
+                            </div>
+                            <input type="text" name="subject" class="vx-input" placeholder="موضوع" required>
+                            <textarea name="content" class="vx-input" rows="3" placeholder="پاسخ خود را بنویسید..."
+                                required></textarea>
+                            <button type="submit" class="bd-comment-submit">
+                                ارسال پاسخ
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- REPLIES -->
+                    {% if comment.replies.all %}
+                    <div class="bd-reply-list">
+                        {% for reply in comment.replies.all %}
+                        <div class="bd-comment bd-comment--reply" id="comment-{{ reply.pk }}">
+                            <div class="bd-comment-avatar">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="bd-comment-body">
+                                <div class="bd-comment-head">
+                                    <span class="bd-comment-name">{{ reply.full_name }}</span>
+                                    <span class="bd-comment-date">{{ reply.created_at|date:"d F Y - H:i" }}</span>
+                                </div>
+                                <h6 class="bd-comment-subject">{{ reply.subject }}</h6>
+                                <p class="bd-comment-text">{{ reply.content }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <div class="bd-comments-empty">
+                <i class="fa-regular fa-comment-dots"></i>
+                <p>هنوز دیدگاهی برای این مطلب ثبت نشده؛ اولین نفر باش!</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- NEW TOP-LEVEL COMMENT FORM -->
+        <div class="bd-comment-form-wrapper">
+            <h5 class="bd-comment-form-title">دیدگاه خود را بنویسید</h5>
+            <form method="post" action="{% url 'blog:blog-detail' post.slug %}#bdComments" class="bd-comment-form"
+                novalidate>
+                {% csrf_token %}
+                <input type="hidden" name="parent_id" value="">
+
+                <div class="bd-form-row">
+                    <div class="bd-form-field">
+                        {{ comment_form.full_name }}
+                        {% if comment_form.full_name.errors %}
+                        <small class="bd-form-error">{{ comment_form.full_name.errors.0 }}</small>
+                        {% endif %}
+                    </div>
+                    <div class="bd-form-field">
+                        {{ comment_form.email }}
+                        {% if comment_form.email.errors %}
+                        <small class="bd-form-error">{{ comment_form.email.errors.0 }}</small>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="bd-form-field">
+                    {{ comment_form.subject }}
+                    {% if comment_form.subject.errors %}
+                    <small class="bd-form-error">{{ comment_form.subject.errors.0 }}</small>
+                    {% endif %}
+                </div>
+
+                <div class="bd-form-field">
+                    {{ comment_form.content }}
+                    {% if comment_form.content.errors %}
+                    <small class="bd-form-error">{{ comment_form.content.errors.0 }}</small>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="bd-comment-submit">
+                    ارسال دیدگاه
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>
+<!-- END COMMENTS -->
+
+<!-- ============================================================
+     START RELATED POSTS
+     ============================================================ -->
+{% if related_posts %}
 <div class="bd-related-wrapper col-12 container-fluid px-0">
     <h4 class="bd-related-title">مطالب مرتبط</h4>
     <div class="row g-4">
+        {% for related in related_posts %}
         <div class="col-lg-4">
-            <article class="blog-post-card wow animate__fadeInUp">
+            <article class="blog-post-card wow animate__fadeInUp"
+                data-wow-delay="{{ forloop.counter0|yesno:'0s,0.1s,0.2s' }}">
                 <div class="bpc-img">
-                    <img src="{% static 'img/blog-2.jpg' %}" alt="Quantum UI Hooks">
-                    <span class="post-tag tag-hardware">سخت‌افزار</span>
+                    {% if related.feature_image %}
+                    <img src="{{ related.feature_image.url }}" alt="{{ related.title }}">
+                    {% endif %}
+                    {% with related.categories.first as first_category %}
+                    {% if first_category %}
+                    <span class="post-tag tag-engineering">{{ first_category.title }}</span>
+                    {% endif %}
+                    {% endwith %}
                 </div>
                 <div class="bpc-body">
-                    <h5><a href="{% url 'blog:blog' %}">هوک‌های کوانتومی رابط کاربری</a></h5>
+                    <h5><a href="{% url 'blog:blog-detail' related.slug %}">{{ related.title }}</a></h5>
                     <div class="d-flex align-items-center gap-2 mt-auto pt-3">
-                        <span class="post-read"><i class="fa-regular fa-clock me-1"></i>5 دقیقه</span>
-                        <span class="post-date ms-auto">18 مهر، 1404</span>
+                        <span class="post-read"><i class="fa-regular fa-clock me-1"></i>{{ related.reading_time }}
+                            دقیقه</span>
+                        {% if related.published_at %}
+                        <span class="post-date ms-auto">{{ related.published_at|date:"d F Y" }}</span>
+                        {% endif %}
                     </div>
                 </div>
             </article>
         </div>
-        <div class="col-lg-4">
-            <article class="blog-post-card wow animate__fadeInUp" data-wow-delay="0.1s">
-                <div class="bpc-img">
-                    <img src="{% static 'img/blog-3.jpg' %}" alt="Visual Logic Flow">
-                    <span class="post-tag tag-logic">منطق</span>
-                </div>
-                <div class="bpc-body">
-                    <h5><a href="{% url 'blog:blog' %}">جریان منطقی بصری</a></h5>
-                    <div class="d-flex align-items-center gap-2 mt-auto pt-3">
-                        <span class="post-read"><i class="fa-regular fa-clock me-1"></i>4 دقیقه</span>
-                        <span class="post-date ms-auto">15 مهر، 1404</span>
-                    </div>
-                </div>
-            </article>
-        </div>
-        <div class="col-lg-4">
-            <article class="blog-post-card wow animate__fadeInUp" data-wow-delay="0.2s">
-                <div class="bpc-img">
-                    <img src="{% static 'img/blog-4.jpg' %}" alt="Cyber Resilience">
-                    <span class="post-tag tag-security">امنیت</span>
-                </div>
-                <div class="bpc-body">
-                    <h5><a href="{% url 'blog:blog' %}">پروتکل‌های تاب‌آوری سایبری</a></h5>
-                    <div class="d-flex align-items-center gap-2 mt-auto pt-3">
-                        <span class="post-read"><i class="fa-regular fa-clock me-1"></i>6 دقیقه</span>
-                        <span class="post-date ms-auto">10 مهر، 1404</span>
-                    </div>
-                </div>
-            </article>
-        </div>
+        {% endfor %}
     </div>
 </div>
+{% endif %}
 <!-- END RELATED POSTS -->
 
 <!-- COPY-LINK TOAST -->
