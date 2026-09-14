@@ -199,3 +199,5 @@ html[dir="rtl"] .article blockquote{border-inline-start:none;border-inline-end:4
 }
 .dock-item svg{width:19px;height:19px}
 .dock-item:hover,.dock-item.active{background:var(--primary);color:#fff}
+
+

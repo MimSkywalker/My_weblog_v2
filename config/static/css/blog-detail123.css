@@ -26,8 +26,6 @@
     09. Comment Form
     10. Toast
     11. Responsive Fine-tuning
-    12. Markdown Content
-    13. FAQ Accordion
 -----------------------------------------------------------------------------------*/
 
 /* ============================================================
@@ -35,37 +33,18 @@
    ============================================================
    .bento-container یک CSS Grid با ۱۲ ستونه. بدون دست‌کاری main.css،
    فقط با کلاس‌های خودمان span هر بخش را در همان گرید مشخص می‌کنیم.
-
-   نکتهٔ مهم رفع باگ سرریز افقی هدر: هر آیتم مستقیم CSS Grid به‌طور
-   پیش‌فرض min-width: auto دارد (برابر با max-content محتوای داخلی‌اش).
-   یعنی اگر محتوای پویای مقاله (مارک‌داون) حتی یک‌ذره از track گرید
-   عریض‌تر بخواهد، کل ردیف مشترک گرید (که header هم در آن است) کشیده
-   می‌شود و در نتیجه فقط در همین صفحه هدر «باریک‌تر»/جابه‌جا به‌نظر
-   می‌رسد. min-width: 0 این رفتار پیش‌فرض را خنثی می‌کند.
 ============================================================ */
-.bd-hero,
-.bd-layout-wrapper,
-.bd-comments-wrapper,
-.bd-related-wrapper,
-.bd-faq-wrapper {
+.bd-hero {
   grid-column: span 12;
-  min-width: 0;
 }
-
-/* موبایل: .bento-container توی main.css به grid-template-columns: 1fr
-   سوییچ می‌کنه (فقط ۱ ستون واقعی). اگر این عناصر همچنان span 12 بمانند،
-   مرورگر برای پوشش span درخواستی ۱۱ ستون implicit اضافه می‌سازد که از
-   عرض همان تک‌ستون واقعی (که header هم در آن قرار دارد) سهم می‌گیرند و
-   آن را تقریباً نصف می‌کنند — همان باگ «هدر باریک/wrap‌شده در موبایل».
-   بدون این override، main.css برای این کلاس‌های اختصاصی bd- تعریفی ندارد. */
-@media (max-width: 767px) {
-  .bd-hero,
-  .bd-layout-wrapper,
-  .bd-comments-wrapper,
-  .bd-related-wrapper,
-  .bd-faq-wrapper {
-    grid-column: span 1;
-  }
+.bd-layout-wrapper {
+  grid-column: span 12;
+}
+.bd-comments-wrapper {
+  grid-column: span 12;
+}
+.bd-related-wrapper {
+  grid-column: span 12;
 }
 
 /* ============================================================
@@ -1173,17 +1152,7 @@
   font-size: 0.9em;
 }
 
-/* ============================================================
-   12b. Overflow Guard (رفع باگ سرریز افقی هدر در این صفحه)
-   ============================================================
-   دو لایه:
-   1) .bd-layout-wrapper خودش grid item مستقیم .bento-container است
-      (بالای فایل، بخش 01) و آنجا min-width: 0 گرفته.
-   2) اینجا لایهٔ فلکس بوت‌استرپ (.col-lg-8/.col-lg-4) و خودِ متن
-      مقاله را هم محافظت می‌کنیم، چون یک رشتهٔ طولانی بدون فاصله
-      (لینک/کد اینلاین/کلمهٔ انگلیسی پیوسته) می‌تواند حتی بعد از فیکس
-      لایهٔ گرید، عرض ستون فلکس را با min-width: auto پیش‌فرض بشکند.
-============================================================ */
+
 .bd-layout-wrapper .col-lg-8,
 .bd-layout-wrapper .col-lg-4 {
   min-width: 0;
@@ -1200,33 +1169,16 @@
   word-break: break-word;
 }
 
-/* ===== بلاک‌های کد (pre > code از codehilite) ===== */
-.bd-article pre {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  max-width: 100%;
-  border-radius: 14px;
-  margin: 1.5rem 0;
-}
 
-.bd-article pre code {
-  white-space: pre;
-}
 
-/* ===== جلوگیری از سرریز افقی صفحه (ریشهٔ احتمالی مشکل هدر) ===== */
-.bd-article,
-.bd-article * {
-  max-width: 100%;
-}
-
-.bd-article table:not(.bd-table-scroll table) {
-  display: block;
-  overflow-x: auto;
-}
 
 /* ============================================================
    13. FAQ Accordion
    ============================================================ */
+.bd-faq-wrapper {
+  grid-column: span 12;
+}
+
 .bd-faq-card {
   background: var(--velixo-card);
   border: 1px solid var(--velixo-border);
@@ -1314,4 +1266,27 @@
 @keyframes bdFaqOpen {
   from { opacity: 0; transform: translateY(-6px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ===== بلاک‌های کد (pre > code از codehilite) ===== */
+.bd-article pre {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  border-radius: 14px;
+  margin: 1.5rem 0;
+}
+
+.bd-article pre code {
+  white-space: pre;
 }

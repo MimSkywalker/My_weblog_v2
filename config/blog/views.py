@@ -121,7 +121,7 @@ class BlogDetailView(FormMixin, DetailView):
         return (
             Post.objects.filter(status=Post.Status.PUBLISHED)
             .select_related('user')
-            .prefetch_related('categories', 'tags')
+            .prefetch_related('categories', 'tags', 'faqs')
         )
 
     def get(self, request, *args, **kwargs):
@@ -167,6 +167,7 @@ class BlogDetailView(FormMixin, DetailView):
 
         context.setdefault('form', self.get_form())
         context['comment_form'] = context['form']
+        context['faqs'] = post.faqs.all()  
 
         context['comments'] = (
             post.comments.filter(parent__isnull=True)

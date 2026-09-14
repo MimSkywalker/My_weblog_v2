@@ -1,9 +1,10 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static %}{% load jalali %}
 {% block title %}{{ post.title }} | محمّد مقدّم‌نژاد{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/blog-detail.css' %}" />
+<link rel="stylesheet" href="{% static 'css/pygments.css' %}" />
 {% endblock %}
 
 
@@ -34,7 +35,7 @@
             {% endfor %}
             <span class="post-read"><i class="fa-regular fa-clock me-1"></i>{{ post.reading_time }} دقیقه مطالعه</span>
             {% if post.published_at %}
-            <span class="post-date">{{ post.published_at|date:"d F Y" }}</span>
+            <span class="post-date">{{ post.published_at|jalali_date }}</span>
             {% endif %}
         </div>
 
@@ -72,7 +73,7 @@
                 </div>
 
                 <article class="bd-article" id="bdArticleBody">
-                    {{ post.content|safe }}
+                    {{ post.content_html|safe }}
 
                     {% if post.tags.all %}
                     <div class="bd-tags-row">
@@ -151,6 +152,42 @@
 </div>
 <!-- END ARTICLE + ASIDE -->
 
+
+
+
+<!-- ============================================================
+     START FAQ
+     ============================================================ -->
+{% if faqs %}
+<div class="bd-faq-wrapper col-12 container-fluid px-0">
+    <div class="bd-faq-card wow animate__fadeInUp">
+        <h4 class="bd-faq-title">
+            <i class="fa-regular fa-circle-question"></i>
+            سوالات متداول
+        </h4>
+        <div class="bd-faq-list">
+            {% for faq in faqs %}
+            <details class="bd-faq-item" {% if forloop.first %}open{% endif %}>
+                <summary class="bd-faq-question">
+                    <span>{{ faq.question }}</span>
+                    <i class="fa-solid fa-chevron-down bd-faq-chevron"></i>
+                </summary>
+                <div class="bd-faq-answer">
+                    <p>{{ faq.answer|linebreaksbr }}</p>
+                </div>
+            </details>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+<!-- END FAQ -->
+
+
+
+
+
+
 <!-- ============================================================
      START COMMENTS
      ============================================================ -->
@@ -180,7 +217,7 @@
                 <div class="bd-comment-body">
                     <div class="bd-comment-head">
                         <span class="bd-comment-name">{{ comment.full_name }}</span>
-                        <span class="bd-comment-date">{{ comment.created_at|date:"d F Y - H:i" }}</span>
+                        <span class="bd-comment-date">{{ comment.created_at|jalali_date }}</span>
                     </div>
                     <h6 class="bd-comment-subject">{{ comment.subject }}</h6>
                     <p class="bd-comment-text">{{ comment.content }}</p>
@@ -222,7 +259,7 @@
                             <div class="bd-comment-body">
                                 <div class="bd-comment-head">
                                     <span class="bd-comment-name">{{ reply.full_name }}</span>
-                                    <span class="bd-comment-date">{{ reply.created_at|date:"d F Y - H:i" }}</span>
+                                    <span class="bd-comment-date">{{ reply.created_at|jalali_date }}</span>
                                 </div>
                                 <h6 class="bd-comment-subject">{{ reply.subject }}</h6>
                                 <p class="bd-comment-text">{{ reply.content }}</p>

@@ -1,4 +1,15 @@
-
+/*!
+ * Blog List Page — Scoped JS
+ * جایگزین سیستم قدیمی Load More در main.js که با یک pool مخفی و
+ * setTimeout جعلی کار می‌کرد. اینجا هر سه عملیات (سرچ، فیلتر
+ * کتگوری/تگ، Load More) واقعاً به جنگو fetch می‌زنند و همون
+ * partial یکسان (_post_cards.html) رو دریافت می‌کنند.
+ *
+ * نکته: کد قدیمیِ مربوط به #load-more-trigger داخل main.js دیگر
+ * استفاده نمی‌شود؛ یا آن بلاک را از main.js حذف کن یا این فایل را
+ * بعد از main.js لود کن تا event listener جدید override شود (فقط
+ * برای اطمینان، بهتره بلاک قدیمی رو کامل از main.js پاک کنی).
+ */
 (function () {
   "use strict";
 
@@ -17,6 +28,10 @@
     var searchInput = document.getElementById("blogSearchInput");
     var filterPills = document.querySelectorAll(".bl-filter-pill");
     var featuredSection = document.getElementById("blogFeaturedSection");
+
+    var tagToggle = document.getElementById("blogTagToggle");
+    var tagPanel = document.getElementById("blogTagPanel");
+    var tagBadge = document.getElementById("blogTagToggleBadge");
 
     var baseUrl = feed.getAttribute("data-endpoint") || window.location.pathname;
 
@@ -53,6 +68,25 @@
       } else {
         loadMoreWrapper.style.display = "none";
       }
+    }
+
+    function openTagPanel() {
+      if (!tagToggle || !tagPanel) return;
+      tagPanel.classList.add("is-open");
+      tagToggle.classList.add("is-active");
+      tagToggle.setAttribute("aria-expanded", "true");
+    }
+
+    function closeTagPanel() {
+      if (!tagToggle || !tagPanel) return;
+      tagPanel.classList.remove("is-open");
+      tagToggle.classList.remove("is-active");
+      tagToggle.setAttribute("aria-expanded", "false");
+    }
+
+    function updateTagBadge() {
+      if (!tagBadge) return;
+      tagBadge.classList.toggle("d-none", !state.tag);
     }
 
     function fetchPosts(page, append) {
@@ -113,13 +147,35 @@
       });
     }
 
+    /* ---------- Tag Dropdown Toggle ---------- */
+    if (tagToggle && tagPanel) {
+      tagToggle.addEventListener("click", function (event) {
+        event.stopPropagation();
+        if (tagPanel.classList.contains("is-open")) {
+          closeTagPanel();
+        } else {
+          openTagPanel();
+        }
+      });
+
+      document.addEventListener("click", function (event) {
+        if (!tagPanel.classList.contains("is-open")) return;
+        if (tagPanel.contains(event.target) || tagToggle.contains(event.target)) {
+          return;
+        }
+        closeTagPanel();
+      });
+    }
+
     /* ---------- Category / Tag Filter Pills (مستقل و قابل ترکیب) ---------- */
     filterPills.forEach(function (pill) {
-      pill.addEventListener("click", function () {
+      pill.addEventListener("click", function (event) {
+        event.stopPropagation();
         var type = pill.getAttribute("data-filter-type"); // "category" | "tag"
         var value = pill.getAttribute("data-value") || "";
 
-
+        // فقط پیل‌های همون گروه (کتگوری یا تگ) غیرفعال می‌شن؛
+        // گروه دیگه دست‌نخورده می‌مونه تا بشه هم‌زمان کتگوری+تگ زد.
         document
           .querySelectorAll('.bl-filter-pill[data-filter-type="' + type + '"]')
           .forEach(function (p) {
@@ -131,6 +187,8 @@
           state.category = value;
         } else if (type === "tag") {
           state.tag = value;
+          updateTagBadge();
+          closeTagPanel();
         }
 
         fetchPosts(1, false);

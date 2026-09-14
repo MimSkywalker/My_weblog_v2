@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static %}{% load jalali %}
 {% block title %}وبلاگ | محمّد مقدّم‌نژاد{% endblock %}
 
 {% block extra_css %}
@@ -11,13 +11,13 @@
 
 <!-- START HERO SECTION -->
 <div class="bento-card card-hero wow animate__fadeInLeft">
-    <span class="card-number">01 / تحلیل‌ها و بینش‌ها</span>
+    <span class="card-number">01 / روایت‌ها</span>
     <div class="badge-status">
         <i class="fa-solid fa-circle"></i>
-        گزارش‌های معماری هوشمند
+       دانشنامۀ تخصصی
     </div>
-    <h1 class="hero-title">رمزگشایی از<br><span>منطق </span><br>دیجیتال.</h1>
-    <p class="hero-desc">ثبت دستاوردهای فنی، فلسفه طراحی و آینده مهندسی مقیاس‌پذیر</p>
+    <h1 class="hero-title">رمزگشایی از<br><span>منطق </span><br>ساختن.</h1>
+    <p class="hero-desc">ثبت دستاوردهای فنی، فلسفۀ طراحی و مهندسی مقیاس‌پذیر</p>
 </div>
 <!-- END HERO SECTION -->
 
@@ -65,19 +65,33 @@
         {% endif %}
 
         {% if tags %}
-        <div class="bl-filter-group">
-            <span class="bl-filter-label">برچسب‌ها</span>
-            <div class="bl-filter-row">
-                <button type="button" class="bl-filter-pill bl-filter-pill--tag{% if not current_tag %} active{% endif %}"
-                    data-filter-type="tag" data-value="">
-                    همه
-                </button>
-                {% for tag in tags %}
-                <button type="button" class="bl-filter-pill bl-filter-pill--tag{% if current_tag == tag.slug %} active{% endif %}"
-                    data-filter-type="tag" data-value="{{ tag.slug }}">
-                    #{{ tag.title }}
-                </button>
-                {% endfor %}
+        <div class="bl-filter-group bl-tag-group">
+            <button type="button" class="bl-tag-toggle" id="blogTagToggle" aria-expanded="false">
+                <i class="fa-solid fa-tags"></i>
+                <span>برچسب‌ها</span>
+                {% if current_tag %}
+                <span class="bl-tag-toggle-badge" id="blogTagToggleBadge">1</span>
+                {% else %}
+                <span class="bl-tag-toggle-badge d-none" id="blogTagToggleBadge">1</span>
+                {% endif %}
+                <i class="fa-solid fa-chevron-down bl-tag-toggle-caret"></i>
+            </button>
+
+            <div class="bl-tag-panel{% if current_tag %} is-open{% endif %}" id="blogTagPanel">
+                <div class="bl-tag-panel-inner">
+                    <div class="bl-filter-row">
+                        <button type="button" class="bl-filter-pill bl-filter-pill--tag{% if not current_tag %} active{% endif %}"
+                            data-filter-type="tag" data-value="">
+                            همه
+                        </button>
+                        {% for tag in tags %}
+                        <button type="button" class="bl-filter-pill bl-filter-pill--tag{% if current_tag == tag.slug %} active{% endif %}"
+                            data-filter-type="tag" data-value="{{ tag.slug }}">
+                            #{{ tag.title }}
+                        </button>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
         {% endif %}
@@ -86,7 +100,11 @@
 <!-- END SEARCH + FILTER TOOLBAR -->
 
 <!-- ============================================================
-     START FEATURED SECTION 
+     START FEATURED SECTION (فقط بدون فیلتر/سرچ نمایش داده می‌شود)
+     تعداد پست‌های ویژه بین ۰ تا ۳ تاست و لایوت خودش رو تطبیق می‌ده:
+       - ۱ پست ویژه  -> یک کارت تمام‌عرض
+       - ۲ پست ویژه  -> یک بزرگ + یک کناری
+       - ۳ پست ویژه  -> یک بزرگ + دو کناری (استک عمودی)
      ============================================================ -->
 {% with featured_count=featured_posts|length %}
 <div class="blog-grid-wrapper col-12 container-fluid px-0{% if is_filtered or featured_count == 0 %} d-none{% endif %}"
@@ -115,7 +133,7 @@
                     <div class="post-author-row d-flex align-items-center gap-2 mt-4">
                         <span>{{ post.user.get_full_name|default:post.user.username }}</span>
                         {% if post.published_at %}
-                        <span class="ms-auto">{{ post.published_at|date:"d F Y" }}</span>
+                        <span class="ms-auto">{{ post.published_at|jalali_date }}</span>
                         {% endif %}
                     </div>
                 </div>
@@ -146,7 +164,7 @@
                     <div class="d-flex align-items-center gap-2 mt-auto pt-3">
                         <span class="post-read"><i class="fa-regular fa-clock me-1"></i>{{ post.reading_time }} دقیقه</span>
                         {% if post.published_at %}
-                        <span class="post-date ms-auto">{{ post.published_at|date:"d F Y" }}</span>
+                        <span class="post-date ms-auto">{{ post.published_at|jalali_date }}</span>
                         {% endif %}
                     </div>
                 </div>
@@ -161,7 +179,7 @@
 <!-- END FEATURED SECTION -->
 
 <!-- ============================================================
-     START MAIN FEED GRID 
+     START MAIN FEED GRID
      ============================================================ -->
 <div class="blog-grid-wrapper col-12 container-fluid px-0">
     <div class="row g-4" id="blog-feed" data-endpoint="{% url 'blog:blog' %}">

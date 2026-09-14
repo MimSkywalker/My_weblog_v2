@@ -2,7 +2,8 @@ import uuid
 from PIL import Image
 import io
 from django.core.files.base import ContentFile
-
+from django.utils import timezone
+import os
 
 
 def normalize_title(title):
@@ -11,7 +12,7 @@ def normalize_title(title):
 
     return title
 
-    
+
 def project_image_path(instance, file_name):
     title = normalize_title(instance.title)
     return f'blog/posts/{title}_{uuid.uuid4()}.webp'
@@ -39,3 +40,7 @@ def convert_to_webp(image, quality=100, max_size=(1200, 630)):
     )
 
 
+def post_content_image_path(instance, filename):
+    now = timezone.now()
+    new_name = f'{uuid.uuid4().hex}.webp'
+    return os.path.join('blog', 'content-images', now.strftime('%Y/%m'), new_name)

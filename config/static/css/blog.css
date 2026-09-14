@@ -1,5 +1,16 @@
 /*-----------------------------------------------------------------------------------
+    Blog List Page — Scoped Stylesheet
+    مستقل از main.css / main-rtl.css؛ فقط کلاس‌های با پیشوند "bl-"
+    اضافه می‌کند (هم‌خانواده با blog-detail.css / project-detail.css).
+    کارت‌های پست خودشان (.blog-post-card / .blog-featured / ...) از
+    main.css استفاده می‌کنند و اینجا دوباره تعریف نمی‌شوند.
 
+    [TABLE OF CONTENTS]
+    01. Toolbar Card (Search + Filters)
+    02. Filter Pills
+    03. Empty State
+    04. Load More Loading State
+    05. Responsive
 -----------------------------------------------------------------------------------*/
 
 /* ============================================================
@@ -32,7 +43,9 @@
 /* ============================================================
    02. Filter Pills
    ============================================================
-
+   کتگوری و تگ دو گروه بصری جدا هستن: کتگوری پررنگ‌تر و مهم‌تر
+   (چون معمولاً تعدادش کمه)، تگ سبک‌تر و outline (چون معمولاً
+   تعدادش زیاده و نباید بر کتگوری غالب بشه).
 ============================================================ */
 .bl-filter-group {
   display: flex;
@@ -101,6 +114,86 @@
   border-style: solid;
   border-color: var(--velixo-primary);
   color: var(--velixo-primary);
+}
+
+/* ============================================================
+   02b. Tag Tab + Collapsible Panel
+   ============================================================
+   برچسب‌ها به‌جای نمایش دائمی، پشتِ یک دکمهٔ تب‌مانند مخفی می‌شن تا
+   صفحه شلوغ نشه؛ با کلیک، پنل به‌سمت پایین با انیمیشن باز می‌شه.
+   از ترفند grid-template-rows برای انیمیشن ارتفاع "auto" استفاده
+   شده؛ نیازی به محاسبهٔ ارتفاع با JS نیست.
+============================================================ */
+.bl-tag-group {
+  padding-top: 16px;
+  border-top: 1px dashed var(--velixo-border);
+}
+
+.bl-tag-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 100px;
+  border: 1px solid var(--velixo-border);
+  background: var(--velixo-bg);
+  color: var(--velixo-text-muted);
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: var(--velixo-transition);
+  width: fit-content;
+}
+
+.bl-tag-toggle:hover {
+  border-color: var(--velixo-primary);
+  color: var(--velixo-text);
+}
+
+.bl-tag-toggle.is-active {
+  border-color: var(--velixo-primary);
+  color: var(--velixo-primary);
+}
+
+.bl-tag-toggle-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 100px;
+  background: var(--velixo-primary);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.bl-tag-toggle-caret {
+  font-size: 10px;
+  transition: transform 0.3s ease;
+}
+
+.bl-tag-toggle.is-active .bl-tag-toggle-caret {
+  transform: rotate(180deg);
+}
+
+.bl-tag-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.35s ease, opacity 0.25s ease;
+}
+
+.bl-tag-panel.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 14px;
+}
+
+.bl-tag-panel-inner {
+  overflow: hidden;
+  min-height: 0;
 }
 
 /* ============================================================

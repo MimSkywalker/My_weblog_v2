@@ -4,7 +4,12 @@ from django.utils.html import strip_tags
 from django.db import models
 from django.utils import timezone
 from django.conf import settings
-from .utils import project_image_path, convert_to_webp
+
+import re
+import bleach
+import markdown as md_lib
+from .utils import project_image_path, convert_to_webp, post_content_image_path
+from .markdown_render import render_post_content
 
 
 class Comment(models.Model):
@@ -60,7 +65,8 @@ class Post(models.Model):
     status = models.CharField(
         max_length=1, choices=Status.choices, default=Status.DRAFT)
     excerpt = models.TextField(blank=True)
-    content = models.TextField()
+    content = models.TextField(blank=True)
+    content_html = models.TextField(blank=True, editable=False)
     categories = models.ManyToManyField(Category, related_name='posts')
     is_featured = models.BooleanField(
         default=False,
@@ -96,10 +102,13 @@ class Post(models.Model):
         return reading_time
 
     def save(self, *args, **kwargs):
-        clean_content = strip_tags(self.content)
 
         if not self.slug:
             self.slug = slugify(self.title_en)
+
+        if self.content:
+            self.content_html = render_post_content(self.content)
+        clean_content = strip_tags(self.content_html or self.content)
 
         if self.pk:
             old_image = Post.objects.get(pk=self.pk).feature_image
@@ -146,3 +155,44 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class PostImage(models.Model):
+    post = models.ForeignKey(
+        'Post', on_delete=models.CASCADE, related_name='content_images',
+        null=True, blank=True,
+    )
+    image = models.ImageField(upload_to=post_content_image_path)
+    caption = models.CharField(max_length=255, blank=True, verbose_name='کپشن')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'تصویر #{self.pk}'
+
+    def save(self, *args, **kwargs):
+        if self.pk is None and self.image:
+            content = convert_to_webp(self.image)
+            self.image.save(f'{self.image.name}.webp', content, save=False)
+        return super().save(*args, **kwargs)
+
+    @property
+    def markdown_tag(self):
+        return f'![توضیح تصویر](img:{self.pk})'
+
+
+class FAQ(models.Model):
+    post = models.ForeignKey(
+        'Post', on_delete=models.CASCADE, related_name='faqs')
+    question = models.CharField(max_length=256)
+    answer = models.TextField()
+    order = models.PositiveIntegerField(default=0, verbose_name='ترتیب')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    class Meta:
+        ordering = ['order', 'id']
+        verbose_name = 'سوال متداول'
+        verbose_name_plural = 'سوالات متداول'
+
+    def __str__(self):
+        return f'{self.post.title} | {self.question}'

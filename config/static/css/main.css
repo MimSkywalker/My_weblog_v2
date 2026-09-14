@@ -849,7 +849,7 @@ header {
 @media (max-width: 767px) {
   .bento-container {
     grid-template-columns: 1fr !important;
-    padding: 24px 16px 200px !important; /* Extra bottom padding for nav */
+    padding: 24px 16px 200px !important;
     gap: 16px;
     width: 100vw !important;
     overflow-x: hidden;
@@ -880,7 +880,6 @@ header {
     max-width: 100%;
   }
 
-  /* Responsive stack logic */
   .expertise-list,
   .pillar-grid,
   .skill-meter-grid,
@@ -908,13 +907,42 @@ header {
     height: 48px;
     font-size: 18px;
   }
+
+  /* ---- header fix ---- */
+  header {
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 2rem !important;
+  }
+
+  .logo-text {
+    font-size: 24px;
+    letter-spacing: -1px;
+    line-height: 1.35;
+  }
+
+  .dark-toggle {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+  }
 }
 
 @media (max-width: 480px) {
   .hero-title {
     font-size: clamp(24px, 12vw, 32px) !important;
   }
+  .logo-text {
+    font-size: 19px;
+    letter-spacing: -0.5px;
+  }
 
+  .dark-toggle {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+  }
+}
   .bento-card {
     padding: 24px;
   }

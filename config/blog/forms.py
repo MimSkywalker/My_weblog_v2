@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Comment
+from .models import Post, Comment
 
 
 class CommentForm(forms.ModelForm):
@@ -47,3 +47,23 @@ class CommentForm(forms.ModelForm):
             "subject": "موضوع",
             "content": "متن دیدگاه",
         }
+
+
+
+class PostAdminForm(forms.ModelForm):
+    md_file = forms.FileField(
+        required=False,
+        label='آپلود فایل مارک‌داون (.md)',
+        help_text='اگه انتخاب کنی، جایگزین متن پایین می‌شه.',
+    )
+
+    class Meta:
+        model = Post
+        fields = '__all__'
+
+    def clean(self):
+        cleaned = super().clean()
+        md_file = cleaned.get('md_file')
+        if md_file:
+            cleaned['content'] = md_file.read().decode('utf-8')
+        return cleaned
