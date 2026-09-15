@@ -10,7 +10,7 @@ from django.views.generic.edit import FormMixin
 from .forms import CommentForm
 from .models import Category, Comment, Post, Tag
 from resume.models import Profile
-
+from django.conf import settings
 
 class BlogView(ListView):
     """
@@ -167,7 +167,8 @@ class BlogDetailView(FormMixin, DetailView):
 
         context.setdefault('form', self.get_form())
         context['comment_form'] = context['form']
-        context['faqs'] = post.faqs.all()  
+        context['faqs'] = post.faqs.all()
+        context['RECAPTCHA_PUBLIC_KEY'] = settings.RECAPTCHA_PUBLIC_KEY  # جدید
 
         context['comments'] = (
             post.comments.filter(parent__isnull=True)

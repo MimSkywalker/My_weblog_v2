@@ -173,3 +173,39 @@
     });
   }
 })();
+
+
+
+(function () {
+  "use strict";
+
+  document.addEventListener("submit", function (e) {
+    const form = e.target;
+    if (!form.classList || !form.classList.contains("bd-comment-form")) return;
+
+    const tokenInput = form.querySelector('input[name="captcha"]');
+    if (!tokenInput) return;
+
+    if (form.dataset.bdCaptchaSubmitting === "1") return;
+
+    e.preventDefault();
+
+    const wrapper = document.getElementById("bdComments");
+    const siteKey = wrapper ? wrapper.dataset.recaptchaKey : null;
+
+    if (typeof grecaptcha === "undefined" || !siteKey) {
+      console.error("reCAPTCHA در دسترس نیست؛ ارسال بدون توکن انجام می‌شود.");
+      form.dataset.bdCaptchaSubmitting = "1";
+      form.submit();
+      return;
+    }
+
+    grecaptcha.ready(function () {
+      grecaptcha.execute(siteKey, { action: "comment" }).then(function (token) {
+        tokenInput.value = token;
+        form.dataset.bdCaptchaSubmitting = "1";
+        form.submit();
+      });
+    });
+  });
+})();

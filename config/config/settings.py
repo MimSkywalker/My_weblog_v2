@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'home',
     'resume',
     'project',
+
+
+    # Tools
+    'django_recaptcha',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +144,14 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_URL = '/media/'
 # Specify the directory where media files are stored
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+# Recaptcha Setting
+RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
+
+RECAPTCHA_REQUIRED_SCORE = env(
+    'RECAPTCHA_REQUIRED_SCORE',
+    default=0.5,
+    cast=float,
+)

@@ -1,6 +1,8 @@
 from django import forms
 
 from .models import Post, Comment
+from django_recaptcha.fields import ReCaptchaField
+from django_recaptcha.widgets import ReCaptchaV3
 
 
 class CommentForm(forms.ModelForm):
@@ -8,6 +10,10 @@ class CommentForm(forms.ModelForm):
     """
 
     parent_id = forms.IntegerField(required=False, widget=forms.HiddenInput())
+    captcha = ReCaptchaField(
+        widget=ReCaptchaV3(action='comment'),
+        label='',
+    )
 
     class Meta:
         model = Comment
@@ -47,7 +53,6 @@ class CommentForm(forms.ModelForm):
             "subject": "موضوع",
             "content": "متن دیدگاه",
         }
-
 
 
 class PostAdminForm(forms.ModelForm):

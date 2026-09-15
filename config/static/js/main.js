@@ -84,54 +84,62 @@ if (contactForm.length > 0) {
   const formEl = contactForm[0];
   const submitBtn = contactForm.find('button[type="submit"]');
   const originalBtnHtml = submitBtn.html();
+  const alertBox = $("#form-alert-box");
+  const alertText = $("#form-alert-text");
+  const RECAPTCHA_SITE_KEY = formEl.dataset.recaptchaKey;
 
   function getCookie(name) {
     let cookieValue = null;
-
     if (document.cookie && document.cookie !== "") {
       const cookies = document.cookie.split(";");
-
       for (let cookie of cookies) {
         cookie = cookie.trim();
-
         if (cookie.substring(0, name.length + 1) === name + "=") {
-          cookieValue = decodeURIComponent(
-            cookie.substring(name.length + 1)
-          );
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
           break;
         }
       }
     }
-
     return cookieValue;
   }
 
   function setButtonState(html, addClass, removeClass, disabled) {
-    submitBtn
-      .html(html)
-      .prop("disabled", disabled)
-      .removeClass(removeClass)
-      .addClass(addClass);
+    submitBtn.html(html).prop("disabled", disabled).removeClass(removeClass).addClass(addClass);
   }
 
-  contactForm.on("submit", function (e) {
+  function clearFormErrors() {
+    alertBox.removeClass("is-visible");
+    alertText.text("");
+    contactForm.find(".vx-input").removeClass("is-invalid");
+    contactForm.find(".vx-error").text("");
+  }
 
-    e.preventDefault();
+  function showFormErrors(errors) {
+    errors = errors || {};
 
-    const formData = new FormData(formEl);
-
-    const csrfToken =
-      formData.get("csrfmiddlewaretoken") || getCookie("csrftoken");
-
-    const actionUrl =
-      formEl.getAttribute("action") || window.location.href;
-
-    setButtonState(
-      'لطفا صبر کنید... <i class="fa-solid fa-spinner fa-spin ms-2"></i>',
-      "",
-      "",
-      true
+    // خطای کلی/غیرفیلدی یا کپچا در باکس بالا
+    const generalError = errors.__all__ || errors.captcha;
+    alertText.text(
+      generalError ? generalError[0] : "لطفاً خطاهای مشخص‌شدهٔ زیر را برطرف کنید."
     );
+    alertBox.addClass("is-visible");
+
+    // خطاهای فیلد به فیلد
+    Object.keys(errors).forEach(function (field) {
+      if (field === "__all__" || field === "captcha") return;
+      const input = contactForm.find('[name="' + field + '"]');
+      const errorSpan = contactForm.find('[data-error-for="' + field + '"]');
+      input.addClass("is-invalid");
+      errorSpan.text(errors[field][0]);
+    });
+  }
+
+  function submitForm() {
+    const formData = new FormData(formEl);
+    const csrfToken = formData.get("csrfmiddlewaretoken") || getCookie("csrftoken");
+    const actionUrl = formEl.getAttribute("action") || window.location.href;
+
+    setButtonState('لطفا صبر کنید... <i class="fa-solid fa-spinner fa-spin ms-2"></i>', "", "", true);
 
     fetch(actionUrl, {
       method: "POST",
@@ -142,63 +150,51 @@ if (contactForm.length > 0) {
       },
       credentials: "same-origin"
     })
-      .then((response) => {
+      .then(function (response) {
+        return response.json().then(function (data) {
+          return { status: response.status, data: data };
+        });
+      })
+      .then(function (result) {
+        if (result.data && result.data.success) {
+          clearFormErrors();
+          setButtonState('پیام ارسال شد <i class="fa-solid fa-check ms-2"></i>', "btn-success", "btn-primary", true);
+          formEl.reset();
 
-        console.log("پاسخ از Django رسید:", response);
-
-        if (!response.ok) {
-          throw new Error(
-            "Request failed with status " + response.status
-          );
+          setTimeout(function () {
+            setButtonState(originalBtnHtml, "btn-primary", "btn-success", false);
+          }, 3000);
+        } else {
+          showFormErrors(result.data ? result.data.errors : {});
+          setButtonState(originalBtnHtml, "btn-primary", "btn-danger", false);
         }
-
-        return response.json().catch(() => ({}));
       })
-
-      .then(() => {
-
-        setButtonState(
-          'پیام ارسال شد <i class="fa-solid fa-check ms-2"></i>',
-          "btn-success",
-          "btn-primary",
-          true
-        );
-
-        formEl.reset();
+      .catch(function (error) {
+        console.error("Contact form submission failed:", error);
+        setButtonState('خطا در ارسال پیام، دوباره تلاش کنید <i class="fa-solid fa-triangle-exclamation ms-2"></i>', "btn-danger", "btn-primary", false);
 
         setTimeout(function () {
-          setButtonState(
-            originalBtnHtml,
-            "btn-primary",
-            "btn-success",
-            false
-          );
-        }, 3000);
-      })
-
-      .catch((error) => {
-
-        console.error(
-          "Contact form submission failed:",
-          error
-        );
-
-        setButtonState(
-          'خطا در ارسال پیام، دوباره تلاش کنید <i class="fa-solid fa-triangle-exclamation ms-2"></i>',
-          "btn-danger",
-          "btn-primary",
-          false
-        );
-
-        setTimeout(function () {
-          setButtonState(
-            originalBtnHtml,
-            "btn-primary",
-            "btn-danger",
-            false
-          );
+          setButtonState(originalBtnHtml, "btn-primary", "btn-danger", false);
         }, 3000);
       });
+  }
+
+  contactForm.on("submit", function (e) {
+    e.preventDefault();
+    clearFormErrors();
+
+    if (typeof grecaptcha === "undefined") {
+      // اگر اسکریپت گوگل بارگذاری نشده باشد، بدون کپچا ادامه نده
+      showFormErrors({ __all__: ["سرویس reCAPTCHA بارگذاری نشد. صفحه را رفرش کنید."] });
+      return;
+    }
+
+    grecaptcha.ready(function () {
+      grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: "contact" }).then(function (token) {
+        document.getElementById("id-recaptcha-response").value = token;
+        submitForm();
+      });
+    });
   });
 }
 

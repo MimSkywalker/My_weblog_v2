@@ -191,7 +191,9 @@
 <!-- ============================================================
      START COMMENTS
      ============================================================ -->
-<div class="bd-comments-wrapper col-12 container-fluid px-0" id="bdComments">
+
+<div class="bd-comments-wrapper col-12 container-fluid px-0" id="bdComments"
+    data-recaptcha-key="{{ RECAPTCHA_PUBLIC_KEY }}">
     <div class="bd-comments-card wow animate__fadeInUp">
 
         <h4 class="bd-comments-title">
@@ -234,13 +236,38 @@
                             class="bd-comment-form bd-reply-form">
                             {% csrf_token %}
                             <input type="hidden" name="parent_id" value="{{ comment.pk }}">
+                            <input type="hidden" name="captcha">
+
+                            {% if comment_form.non_field_errors %}
+                            <div class="bd-alert bd-alert-error">{{ comment_form.non_field_errors.0 }}</div>
+                            {% endif %}
+
                             <div class="bd-form-row">
                                 <input type="text" name="full_name" class="vx-input" placeholder="نام" required>
                                 <input type="email" name="email" class="vx-input" placeholder="ایمیل" required>
                             </div>
+                            {% if comment_form.full_name.errors %}
+                            <small class="bd-form-error">{{ comment_form.full_name.errors.0 }}</small>
+                            {% endif %}
+                            {% if comment_form.email.errors %}
+                            <small class="bd-form-error">{{ comment_form.email.errors.0 }}</small>
+                            {% endif %}
+
                             <input type="text" name="subject" class="vx-input" placeholder="موضوع" required>
+                            {% if comment_form.subject.errors %}
+                            <small class="bd-form-error">{{ comment_form.subject.errors.0 }}</small>
+                            {% endif %}
+
                             <textarea name="content" class="vx-input" rows="3" placeholder="پاسخ خود را بنویسید..."
                                 required></textarea>
+                            {% if comment_form.content.errors %}
+                            <small class="bd-form-error">{{ comment_form.content.errors.0 }}</small>
+                            {% endif %}
+
+                            {% if comment_form.captcha.errors %}
+                            <div class="bd-alert bd-alert-error">{{ comment_form.captcha.errors.0 }}</div>
+                            {% endif %}
+
                             <button type="submit" class="bd-comment-submit">
                                 ارسال پاسخ
                                 <i class="fa-solid fa-paper-plane"></i>
@@ -285,6 +312,11 @@
                 novalidate>
                 {% csrf_token %}
                 <input type="hidden" name="parent_id" value="">
+                <input type="hidden" name="captcha">
+
+                {% if comment_form.non_field_errors %}
+                <div class="bd-alert bd-alert-error">{{ comment_form.non_field_errors.0 }}</div>
+                {% endif %}
 
                 <div class="bd-form-row">
                     <div class="bd-form-field">
@@ -315,16 +347,30 @@
                     {% endif %}
                 </div>
 
+                {% if comment_form.captcha.errors %}
+                <div class="bd-alert bd-alert-error">{{ comment_form.captcha.errors.0 }}</div>
+                {% endif %}
+
+                <p class="small opacity-40 fw-bold mb-0">
+                    <i class="fa-solid fa-shield-halved me-2"></i>
+
+                    این فرم توسط reCAPTCHA و
+                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">حریم‌خصوصی گوگل</a>
+                    محافظت می‌شود.
+                </p>
                 <button type="submit" class="bd-comment-submit">
                     ارسال دیدگاه
                     <i class="fa-solid fa-paper-plane"></i>
                 </button>
+
+
             </form>
         </div>
 
     </div>
 </div>
 <!-- END COMMENTS -->
+
 
 <!-- ============================================================
      START RELATED POSTS
@@ -372,5 +418,6 @@
 
 
 {% block extra_js %}
+<script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_PUBLIC_KEY }}" async defer></script>
 <script src="{% static 'js/blog-detail.js' %}"></script>
 {% endblock %}

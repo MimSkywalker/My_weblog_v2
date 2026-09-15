@@ -153,45 +153,78 @@
         <!-- Right: Form -->
         <div class="col-lg-8">
             <form id="contact-form" class="velixo-form h-100 d-flex flex-column" method="post"
-                action="{% url 'home:contact' %}">
+                action="{% url 'home:contact' %}" data-recaptcha-key="{{ recaptcha_site_key }}">
                 {% csrf_token %}
-                <div class=" row g-4 flex-grow-1">
+                <input type="hidden" name="captcha" id="id-recaptcha-response">
+
+                <!-- START: باکس خطای کلی -->
+                <div id="form-alert-box" class="vx-alert-box{% if form.errors %} is-visible{% endif %}" role="alert">
+                    <i class="fa-solid fa-triangle-exclamation me-2"></i>
+                    <span id="form-alert-text">
+                        {% if form.non_field_errors %}{{ form.non_field_errors.0 }}
+                        {% elif form.captcha.errors %}{{ form.captcha.errors.0 }}
+                        {% elif form.errors %}لطفاً خطاهای مشخص‌شدهٔ زیر را برطرف کنید.
+                        {% endif %}
+                    </span>
+                </div>
+                <!-- END: باکس خطای کلی -->
+
+                <div class="row g-4 flex-grow-1">
                     <div class="col-md-6">
                         <div class="vx-field">
                             <label for="name">نام و نام خانوادگی</label>
-                            <input type="text" id="name" class="vx-input" placeholder="محمدعلی فرهی" required
-                                name="full_name" value="{{ form.full_name.value|default:'' }}">
+                            <input type="text" id="name"
+                                class="vx-input{% if form.full_name.errors %} is-invalid{% endif %}"
+                                placeholder="محمدعلی فرهی" required name="full_name"
+                                value="{{ form.full_name.value|default:'' }}">
+                            <span class="vx-error" data-error-for="full_name">
+                                {{ form.full_name.errors.0|default:'' }}
+                                </span>
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="vx-field">
                             <label for="email">آدرس ایمیل</label>
-                            <input type="email" id="email" class="vx-input" placeholder="example@email.com" required
-                                name="email" value="{{ form.email.value|default:'' }}">
+                            <input type="email" id="email"
+                                class="vx-input{% if form.email.errors %} is-invalid{% endif %}"
+                                placeholder="example@email.com" required name="email"
+                                value="{{ form.email.value|default:'' }}">
+                            <span class="vx-error" data-error-for="email">{{ form.email.errors.0|default:'' }}</span>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="vx-field">
                             <label for="subject">موضوع پروژه</label>
-                            <input type="text" id="subject" class="vx-input"
+                            <input type="text" id="subject"
+                                class="vx-input{% if form.subject.errors %} is-invalid{% endif %}"
                                 placeholder="مثال: طراحی هویت برند و وب‌سایت" required name="subject"
                                 value="{{ form.subject.value|default:'' }}">
+                            <span class="vx-error" data-error-for="subject">
+                                {{ form.subject.errors.0|default:'' }}</span>
+
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="vx-field">
                             <label for="message">شرح پروژه</label>
-                            <textarea id="message" class="vx-input"
+                            <textarea id="message" class="vx-input{% if form.message.errors %} is-invalid{% endif %}"
                                 placeholder="اهداف پروژه، زمان‌بندی و نیازمندی‌های فنی خود را شرح دهید..." required
                                 name="message">{{ form.message.value|default:'' }}</textarea>
+                            <span class="vx-error" data-error-for="message">
+                                {{ form.message.errors.0|default:'' }}</span>
+
                         </div>
                     </div>
                 </div>
+
                 <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mt-4 pt-4"
                     style="border-top: 1px solid var(--velixo-border);">
                     <p class="small opacity-40 fw-bold mb-0">
                         <i class="fa-solid fa-shield-halved me-2"></i>اطلاعات شما رمزنگاری شده و هرگز با شخص یا
-                        سازمان دیگری به اشتراک گذاشته نمی‌شود.
+                        سازمان دیگری به اشتراک گذاشته نمی‌شود. این فرم توسط reCAPTCHA و
+                        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">حریم‌خصوصی گوگل</a>
+                        محافظت می‌شود.
                     </p>
                     <button type="submit" class="btn btn-primary rounded-pill px-5 py-3 fw-bold text-uppercase">
                         ارسال پیام <i class="fa-solid fa-bolt-lightning ms-2"></i>
@@ -204,4 +237,7 @@
 </div>
 <!-- END INTAKE SECTION -->
 
+{% endblock %}
+{% block extra_js %}
+<script src="https://www.google.com/recaptcha/api.js?render={{ recaptcha_site_key }}"></script>
 {% endblock %}
