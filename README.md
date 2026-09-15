@@ -60,7 +60,7 @@ My_weblog_v2/
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/My_weblog_v2.git
+   git clone https://github.com/mimskywalker/My_weblog_v2.git
    cd My_weblog_v2
    ```
 
